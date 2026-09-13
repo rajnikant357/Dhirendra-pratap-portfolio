@@ -211,19 +211,21 @@ const selectedProjects = PROJECTS_DATA.filter((p) => p.featured).slice(0, 3);
         </a>
       </div>
 
-      <!-- Asymmetrical Editorial Layout (Not a generic card grid) -->
-      <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-y-16 gap-x-8">
+      <!-- Bento Grid Layout: Alternating Landscape & Portrait -->
+      <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-y-16 gap-x-8 items-start">
         {featuredArtworks.slice(0, 5).map((artwork, idx) => {
-          let colSpan = 'lg:col-span-6';
-          if (idx === 0) colSpan = 'lg:col-span-7';
-          else if (idx === 1) colSpan = 'lg:col-span-5';
-          else if (idx === 2) colSpan = 'lg:col-span-4';
-          else if (idx === 3) colSpan = 'lg:col-span-8';
-          else colSpan = 'lg:col-span-12 max-w-2xl mx-auto';
+          const isLandscape = (idx % 4 === 0) || (idx % 4 === 3);
+          let colSpan = isLandscape ? 'lg:col-span-7 md:col-span-1' : 'lg:col-span-5 md:col-span-1';
+          let aspect = isLandscape ? 'aspect-[16/10]' : 'aspect-[3/4]';
+
+          if (idx === 4) {
+            colSpan = 'lg:col-span-12 max-w-3xl mx-auto w-full';
+            aspect = 'aspect-[16/9]';
+          }
 
           return (
             <div class={colSpan}>
-              <ArtworkCard artwork={artwork} priority={idx === 0} />
+              <ArtworkCard artwork={artwork} priority={idx === 0} aspectRatio={aspect} />
             </div>
           );
         })}

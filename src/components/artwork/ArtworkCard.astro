@@ -4,9 +4,10 @@ import type { Artwork } from '../../types/database';
 export interface Props {
   artwork: Artwork;
   priority?: boolean;
+  aspectRatio?: string;
 }
 
-const { artwork, priority = false } = Astro.props;
+const { artwork, priority = false, aspectRatio = 'aspect-[4/5]' } = Astro.props;
 const primaryImage = artwork.images.find((img) => img.is_primary) || artwork.images[0];
 
 const formatPrice = (amt?: number | null) => {
@@ -28,7 +29,7 @@ const formatPrice = (amt?: number | null) => {
     aria-label={`View details of ${artwork.title}`}
   >
     <!-- Aspect Ratio Preservation -->
-    <div class="relative w-full aspect-[4/5] overflow-hidden">
+    <div class={`relative w-full ${aspectRatio} overflow-hidden`}>
       <img
         src={primaryImage.storage_path}
         alt={primaryImage.alt_text || `${artwork.title} by Dhirendra`}

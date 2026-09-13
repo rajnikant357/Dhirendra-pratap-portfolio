@@ -141,7 +141,7 @@ export const GalleryFilter: React.FC<Props> = ({ initialArtworks }) => {
                   viewMode === 'EDITORIAL' ? 'bg-[#141311] text-[#FBFBF9]' : 'text-[#6B6864]'
                 }`}
               >
-                Editorial
+                Bento Grid
               </button>
               <button
                 onClick={() => setViewMode('GRID')}
@@ -149,7 +149,7 @@ export const GalleryFilter: React.FC<Props> = ({ initialArtworks }) => {
                   viewMode === 'GRID' ? 'bg-[#141311] text-[#FBFBF9]' : 'text-[#6B6864]'
                 }`}
               >
-                Grid
+                3-Column Grid
               </button>
             </div>
 
@@ -195,33 +195,23 @@ export const GalleryFilter: React.FC<Props> = ({ initialArtworks }) => {
         <div
           className={
             viewMode === 'EDITORIAL'
-              ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-y-16 gap-x-8'
-              : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'
+              ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-y-16 gap-x-8 items-start'
+              : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-start'
           }
         >
           {filteredArtworks.map((artwork, idx) => {
             const primaryImage = artwork.images.find((img) => img.is_primary) || artwork.images[0];
             
-            // In editorial layout, create intentional asymmetry based on index
+            // Bento Grid layout: Alternating one landscape and one portrait
+            const isLandscape = idx % 4 === 0 || idx % 4 === 3;
             let colSpan = 'lg:col-span-6';
             let aspectClass = 'aspect-[4/5]';
+
             if (viewMode === 'EDITORIAL') {
-              if (idx % 5 === 0) {
-                colSpan = 'lg:col-span-8 lg:col-start-1';
-                aspectClass = 'aspect-[16/11]';
-              } else if (idx % 5 === 1) {
-                colSpan = 'lg:col-span-4';
-                aspectClass = 'aspect-[3/4]';
-              } else if (idx % 5 === 2) {
-                colSpan = 'lg:col-span-5';
-                aspectClass = 'aspect-[4/5]';
-              } else if (idx % 5 === 3) {
-                colSpan = 'lg:col-span-7';
-                aspectClass = 'aspect-[5/4]';
-              } else {
-                colSpan = 'lg:col-span-6';
-                aspectClass = 'aspect-[4/5]';
-              }
+              colSpan = isLandscape ? 'lg:col-span-7 md:col-span-1' : 'lg:col-span-5 md:col-span-1';
+              aspectClass = isLandscape ? 'aspect-[16/10]' : 'aspect-[3/4]';
+            } else {
+              aspectClass = idx % 2 === 0 ? 'aspect-[16/10]' : 'aspect-[3/4]';
             }
 
             return (
