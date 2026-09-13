@@ -1,0 +1,585 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArtworkCard from '../components/artwork/ArtworkCard.astro';
+import { getFeaturedArtworks, getSignatureArtworks } from '../lib/artworks';
+import { ACHIEVEMENTS_DATA } from '../lib/data/achievements';
+import { PROJECTS_DATA } from '../lib/data/projects';
+
+const featuredArtworks = await getFeaturedArtworks();
+const signatureArtworks = await getSignatureArtworks();
+const topAchievements = ACHIEVEMENTS_DATA.filter((a) => a.featured).slice(0, 4);
+const selectedProjects = PROJECTS_DATA.filter((p) => p.featured).slice(0, 3);
+---
+
+<BaseLayout
+  title="Dhirendra — Artist & Graphics Designer | Official Portfolio & Digital Gallery"
+  description="Official digital gallery of Dhirendra, Artist & Graphics Designer. BVA & MVA in Visual Arts, 7+ years practice. National and state award-winning paintings, drawings, and visual compositions."
+>
+  <!-- 1. HERO: The Contemporary Exhibition Hall -->
+  <section class="relative min-h-[90vh] flex items-center justify-center bg-[#FBFBF9] overflow-hidden border-b border-[#E8E5DC] py-16 lg:py-24">
+    <!-- Subtle architectural grid / exhibition wall backdrop -->
+    <div class="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(#141311_1px,transparent_1px)] [background-size:24px_24px]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        
+        <!-- Left Column: Primary Identity & Positioning -->
+        <div class="lg:col-span-6 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#F4F1EA] border border-[#E8E5DC] rounded-full text-xs text-[#57544E]">
+            <span class="w-2 h-2 rounded-full bg-[#B68B35]"></span>
+            <span class="uppercase tracking-[0.16em] font-medium text-[11px]">Digital Exhibition Catalogue</span>
+          </div>
+
+          <div class="space-y-2">
+            <h1 class="font-serif-display text-5xl sm:text-7xl lg:text-8xl text-[#141311] font-medium tracking-tight leading-[0.95]">
+              Dhirendra
+            </h1>
+            <p class="text-xs sm:text-sm uppercase tracking-[0.26em] text-[#9B4722] font-semibold">
+              Artist & Graphics Designer
+            </p>
+          </div>
+
+          <p class="font-serif text-xl sm:text-2xl text-[#57544E] leading-relaxed italic max-w-xl">
+            Creating art that connects observation, imagination, and expression.
+          </p>
+
+          <p class="text-sm sm:text-base text-[#6B6864] leading-relaxed max-w-xl">
+            An accomplished artist with an academic background in BVA and MVA, more than seven years of rigorous studio practice, and honors across national, state, and government platforms.
+          </p>
+
+          <!-- CTAs -->
+          <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+            <a
+              href="/gallery"
+              class="px-8 py-4 bg-[#141311] text-[#FBFBF9] hover:bg-[#2C2A26] text-xs uppercase tracking-[0.2em] font-medium transition-all duration-300 text-center shadow-sm hover:shadow-md"
+            >
+              Explore Gallery &rarr;
+            </a>
+            <a
+              href="/about"
+              class="px-8 py-4 border border-[#141311] text-[#141311] hover:bg-[#141311] hover:text-[#FBFBF9] text-xs uppercase tracking-[0.2em] font-medium transition-all duration-300 text-center"
+            >
+              Discover the Artist
+            </a>
+          </div>
+
+          <!-- Credential Micro-Badges -->
+          <div class="pt-6 border-t border-[#E8E5DC] grid grid-cols-3 gap-4 text-left">
+            <div>
+              <span class="block font-serif text-2xl font-bold text-[#141311]">7+</span>
+              <span class="text-[11px] uppercase tracking-wider text-[#8A857D]">Years Practice</span>
+            </div>
+            <div>
+              <span class="block font-serif text-2xl font-bold text-[#141311]">BVA & MVA</span>
+              <span class="text-[11px] uppercase tracking-wider text-[#8A857D]">Visual Arts</span>
+            </div>
+            <div>
+              <span class="block font-serif text-2xl font-bold text-[#141311]">National</span>
+              <span class="text-[11px] uppercase tracking-wider text-[#8A857D]">& State Honors</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Hero Visual Artwork Focal Point -->
+        <div class="lg:col-span-6">
+          <div class="relative max-w-lg mx-auto lg:max-w-none">
+            <!-- Asymmetrical background matting -->
+            <div class="absolute -inset-4 bg-[#F4F1EA] rounded-sm transform rotate-1 transition-transform group-hover:rotate-0"></div>
+            
+            <div class="relative bg-white p-4 sm:p-6 rounded-sm shadow-xl border border-[#E8E5DC]">
+              <a
+                href="/gallery/silent-resonance-in-crimson"
+                class="block relative aspect-[4/5] overflow-hidden bg-[#E8E5DC] group/heroimg cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#9B4722]"
+                aria-label="View details of Silent Resonance in Crimson"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1600&q=85"
+                  alt="Silent Resonance in Crimson - Signature artwork by Dhirendra"
+                  loading="eager"
+                  fetchpriority="high"
+                  class="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover/heroimg:scale-105"
+                />
+                <div class="absolute inset-0 bg-[#141311]/0 group-hover/heroimg:bg-[#141311]/10 transition-colors duration-300"></div>
+              </a>
+
+              <!-- Artwork Plaque underneath -->
+              <div class="pt-4 flex items-center justify-between border-t border-[#F0ECE3] mt-4">
+                <div>
+                  <h2 class="font-serif-display text-lg text-[#141311] font-medium">
+                    Silent Resonance in Crimson
+                  </h2>
+                  <p class="text-xs text-[#6B6864] italic font-serif">
+                    Oil on Belgian Linen &bull; 48 &times; 60 in &bull; 2025
+                  </p>
+                </div>
+                <a
+                  href="/gallery/silent-resonance-in-crimson"
+                  class="text-xs uppercase tracking-[0.16em] text-[#9B4722] hover:text-[#7D3516] font-semibold underline underline-offset-4"
+                >
+                  Acquire &rarr;
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. THE ARTIST BEHIND THE CANVAS -->
+  <section class="py-24 bg-white border-b border-[#E8E5DC]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        
+        <!-- Studio Portrait / Visual Atmosphere -->
+        <div class="lg:col-span-5 order-2 lg:order-1">
+          <div class="relative bg-[#F4F1EA] p-3 sm:p-4 rounded-sm border border-[#E8E5DC]">
+            <a
+              href="/about"
+              class="block relative aspect-[3/4] overflow-hidden bg-[#E8E5DC] group/studio cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#9B4722]"
+              aria-label="Discover the Artist's Story"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=80"
+                alt="Artist studio work and palette composition by Dhirendra"
+                loading="lazy"
+                class="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover/studio:scale-105"
+              />
+              <div class="absolute inset-0 bg-[#141311]/0 group-hover/studio:bg-[#141311]/10 transition-colors duration-300"></div>
+            </a>
+            <div class="pt-3 text-[11px] text-[#8A857D] text-center font-mono uppercase tracking-wider">
+              Studio Practice &bull; Academic Inquiries &bull; Pigment Research
+            </div>
+          </div>
+        </div>
+
+        <!-- Curatorial Narrative -->
+        <div class="lg:col-span-7 order-1 lg:order-2 space-y-6">
+          <span class="text-xs uppercase tracking-[0.24em] text-[#B68B35] font-semibold block">
+            Artistic Heritage & Practice
+          </span>
+          <h2 class="font-serif-display text-4xl sm:text-5xl text-[#141311] font-medium leading-tight">
+            The Artist Behind the Canvas
+          </h2>
+
+          <p class="text-base text-[#57544E] leading-relaxed">
+            Dhirendra’s creative journey is rooted in deep academic discipline, holding both a <strong>Bachelor of Visual Arts (BVA)</strong> and a <strong>Master of Visual Arts (MVA)</strong> with first-class honors. With over seven years of dedicated studio practice, his work bridges classical Indian sensibility with bold contemporary execution.
+          </p>
+
+          <p class="text-base text-[#57544E] leading-relaxed">
+            His practice encompasses expansive oil paintings, intimate charcoal portraiture, expressive mixed-media compositions, and modernist graphic design. Recognized through prestigious national and state awards as well as government citations, Dhirendra’s work investigates the human spirit, architectural memory, and the emotional resonance of space.
+          </p>
+
+          <div class="pt-4">
+            <a
+              href="/about"
+              class="inline-flex items-center text-xs uppercase tracking-[0.2em] text-[#141311] hover:text-[#9B4722] font-semibold pb-1 border-b-2 border-[#141311] hover:border-[#9B4722] transition-colors"
+            >
+              Read His Story & Detailed Biography &rarr;
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SELECTED WORKS: Editorial Asymmetric Grid -->
+  <section class="py-24 bg-[#FBFBF9] border-b border-[#E8E5DC]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between pb-12 border-b border-[#E8E5DC] gap-6">
+        <div>
+          <span class="text-xs uppercase tracking-[0.22em] text-[#9B4722] font-semibold block">
+            Curated Exhibition
+          </span>
+          <h2 class="font-serif-display text-4xl sm:text-5xl text-[#141311] font-medium mt-1">
+            Selected Works
+          </h2>
+          <p class="text-sm text-[#6B6864] mt-2 max-w-xl">
+            A curated selection of signature paintings, academic drawings, and contemporary studies available for acquisition or private collection viewing.
+          </p>
+        </div>
+
+        <a
+          href="/gallery"
+          class="inline-flex items-center px-6 py-3 border border-[#141311] text-[#141311] hover:bg-[#141311] hover:text-[#FBFBF9] text-xs uppercase tracking-[0.2em] font-medium transition-all"
+        >
+          View All Catalogue Works &rarr;
+        </a>
+      </div>
+
+      <!-- Asymmetrical Editorial Layout (Not a generic card grid) -->
+      <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-y-16 gap-x-8">
+        {featuredArtworks.slice(0, 5).map((artwork, idx) => {
+          let colSpan = 'lg:col-span-6';
+          if (idx === 0) colSpan = 'lg:col-span-7';
+          else if (idx === 1) colSpan = 'lg:col-span-5';
+          else if (idx === 2) colSpan = 'lg:col-span-4';
+          else if (idx === 3) colSpan = 'lg:col-span-8';
+          else colSpan = 'lg:col-span-12 max-w-2xl mx-auto';
+
+          return (
+            <div class={colSpan}>
+              <ArtworkCard artwork={artwork} priority={idx === 0} />
+            </div>
+          );
+        })}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. ARTISTIC JOURNEY: Elegant Timeline -->
+  <section class="py-24 bg-white border-b border-[#E8E5DC]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs uppercase tracking-[0.22em] text-[#B68B35] font-semibold block">
+          Chronology of Dedication
+        </span>
+        <h2 class="font-serif-display text-4xl sm:text-5xl text-[#141311] font-medium mt-1">
+          The Artistic Journey
+        </h2>
+        <p class="text-sm text-[#6B6864] mt-2">
+          Grounded in classical academy training, evolved through intensive studio experimentation, and affirmed through national honors.
+        </p>
+      </div>
+
+      <!-- Timeline Structure -->
+      <div class="relative border-l-2 border-[#E8E5DC] ml-4 sm:ml-32 space-y-12 pl-6 sm:pl-10">
+        
+        <!-- Step 1: Beginning -->
+        <div class="relative">
+          <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#141311] border-4 border-white"></span>
+          <span class="text-xs uppercase tracking-[0.16em] text-[#8A857D] font-mono block">Formative Years</span>
+          <h3 class="font-serif-display text-2xl text-[#141311] font-medium mt-0.5">
+            Beginning of Artistic Journey
+          </h3>
+          <p class="text-sm text-[#57544E] mt-1">
+            Early immersion in observational sketching, anatomy, rural North Indian landscapes, and classical visual composition.
+          </p>
+        </div>
+
+        <!-- Step 2: BVA -->
+        <div class="relative">
+          <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#141311] border-4 border-white"></span>
+          <span class="text-xs uppercase tracking-[0.16em] text-[#9B4722] font-mono block">Undergraduate Degree</span>
+          <h3 class="font-serif-display text-2xl text-[#141311] font-medium mt-0.5">
+            Bachelor of Visual Arts (BVA)
+          </h3>
+          <p class="text-sm text-[#57544E] mt-1">
+            Intensive four-year foundation in drawing, printmaking, art history, and oil painting techniques, securing all-India inter-university gold honors.
+          </p>
+        </div>
+
+        <!-- Step 3: MVA -->
+        <div class="relative">
+          <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#141311] border-4 border-white"></span>
+          <span class="text-xs uppercase tracking-[0.16em] text-[#9B4722] font-mono block">Postgraduate Specialization</span>
+          <h3 class="font-serif-display text-2xl text-[#141311] font-medium mt-0.5">
+            Master of Visual Arts (MVA)
+          </h3>
+          <p class="text-sm text-[#57544E] mt-1">
+            Advanced master studies focusing on large-scale canvases, psychological portraiture, and material experimentation with mineral pigments and linen.
+          </p>
+        </div>
+
+        <!-- Step 4: State Recognition -->
+        <div class="relative">
+          <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#B68B35] border-4 border-white"></span>
+          <span class="text-xs uppercase tracking-[0.16em] text-[#B68B35] font-mono block">Academy Honor</span>
+          <h3 class="font-serif-display text-2xl text-[#141311] font-medium mt-0.5">
+            State Kala Ratna Recognition
+          </h3>
+          <p class="text-sm text-[#57544E] mt-1">
+            Awarded for outstanding contributions to contemporary fine arts and cultural documentation by the State Academy of Fine Arts.
+          </p>
+        </div>
+
+        <!-- Step 5: National Recognition -->
+        <div class="relative">
+          <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#B68B35] border-4 border-white"></span>
+          <span class="text-xs uppercase tracking-[0.16em] text-[#B68B35] font-mono block">National Honor</span>
+          <h3 class="font-serif-display text-2xl text-[#141311] font-medium mt-0.5">
+            National Lalit Kala Akademi Participation & Merit
+          </h3>
+          <p class="text-sm text-[#57544E] mt-1">
+            Recognized at the nation’s apex visual arts institution in New Delhi for exceptional contemporary figurative work.
+          </p>
+        </div>
+
+        <!-- Step 6: Government & DM Recognition -->
+        <div class="relative">
+          <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#141311] border-4 border-white"></span>
+          <span class="text-xs uppercase tracking-[0.16em] text-[#8A857D] font-mono block">Civic & Administrative Felicitation</span>
+          <h3 class="font-serif-display text-2xl text-[#141311] font-medium mt-0.5">
+            Government Citation & District Magistrate (DM) Recognition
+          </h3>
+          <p class="text-sm text-[#57544E] mt-1">
+            Felicitation by the District Administration and cultural authorities for outstanding public artistic representation.
+          </p>
+        </div>
+
+        <!-- Step 7: Continuous Practice -->
+        <div class="relative">
+          <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#9B4722] border-4 border-white"></span>
+          <span class="text-xs uppercase tracking-[0.16em] text-[#9B4722] font-mono block">Active Practice</span>
+          <h3 class="font-serif-display text-2xl text-[#141311] font-medium mt-0.5">
+            Professional Studio Practice & Design Direction
+          </h3>
+          <p class="text-sm text-[#57544E] mt-1">
+            Sustained production of original fine art series, solo exhibitions, selective private collector acquisitions, and sophisticated graphic visual design.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. RECOGNITION & ACHIEVEMENTS: Major Credibility Section -->
+  <section class="py-24 bg-[#FAF5E9] border-b border-[#E8E5DC]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between pb-12 border-b border-[#E8E5DC] gap-6">
+        <div>
+          <span class="text-xs uppercase tracking-[0.22em] text-[#B68B35] font-semibold block">
+            Verified Accolades
+          </span>
+          <h2 class="font-serif-display text-4xl sm:text-5xl text-[#141311] font-medium mt-1">
+            Recognition & Achievements
+          </h2>
+          <p class="text-sm text-[#57544E] mt-2 max-w-xl">
+            Affirmation of artistic excellence across national academies, state cultural councils, and government administration.
+          </p>
+        </div>
+
+        <a
+          href="/about#recognition"
+          class="text-xs uppercase tracking-[0.18em] text-[#141311] hover:text-[#9B4722] font-semibold underline underline-offset-4"
+        >
+          View Full Achievements & Certificates &rarr;
+        </a>
+      </div>
+
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {topAchievements.map((ach) => (
+          <div class="bg-white p-6 rounded-sm border border-[#E8E5DC] flex flex-col justify-between hover:shadow-md transition-shadow">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between text-xs">
+                <span class="px-2 py-0.5 bg-[#FAF5E9] border border-[#E8E5DC] text-[#9B4722] font-medium uppercase tracking-wider text-[10px]">
+                  {ach.category}
+                </span>
+                <span class="font-mono text-[#8A857D]">{ach.year}</span>
+              </div>
+              <h3 class="font-serif-display text-xl text-[#141311] font-medium leading-snug">
+                {ach.title}
+              </h3>
+              <p class="text-xs text-[#6B6864] font-medium">
+                {ach.organization} {ach.location ? `• ${ach.location}` : ''}
+              </p>
+              <p class="text-xs text-[#57544E] leading-relaxed pt-1">
+                {ach.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 6. ARTWORK ACQUISITION & BIDDING: Conversion Room -->
+  <section class="py-24 bg-[#141311] text-[#FBFBF9] border-b border-[#2C2A26]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        
+        <div class="lg:col-span-7 space-y-6">
+          <span class="text-xs uppercase tracking-[0.24em] text-[#B68B35] font-semibold block">
+            Collector Services
+          </span>
+          <h2 class="font-serif-display text-4xl sm:text-5xl lg:text-6xl text-[#FBFBF9] font-medium leading-tight">
+            Find a Work That Speaks to You
+          </h2>
+          <p class="text-base text-[#A8A291] leading-relaxed max-w-2xl">
+            Selected original artworks are available for direct acquisition. For specially designated masterworks, collectors are invited to submit their best offer directly to the artist.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+            <!-- Fixed Price Option -->
+            <div class="p-6 bg-[#1C1B18] border border-[#2C2A26] rounded-sm space-y-3">
+              <span class="text-[11px] uppercase tracking-[0.16em] text-[#FAF5E9] font-semibold block">
+                1. Fixed Studio Valuation
+              </span>
+              <p class="text-xs text-[#A8A291] leading-relaxed">
+                Directly acquire ready-to-hang works with transparent pricing, insured white-glove packaging, and physical certificate.
+              </p>
+              <a
+                href="/gallery"
+                class="inline-block text-xs uppercase tracking-[0.16em] text-[#B68B35] hover:text-white transition-colors underline underline-offset-4 font-medium"
+              >
+                Browse Fixed Works &rarr;
+              </a>
+            </div>
+
+            <!-- Offer / Bid Option -->
+            <div class="p-6 bg-[#1C1B18] border border-[#2C2A26] rounded-sm space-y-3">
+              <span class="text-[11px] uppercase tracking-[0.16em] text-[#B68B35] font-semibold block">
+                2. Direct Collector Offer
+              </span>
+              <p class="text-xs text-[#A8A291] leading-relaxed">
+                Propose your valuation for signature or exhibition-listed works. The artist reviews offers within 24 to 48 hours.
+              </p>
+              <a
+                href="/gallery"
+                class="inline-block text-xs uppercase tracking-[0.16em] text-[#B68B35] hover:text-white transition-colors underline underline-offset-4 font-medium"
+              >
+                Explore Works Accepting Offers &rarr;
+              </a>
+            </div>
+          </div>
+
+          <div class="pt-4 flex items-center gap-6 text-xs text-[#8A857D]">
+            <span>&bull; Archival Museum Packaging</span>
+            <span>&bull; Physical Signed Authenticity Certificate</span>
+            <span>&bull; Direct Artist Escrow Logistics</span>
+          </div>
+        </div>
+
+        <!-- Featured Offer Showcase -->
+        <div class="lg:col-span-5">
+          <div class="bg-[#1C1B18] border border-[#33312E] p-6 rounded-sm space-y-4">
+            <span class="text-[10px] uppercase tracking-[0.2em] text-[#B68B35] font-bold block">
+              Currently Accepting Collector Offers
+            </span>
+            <a
+              href="/gallery/the-solitary-observer"
+              class="block aspect-[4/3] overflow-hidden bg-[#2C2A26] rounded-sm group/offerimg cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#B68B35]"
+              aria-label="View The Solitary Observer"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?auto=format&fit=crop&w=1200&q=85"
+                alt="The Solitary Observer - Charcoal and gouache portrait by Dhirendra"
+                class="w-full h-full object-cover transform transition-transform duration-700 group-hover/offerimg:scale-105"
+              />
+            </a>
+            <div>
+              <h3 class="font-serif-display text-2xl text-[#FBFBF9]">
+                The Solitary Observer
+              </h3>
+              <p class="text-xs text-[#A8A291] italic font-serif">
+                Charcoal and Gouache on Arches Archival Paper &bull; 2024
+              </p>
+            </div>
+            <a
+              href="/gallery/the-solitary-observer"
+              class="block text-center w-full py-3 bg-[#B68B35] hover:bg-[#A37B2B] text-[#141311] text-xs uppercase tracking-[0.2em] font-semibold transition-colors"
+            >
+              Submit Your Offer on This Work
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. BEYOND FINE ART: Graphics Design & Selected Creative Projects (Secondary Positioning) -->
+  <section class="py-24 bg-white border-b border-[#E8E5DC]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="max-w-3xl mb-16 space-y-3">
+        <span class="text-xs uppercase tracking-[0.22em] text-[#9B4722] font-semibold block">
+          Secondary Discipline
+        </span>
+        <h2 class="font-serif-display text-4xl sm:text-5xl text-[#141311] font-medium leading-tight">
+          Beyond Fine Art — Graphics Design & Creative Projects
+        </h2>
+        <p class="text-sm sm:text-base text-[#57544E] leading-relaxed">
+          In addition to pure studio painting, Dhirendra channels his compositional rigor into select visual design commissions: editorial compositions, typography systems, cultural posters, and cinematic mood scripting.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {selectedProjects.map((proj) => (
+          <article class="group bg-[#FBFBF9] border border-[#E8E5DC] rounded-sm overflow-hidden flex flex-col">
+            <a
+              href="/about#beyond-fine-art"
+              class="block aspect-[16/10] overflow-hidden bg-[#E8E5DC] cursor-pointer"
+              aria-label={`Learn more about ${proj.title}`}
+            >
+              <img
+                src={proj.images[0].storage_path}
+                alt={proj.title}
+                loading="lazy"
+                class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+              />
+            </a>
+            <div class="p-6 flex-grow flex flex-col justify-between space-y-3">
+              <div>
+                <div class="flex items-center justify-between text-xs text-[#8A857D] mb-1">
+                  <span class="uppercase tracking-wider text-[10px] text-[#9B4722] font-semibold">
+                    {proj.category}
+                  </span>
+                  <span class="font-mono">{proj.year}</span>
+                </div>
+                <h3 class="font-serif-display text-xl text-[#141311] font-medium leading-snug">
+                  {proj.title}
+                </h3>
+                <p class="text-xs text-[#57544E] mt-2 leading-relaxed">
+                  {proj.description}
+                </p>
+              </div>
+
+              {proj.client_or_org && (
+                <div class="pt-3 border-t border-[#E8E5DC] text-[11px] text-[#8A857D]">
+                  Commission: <span class="text-[#141311] font-medium">{proj.client_or_org}</span>
+                </div>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-12 text-center">
+        <a
+          href="/contact"
+          class="inline-flex items-center px-6 py-3 border border-[#141311] text-[#141311] hover:bg-[#141311] hover:text-[#FBFBF9] text-xs uppercase tracking-[0.2em] font-medium transition-colors"
+        >
+          Commission Visual Design or Creative Direction &rarr;
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 8. DIRECT CONTACT & COMMISSION BANNER -->
+  <section class="py-20 bg-[#F4F1EA]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+      <span class="text-xs uppercase tracking-[0.22em] text-[#B68B35] font-semibold block">
+        Direct Studio Dialogue
+      </span>
+      <h2 class="font-serif-display text-4xl sm:text-5xl text-[#141311] font-medium">
+        Let’s Create Something Meaningful
+      </h2>
+      <p class="text-sm sm:text-base text-[#57544E] max-w-xl mx-auto leading-relaxed">
+        Whether inquiring about acquiring an original piece, discussing a bespoke commissioned artwork, or exploring a creative design collaboration, we welcome your conversation.
+      </p>
+      <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="/contact"
+          class="w-full sm:w-auto px-8 py-4 bg-[#141311] text-[#FBFBF9] hover:bg-[#2C2A26] text-xs uppercase tracking-[0.2em] font-medium transition-colors"
+        >
+          Initiate Inquiries &rarr;
+        </a>
+        <a
+          href="/order-tracking"
+          class="w-full sm:w-auto px-8 py-4 border border-[#141311] text-[#141311] hover:bg-white text-xs uppercase tracking-[0.2em] font-medium transition-colors"
+        >
+          Track An Existing Order
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

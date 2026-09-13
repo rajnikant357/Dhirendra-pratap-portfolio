@@ -1,0 +1,222 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArtworkCard from '../../components/artwork/ArtworkCard.astro';
+import { ArtworkActionButtons } from '../../components/artwork/ArtworkActionButtons';
+import { getAllArtworks, getArtworkBySlug, getRelatedArtworks } from '../../lib/artworks';
+
+export async function getStaticPaths() {
+  const artworks = await getAllArtworks();
+  return artworks.map((artwork) => ({
+    params: { slug: artwork.slug },
+    props: { artwork },
+  }));
+}
+
+const { slug } = Astro.params;
+const { artwork: initialArtwork } = Astro.props;
+
+const artwork = initialArtwork || (await getArtworkBySlug(slug as string));
+
+if (!artwork) {
+  return Astro.redirect('/gallery');
+}
+
+const relatedArtworks = await getRelatedArtworks(artwork.id, artwork.category, 3);
+const primaryImage = artwork.images.find((img) => img.is_primary) || artwork.images[0];
+
+const artworkSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'VisualArtwork',
+  name: artwork.title,
+  artist: {
+    '@type': 'Person',
+    name: 'Dhirendra',
+    jobTitle: 'Artist & Graphics Designer',
+  },
+  artform: artwork.category,
+  artMedium: artwork.medium,
+  dateCreated: artwork.year.toString(),
+  description: artwork.description,
+  image: primaryImage.storage_path,
+  width: artwork.width,
+  height: artwork.height,
+  offers: artwork.price
+    ? {
+        '@type': 'Offer',
+        price: artwork.price,
+        priceCurrency: 'INR',
+        availability: artwork.availability === 'AVAILABLE' ? 'https://schema.org/InStock' : 'https://schema.org/SoldOut',
+      }
+    : undefined,
+};
+---
+
+<BaseLayout
+  title={`${artwork.title} (${artwork.year}) — Dhirendra`}
+  description={`${artwork.title} — ${artwork.medium}, ${artwork.width} x ${artwork.height} (${artwork.year}). Original artwork by Dhirendra (BVA, MVA).`}
+  ogImage={primaryImage.storage_path}
+  type="article"
+  schema={artworkSchema}
+>
+  <div class="py-12 sm:py-20 bg-[#FBFBF9]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Back Link / Breadcrumb -->
+      <nav class="mb-8" aria-label="Breadcrumb">
+        <a
+          href="/gallery"
+          class="text-xs uppercase tracking-[0.18em] text-[#8A857D] hover:text-[#141311] transition-colors inline-flex items-center gap-1 font-medium"
+        >
+          &larr; Return to Gallery Catalogue
+        </a>
+      </nav>
+
+      <!-- Main Artwork Showcase Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        
+        <!-- Left: High-Resolution Artwork Presentation -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="bg-white p-3 sm:p-6 rounded-sm border border-[#E8E5DC] shadow-sm">
+            <a
+              href={primaryImage.storage_path}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block relative w-full aspect-[4/5] bg-[#F0ECE3] rounded-sm overflow-hidden group/detail cursor-zoom-in"
+              title="Click to inspect full master resolution in new tab"
+            >
+              <img
+                src={primaryImage.storage_path}
+                alt={primaryImage.alt_text || `${artwork.title} by Dhirendra`}
+                loading="eager"
+                fetchpriority="high"
+                class="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover/detail:scale-105"
+              />
+              <div class="absolute bottom-3 right-3 px-3 py-1.5 bg-[#141311]/80 text-[#FBFBF9] text-[10px] uppercase tracking-wider rounded-sm backdrop-blur-sm opacity-0 group-hover/detail:opacity-100 transition-opacity flex items-center gap-1.5 pointer-events-none">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                </svg>
+                View Full Master Resolution
+              </div>
+            </a>
+          </div>
+
+          <!-- Secondary Image Angles / Details if available -->
+          {artwork.images.length > 1 && (
+            <div class="grid grid-cols-3 gap-4 pt-2">
+              {artwork.images.map((img) => (
+                <a
+                  href={img.storage_path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block aspect-square bg-[#F0ECE3] rounded-sm overflow-hidden border border-[#E8E5DC] group/thumb cursor-pointer"
+                  title="Examine detail angle in full resolution"
+                >
+                  <img
+                    src={img.storage_path}
+                    alt={img.alt_text}
+                    class="w-full h-full object-cover transform transition-transform duration-300 group-hover/thumb:scale-110"
+                    loading="lazy"
+                  />
+                </a>
+              ))}
+            </div>
+          )}
+
+          <!-- Curatorial Observation Note -->
+          <div class="p-6 bg-[#F4F1EA] border border-[#E8E5DC] rounded-sm space-y-2">
+            <h3 class="text-xs uppercase tracking-[0.2em] text-[#141311] font-semibold">
+              Archival & Material Specification
+            </h3>
+            <p class="text-xs text-[#57544E] leading-relaxed">
+              Executed with artist-grade lightfast pigments on acid-free substrate. Treated with double protective UV-filtering matte varnish ensuring generational longevity and optical clarity.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: Title, Curatorial Description & Acquisition Plaque -->
+        <div class="lg:col-span-5 space-y-8">
+          
+          <div class="space-y-3 pb-6 border-b border-[#E8E5DC]">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 bg-[#FAF5E9] border border-[#E8E5DC] text-[10px] uppercase tracking-[0.16em] text-[#9B4722] font-semibold rounded-sm">
+                {artwork.category}
+              </span>
+              {artwork.signature && (
+                <span class="px-2.5 py-0.5 bg-[#141311] text-[#FBFBF9] text-[10px] uppercase tracking-[0.16em] font-semibold rounded-sm">
+                  Signature Work
+                </span>
+              )}
+            </div>
+
+            <h1 class="font-serif-display text-4xl sm:text-5xl text-[#141311] font-medium leading-[1.05]">
+              {artwork.title}
+            </h1>
+
+            <div class="text-sm font-serif italic text-[#57544E]">
+              Dhirendra &bull; {artwork.year}
+            </div>
+          </div>
+
+          <!-- Artwork Specifications Table -->
+          <div class="space-y-3 text-xs">
+            <div class="flex justify-between py-2 border-b border-[#F0ECE3]">
+              <span class="text-[#8A857D] uppercase tracking-wider">Medium</span>
+              <span class="font-medium text-[#141311] text-right max-w-xs">{artwork.medium}</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-[#F0ECE3]">
+              <span class="text-[#8A857D] uppercase tracking-wider">Dimensions</span>
+              <span class="font-mono text-[#141311]">{artwork.width} &times; {artwork.height}</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-[#F0ECE3]">
+              <span class="text-[#8A857D] uppercase tracking-wider">Creation Year</span>
+              <span class="font-mono text-[#141311]">{artwork.year}</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-[#F0ECE3]">
+              <span class="text-[#8A857D] uppercase tracking-wider">Authenticity</span>
+              <span class="font-medium text-[#141311]">Signed & Numbered Certificate</span>
+            </div>
+          </div>
+
+          <!-- Curatorial Statement -->
+          <div class="space-y-2">
+            <h3 class="text-xs uppercase tracking-[0.18em] text-[#141311] font-semibold">
+              Curatorial Description
+            </h3>
+            <p class="text-sm text-[#57544E] leading-relaxed">
+              {artwork.description}
+            </p>
+          </div>
+
+          <!-- Interactive Acquisition / Offer Panel -->
+          <ArtworkActionButtons client:load artwork={artwork} />
+
+        </div>
+
+      </div>
+
+      <!-- Related Works Section -->
+      {relatedArtworks.length > 0 && (
+        <section class="mt-24 pt-16 border-t border-[#E8E5DC]">
+          <div class="flex items-center justify-between mb-8">
+            <h2 class="font-serif-display text-3xl text-[#141311] font-medium">
+              From the Same Series & Discipline
+            </h2>
+            <a
+              href="/gallery"
+              class="text-xs uppercase tracking-[0.18em] text-[#9B4722] hover:text-[#7D3516] font-semibold underline underline-offset-4"
+            >
+              Browse All Works &rarr;
+            </a>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {relatedArtworks.map((rel) => (
+              <ArtworkCard artwork={rel} />
+            ))}
+          </div>
+        </section>
+      )}
+
+    </div>
+  </div>
+</BaseLayout>

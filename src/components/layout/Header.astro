@@ -1,0 +1,136 @@
+---
+const pathname = new URL(Astro.request.url).pathname;
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/gallery', label: 'Gallery' },
+  { href: '/about', label: 'The Artist' },
+  { href: '/contact', label: 'Contact & Inquiries' },
+];
+---
+
+<header class="sticky top-0 z-40 w-full bg-[#FBFBF9]/90 backdrop-blur-md border-b border-[#E8E5DC] transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      
+      <!-- Brand & Artist Title -->
+      <a href="/" class="group flex flex-col focus:outline-none focus-visible:ring-2 focus-visible:ring-[#9B4722] rounded-sm">
+        <span class="font-serif-display text-2xl sm:text-3xl tracking-tight text-[#141311] group-hover:text-[#9B4722] transition-colors duration-300 font-medium">
+          Dhirendra
+        </span>
+        <span class="text-[10px] sm:text-[11px] tracking-[0.2em] uppercase text-[#6B6864] font-medium transition-colors duration-300 group-hover:text-[#141311]">
+          Artist & Graphics Designer
+        </span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-8 text-[13px] tracking-[0.12em] uppercase font-medium">
+        {navLinks.map((link) => {
+          const isActive = link.href === '/' ? pathname === '/' : pathname.startsWith(link.href);
+          return (
+            <a
+              href={link.href}
+              class={`relative py-1 transition-colors duration-200 ${
+                isActive
+                  ? 'text-[#141311] font-semibold'
+                  : 'text-[#6B6864] hover:text-[#141311]'
+              }`}
+            >
+              {link.label}
+              {isActive && (
+                <span class="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#9B4722]" />
+              )}
+            </a>
+          );
+        })}
+      </nav>
+
+      <!-- Utility Actions: Order Tracking + Inquire Button -->
+      <div class="hidden lg:flex items-center space-x-6">
+        <a
+          href="/order-tracking"
+          class="text-[11px] uppercase tracking-[0.15em] text-[#6B6864] hover:text-[#141311] transition-colors flex items-center gap-1.5"
+          title="Track an existing artwork acquisition or order"
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-[#B68B35]"></span>
+          Track Order
+        </a>
+
+        <a
+          href="/gallery"
+          class="inline-flex items-center px-4 py-2 border border-[#141311] text-[#141311] hover:bg-[#141311] hover:text-[#FBFBF9] text-[11px] uppercase tracking-[0.18em] transition-all duration-300 font-medium"
+        >
+          Acquisitions
+        </a>
+      </div>
+
+      <!-- Mobile Menu Toggle Button -->
+      <div class="flex items-center md:hidden">
+        <button
+          type="button"
+          id="mobile-menu-button"
+          class="p-2 text-[#141311] hover:text-[#9B4722] focus:outline-none"
+          aria-label="Toggle Navigation Menu"
+          aria-expanded="false"
+        >
+          <svg id="menu-icon-open" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-[#E8E5DC] bg-[#FBFBF9] px-6 pt-4 pb-8 space-y-4">
+    <nav class="flex flex-col space-y-3">
+      {navLinks.map((link) => {
+        const isActive = link.href === '/' ? pathname === '/' : pathname.startsWith(link.href);
+        return (
+          <a
+            href={link.href}
+            class={`text-sm uppercase tracking-[0.15em] py-2 border-b border-[#F0ECE3] transition-colors ${
+              isActive ? 'text-[#9B4722] font-semibold' : 'text-[#141311]'
+            }`}
+          >
+            {link.label}
+          </a>
+        );
+      })}
+      <a
+        href="/order-tracking"
+        class="text-sm uppercase tracking-[0.15em] py-2 text-[#6B6864] flex items-center gap-2"
+      >
+        <span class="w-2 h-2 rounded-full bg-[#B68B35]"></span>
+        Track Order Status
+      </a>
+      <a
+        href="/gallery"
+        class="mt-4 text-center block w-full py-3 bg-[#141311] text-[#FBFBF9] text-xs uppercase tracking-[0.2em] font-medium"
+      >
+        Explore Available Artworks
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-button');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+
+  if (btn && menu && iconOpen && iconClose) {
+    btn.addEventListener('click', () => {
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', (!isExpanded).toString());
+      menu.classList.toggle('hidden');
+      iconOpen.classList.toggle('hidden');
+      iconClose.classList.toggle('hidden');
+    });
+  }
+</script>

@@ -1,0 +1,287 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { ACHIEVEMENTS_DATA } from '../lib/data/achievements';
+import { PROJECTS_DATA } from '../lib/data/projects';
+---
+
+<BaseLayout
+  title="The Journey of Dhirendra — Artist & Graphics Designer | Biography & Philosophy"
+  description="Biography, education (BVA, MVA), awards, and artistic philosophy of Dhirendra, visual artist and graphics designer with over seven years of dedicated studio practice."
+>
+  <div class="py-16 sm:py-24 bg-[#FBFBF9]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- 1. Hero: The Journey of Dhirendra -->
+      <section class="max-w-4xl space-y-6 pb-16 border-b border-[#E8E5DC]">
+        <span class="text-xs uppercase tracking-[0.24em] text-[#9B4722] font-semibold block">
+          Curatorial Biography
+        </span>
+        <h1 class="font-serif-display text-5xl sm:text-7xl text-[#141311] font-medium tracking-tight leading-[0.98]">
+          The Journey of Dhirendra
+        </h1>
+        <p class="font-serif text-2xl sm:text-3xl text-[#57544E] italic leading-relaxed">
+          "Art is not an ornament on the surface of reality; it is an investigation into the silence beneath everyday observation."
+        </p>
+      </section>
+
+      <!-- 2. Dual Column: Artist Portrait & Detailed Biography -->
+      <section class="py-16 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start border-b border-[#E8E5DC]">
+        
+        <!-- Left: Studio Image & Credentials Box -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="bg-white p-4 rounded-sm border border-[#E8E5DC] shadow-sm">
+            <div class="aspect-[4/5] bg-[#F0ECE3] overflow-hidden rounded-sm">
+              <img
+                src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=80"
+                alt="Dhirendra in his painting studio"
+                loading="lazy"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="pt-4 text-center">
+              <span class="font-serif-display text-2xl text-[#141311] font-medium block">Dhirendra</span>
+              <span class="text-xs uppercase tracking-[0.2em] text-[#9B4722] font-medium">Artist & Graphics Designer</span>
+            </div>
+          </div>
+
+          <!-- Academic Credential Box -->
+          <div class="p-6 bg-[#FAF5E9] border border-[#E8E5DC] rounded-sm space-y-4">
+            <h2 class="text-xs uppercase tracking-[0.2em] text-[#141311] font-semibold">
+              Academic Foundation
+            </h2>
+            <div class="space-y-3 text-xs">
+              <div class="pb-2 border-b border-[#E8E5DC]">
+                <strong class="text-sm font-serif block text-[#141311]">Master of Visual Arts (MVA)</strong>
+                <span class="text-[#57544E]">Specialization in Painting & Advanced Composition</span>
+                <span class="block text-[#8A857D] font-mono mt-0.5">First Class Distinction</span>
+              </div>
+              <div>
+                <strong class="text-sm font-serif block text-[#141311]">Bachelor of Visual Arts (BVA)</strong>
+                <span class="text-[#57544E]">Classical Foundation, Anatomy & Printmaking</span>
+                <span class="block text-[#8A857D] font-mono mt-0.5">Gold Medalist / Inter-University Honor</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Biography & Artistic Practice -->
+        <div class="lg:col-span-7 space-y-8">
+          <div class="space-y-4 text-base text-[#57544E] leading-relaxed">
+            <h2 class="font-serif-display text-3xl text-[#141311] font-medium">
+              Biography & Practice
+            </h2>
+            <p>
+              Dhirendra is an accomplished Indian visual artist and graphic designer whose practice spans over seven years of rigorous studio investigation. Raised with a keen sensitivity to Northern India’s rich vernacular landscapes and architectural memories, his work fuses academic classical technique with contemporary abstraction.
+            </p>
+            <p>
+              After completing his formal undergraduate training in Fine Arts (BVA), Dhirendra advanced to his postgraduate degree (MVA), graduating with top academic distinction. His studio oeuvre investigates human psychological stillness, the interplay between light and deep pigments, and the relationship between structural geometry and organic textures.
+            </p>
+            <p>
+              His work has been exhibited across prominent institutional platforms, earning participation and merit recognition at the <strong>National Lalit Kala Akademi</strong> in New Delhi, the prestigious <strong>State Kala Ratna Award</strong>, and formal commendations from District Magistrates and the Ministry of Culture.
+            </p>
+          </div>
+
+          <!-- Artistic Philosophy in the Artist's Own Words -->
+          <div class="p-8 bg-[#F4F1EA] border-l-4 border-[#9B4722] space-y-3">
+            <span class="text-xs uppercase tracking-[0.2em] text-[#9B4722] font-semibold block">
+              Artistic Philosophy
+            </span>
+            <p class="font-serif text-lg sm:text-xl text-[#141311] italic leading-relaxed">
+              "A painting must do more than duplicate what the eye sees. It must preserve the weight of an unsaid thought, the silence between breaths, and the texture of a memory that refuses to fade. Every layer of mineral pigment on canvas is a gesture of listening."
+            </p>
+            <span class="text-xs uppercase tracking-wider text-[#8A857D] font-medium block">
+              &mdash; Dhirendra
+            </span>
+          </div>
+
+          <!-- Studio Approach -->
+          <div class="space-y-3 text-sm text-[#57544E]">
+            <h3 class="font-serif-display text-2xl text-[#141311] font-medium">
+              Materiality & Method
+            </h3>
+            <p class="leading-relaxed">
+              Working primarily with cold-pressed oils, pure mineral earths, charcoal sticks, and natural sand impasto on custom-stretched Belgian linen, Dhirendra adheres to museum-grade archival practices. Every canvas undergoes rigorous priming and final UV matte varnishing, guaranteeing physical permanence for private and institutional collections.
+            </p>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 3. Visual Career Timeline -->
+      <section class="py-16 border-b border-[#E8E5DC]">
+        <div class="max-w-3xl mb-12">
+          <span class="text-xs uppercase tracking-[0.22em] text-[#B68B35] font-semibold block">
+            Milestones
+          </span>
+          <h2 class="font-serif-display text-4xl text-[#141311] font-medium mt-1">
+            Career Timeline
+          </h2>
+        </div>
+
+        <div class="relative border-l-2 border-[#E8E5DC] ml-4 sm:ml-24 space-y-10 pl-6 sm:pl-10">
+          <div class="relative">
+            <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#141311] border-4 border-white"></span>
+            <span class="font-mono text-xs text-[#9B4722]">2017 &bull; Foundation</span>
+            <h3 class="font-serif-display text-xl text-[#141311] font-medium mt-0.5">Commencement of Professional Studio Training</h3>
+            <p class="text-xs text-[#57544E] mt-1">Began rigorous anatomical drawing and classical oil painting apprenticeships.</p>
+          </div>
+
+          <div class="relative">
+            <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#141311] border-4 border-white"></span>
+            <span class="font-mono text-xs text-[#9B4722]">2019 &bull; Gold Medal</span>
+            <h3 class="font-serif-display text-xl text-[#141311] font-medium mt-0.5">All-India Inter-University Painting Distinction</h3>
+            <p class="text-xs text-[#57544E] mt-1">First-prize gold medal across national university art faculties.</p>
+          </div>
+
+          <div class="relative">
+            <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#141311] border-4 border-white"></span>
+            <span class="font-mono text-xs text-[#9B4722]">2021 &bull; Postgraduate Master</span>
+            <h3 class="font-serif-display text-xl text-[#141311] font-medium mt-0.5">Graduation with Master of Visual Arts (MVA)</h3>
+            <p class="text-xs text-[#57544E] mt-1">Specialization in Painting, finishing with first-class institutional rank.</p>
+          </div>
+
+          <div class="relative">
+            <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#B68B35] border-4 border-white"></span>
+            <span class="font-mono text-xs text-[#B68B35]">2022 &bull; Research Fellowship</span>
+            <h3 class="font-serif-display text-xl text-[#141311] font-medium mt-0.5">Ministry of Culture Visual Arts Fellowship</h3>
+            <p class="text-xs text-[#57544E] mt-1">Grant research documenting indigenous pigment extraction and traditional techniques.</p>
+          </div>
+
+          <div class="relative">
+            <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#B68B35] border-4 border-white"></span>
+            <span class="font-mono text-xs text-[#B68B35]">2023 &bull; State Honor & DM Citation</span>
+            <h3 class="font-serif-display text-xl text-[#141311] font-medium mt-0.5">State Kala Ratna & District Magistrate Commendation</h3>
+            <p class="text-xs text-[#57544E] mt-1">Felicitation by state cultural authorities and district administrative leadership.</p>
+          </div>
+
+          <div class="relative">
+            <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#9B4722] border-4 border-white"></span>
+            <span class="font-mono text-xs text-[#9B4722]">2024 &bull; National Apex Exhibition</span>
+            <h3 class="font-serif-display text-xl text-[#141311] font-medium mt-0.5">National Lalit Kala Akademi Participation & Solo Show</h3>
+            <p class="text-xs text-[#57544E] mt-1">Premier national exhibition and solo exhibition "Resonance of Soil" with 24 major works.</p>
+          </div>
+
+          <div class="relative">
+            <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#141311] border-4 border-white"></span>
+            <span class="font-mono text-xs text-[#141311]">Present &bull; Studio Catalogue</span>
+            <h3 class="font-serif-display text-xl text-[#141311] font-medium mt-0.5">Active Gallery Acquisitions & Design Practice</h3>
+            <p class="text-xs text-[#57544E] mt-1">Representing original collections to discerning collectors and institutions worldwide.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Recognition & Achievements (Full Section with Lightbox readiness) -->
+      <section id="recognition" class="py-16 border-b border-[#E8E5DC]">
+        <div class="max-w-3xl mb-12">
+          <span class="text-xs uppercase tracking-[0.22em] text-[#B68B35] font-semibold block">
+            Credentials & Honors
+          </span>
+          <h2 class="font-serif-display text-4xl text-[#141311] font-medium mt-1">
+            Recognition & Achievements
+          </h2>
+          <p class="text-sm text-[#6B6864] mt-2">
+            Verified awards, state honors, institutional fellowships, and government citations.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {ACHIEVEMENTS_DATA.map((ach) => (
+            <div class="bg-white p-6 rounded-sm border border-[#E8E5DC] flex flex-col justify-between space-y-4">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between text-xs">
+                  <span class="px-2 py-0.5 bg-[#FAF5E9] text-[#9B4722] font-medium uppercase tracking-wider text-[10px] rounded-sm">
+                    {ach.category}
+                  </span>
+                  <span class="font-mono text-[#8A857D]">{ach.year}</span>
+                </div>
+                <h3 class="font-serif-display text-xl text-[#141311] font-medium leading-snug">
+                  {ach.title}
+                </h3>
+                <p class="text-xs text-[#6B6864] font-medium">
+                  {ach.organization} {ach.location ? `• ${ach.location}` : ''}
+                </p>
+                <p class="text-xs text-[#57544E] leading-relaxed pt-1">
+                  {ach.description}
+                </p>
+              </div>
+
+              {ach.image_path && (
+                <div class="pt-2">
+                  <div class="aspect-[16/9] bg-[#F0ECE3] rounded-sm overflow-hidden border border-[#E8E5DC]">
+                    <img
+                      src={ach.image_path}
+                      alt={`${ach.title} certificate`}
+                      loading="lazy"
+                      class="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- 5. Beyond Fine Art: Professional Work in Graphics & Creative Design (Secondary Positioning) -->
+      <section id="beyond-fine-art" class="py-16">
+        <div class="max-w-3xl mb-12">
+          <span class="text-xs uppercase tracking-[0.22em] text-[#9B4722] font-semibold block">
+            Secondary Professional Capability
+          </span>
+          <h2 class="font-serif-display text-4xl text-[#141311] font-medium mt-1">
+            Beyond Fine Art — Graphics Design & Visual Direction
+          </h2>
+          <p class="text-sm text-[#6B6864] mt-2">
+            Translating fine art spatial principles into commercial communication: typography, publication design, cultural campaigns, and film visual design.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {PROJECTS_DATA.map((proj) => (
+            <div class="bg-white border border-[#E8E5DC] rounded-sm overflow-hidden flex flex-col">
+              <div class="aspect-[16/10] bg-[#E8E5DC] overflow-hidden">
+                <img
+                  src={proj.images[0].storage_path}
+                  alt={proj.title}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-6 flex-grow flex flex-col justify-between space-y-3">
+                <div>
+                  <div class="flex items-center justify-between text-xs text-[#8A857D] mb-1">
+                    <span class="uppercase tracking-wider text-[10px] text-[#9B4722] font-semibold">
+                      {proj.category}
+                    </span>
+                    <span class="font-mono">{proj.year}</span>
+                  </div>
+                  <h3 class="font-serif-display text-2xl text-[#141311] font-medium">
+                    {proj.title}
+                  </h3>
+                  <p class="text-xs text-[#57544E] mt-2 leading-relaxed">
+                    {proj.description}
+                  </p>
+                </div>
+                {proj.client_or_org && (
+                  <div class="pt-3 border-t border-[#E8E5DC] text-xs text-[#8A857D]">
+                    Commission: <span class="text-[#141311] font-medium">{proj.client_or_org}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-12 text-center">
+          <a
+            href="/contact"
+            class="inline-flex items-center px-8 py-3 bg-[#141311] text-[#FBFBF9] text-xs uppercase tracking-[0.2em] font-medium hover:bg-[#2C2A26] transition-colors"
+          >
+            Discuss A Creative Commission &rarr;
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</BaseLayout>

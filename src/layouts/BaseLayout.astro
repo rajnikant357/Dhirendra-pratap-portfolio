@@ -1,0 +1,89 @@
+---
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+  type?: 'website' | 'article';
+  schema?: Record<string, any>;
+}
+
+const {
+  title = 'Dhirendra — Artist & Graphics Designer | Digital Art Gallery',
+  description = 'Original fine art, contemporary paintings, charcoal portraiture, and selected creative visual design by Dhirendra (BVA, MVA). Winner of national and state recognitions.',
+  ogImage = 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1200&q=85',
+  canonicalUrl = Astro.url.href,
+  type = 'website',
+  schema,
+} = Astro.props;
+
+const defaultPersonSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Dhirendra',
+  jobTitle: 'Artist & Graphics Designer',
+  description: 'Accomplished artist with BVA & MVA degrees, over seven years of artistic practice, and national and state level recognitions.',
+  url: Astro.site ? Astro.site.href : 'https://dhirendra-art.vercel.app',
+  knowsAbout: ['Fine Art', 'Oil Painting', 'Charcoal Portraiture', 'Graphic Design', 'Visual Composition'],
+  alumniOf: [
+    {
+      '@type': 'EducationalOrganization',
+      name: 'Faculty of Visual Arts (BVA & MVA)',
+    },
+  ],
+};
+
+const finalSchema = schema || defaultPersonSchema;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalUrl} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImage} />
+
+    <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify(finalSchema)} />
+  </head>
+  <body class="min-h-screen flex flex-col bg-[#FBFBF9] text-[#141311] selection:bg-[#141311] selection:text-[#FBFBF9]">
+    <Header />
+    <main id="main-content" class="flex-grow">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

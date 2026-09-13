@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { ContactForm } from '../components/forms/ContactForm';
+---
+
+<BaseLayout
+  title="Contact & Inquiries — Dhirendra | Artist & Graphics Designer"
+  description="Initiate artwork acquisition inquiries, bespoke commissions, exhibition invitations, or graphic design projects directly with Dhirendra."
+>
+  <div class="py-16 sm:py-24 bg-[#FBFBF9]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+        
+        <!-- Left: Studio Details & Curatorial Consultation Info -->
+        <div class="lg:col-span-5 space-y-8">
+          <div>
+            <span class="text-xs uppercase tracking-[0.24em] text-[#9B4722] font-semibold block">
+              Studio Communication
+            </span>
+            <h1 class="font-serif-display text-4xl sm:text-5xl text-[#141311] font-medium mt-1">
+              Let's Create Something Meaningful
+            </h1>
+            <p class="text-sm text-[#57544E] mt-3 leading-relaxed">
+              We welcome dialogue with collectors, gallerists, cultural institutions, and commercial clients seeking original fine art, curated commissions, or graphic design direction.
+            </p>
+          </div>
+
+          <!-- Studio Hours & Response Policy -->
+          <div class="p-6 bg-white border border-[#E8E5DC] rounded-sm space-y-4">
+            <h3 class="text-xs uppercase tracking-[0.2em] text-[#141311] font-semibold">
+              Curatorial Protocol
+            </h3>
+            <ul class="space-y-3 text-xs text-[#57544E]">
+              <li class="flex items-start gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#B68B35] mt-1.5 flex-shrink-0"></span>
+                <span><strong>Acquisition Inquiries:</strong> Direct response within 24 to 48 hours with high-res condition reports.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#B68B35] mt-1.5 flex-shrink-0"></span>
+                <span><strong>Private Commissions:</strong> Concept sketches, material specifications, and timeline estimates provided upon consultation.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#B68B35] mt-1.5 flex-shrink-0"></span>
+                <span><strong>Design Collaborations:</strong> Commercial graphic identity, typography, and production design consultations.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Studio Direct Contact -->
+          <div class="space-y-2 text-xs text-[#57544E]">
+            <h4 class="uppercase tracking-wider text-[#141311] font-semibold">Studio Location</h4>
+            <p>India &bull; Available for domestic fine art transit and global collector consignments.</p>
+            <p class="pt-2">Email: <span class="font-medium text-[#141311]">dhirendra.artstudio@gmail.com</span></p>
+          </div>
+
+          <!-- Order Tracking Quick Link -->
+          <div class="p-4 bg-[#FAF5E9] border border-[#E8E5DC] rounded-sm text-xs">
+            <span class="font-semibold text-[#141311] block mb-1">Already acquired an artwork?</span>
+            <p class="text-[#57544E] mb-2">Track the crating and transit status of your consignment in real time.</p>
+            <a
+              href="/order-tracking"
+              class="text-[#9B4722] font-semibold uppercase tracking-wider text-[11px] underline underline-offset-4 hover:text-[#7D3516]"
+            >
+              Go to Order Tracking Console &rarr;
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: The Inquiry Form React Island -->
+        <div class="lg:col-span-7 bg-white p-6 sm:p-10 border border-[#E8E5DC] rounded-sm shadow-sm">
+          <ContactForm client:load />
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>

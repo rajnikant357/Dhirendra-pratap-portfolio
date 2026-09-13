@@ -1,0 +1,109 @@
+---
+import type { Artwork } from '../../types/database';
+
+export interface Props {
+  artwork: Artwork;
+  priority?: boolean;
+}
+
+const { artwork, priority = false } = Astro.props;
+const primaryImage = artwork.images.find((img) => img.is_primary) || artwork.images[0];
+
+const formatPrice = (amt?: number | null) => {
+  if (!amt) return '';
+  return new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+    maximumFractionDigits: 0,
+  }).format(amt);
+};
+---
+
+<article class="group relative flex flex-col transition-all duration-300">
+  <!-- Artwork Image Container with Museum Frame Styling -->
+  <a
+    href={`/gallery/${artwork.slug}`}
+    class="relative block overflow-hidden bg-[#F0ECE3] rounded-sm focus:outline-none focus:ring-2 focus:ring-[#9B4722]"
+    tabindex="0"
+    aria-label={`View details of ${artwork.title}`}
+  >
+    <!-- Aspect Ratio Preservation -->
+    <div class="relative w-full aspect-[4/5] overflow-hidden">
+      <img
+        src={primaryImage.storage_path}
+        alt={primaryImage.alt_text || `${artwork.title} by Dhirendra`}
+        loading={priority ? 'eager' : 'lazy'}
+        decoding="async"
+        fetchpriority={priority ? 'high' : 'auto'}
+        class="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-105"
+      />
+      <div class="absolute inset-0 bg-[#141311]/0 group-hover:bg-[#141311]/15 transition-colors duration-500" />
+    </div>
+
+    <!-- Status & Badges -->
+    <div class="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10 pointer-events-none">
+      {artwork.signature && (
+        <span class="px-2 py-0.5 text-[10px] tracking-[0.16em] uppercase font-semibold bg-[#141311] text-[#FBFBF9] rounded-[2px] shadow-sm">
+          Signature
+        </span>
+      )}
+      {artwork.availability === 'AVAILABLE' && artwork.sale_type === 'OFFER' && (
+        <span class="px-2 py-0.5 text-[10px] tracking-[0.14em] uppercase font-medium bg-[#B68B35] text-white rounded-[2px] shadow-sm">
+          Accepting Offers
+        </span>
+      )}
+      {artwork.availability === 'AVAILABLE' && artwork.sale_type === 'FIXED_PRICE' && (
+        <span class="px-2 py-0.5 text-[10px] tracking-[0.14em] uppercase font-medium bg-[#2C2A26] text-[#FBFBF9] rounded-[2px] shadow-sm">
+          Available
+        </span>
+      )}
+      {artwork.availability === 'SOLD' && (
+        <span class="px-2 py-0.5 text-[10px] tracking-[0.14em] uppercase font-medium bg-[#8A857D] text-white rounded-[2px]">
+          Acquired / Private Collection
+        </span>
+      )}
+    </div>
+  </a>
+
+  <!-- Metadata Plaque -->
+  <div class="pt-4 flex flex-col space-y-1">
+    <div class="flex items-baseline justify-between gap-2">
+      <h3 class="font-serif-display text-xl sm:text-2xl text-[#141311] font-medium leading-tight group-hover:text-[#9B4722] transition-colors">
+        <a href={`/gallery/${artwork.slug}`}>
+          {artwork.title}
+        </a>
+      </h3>
+      <span class="text-xs font-mono text-[#8A857D] flex-shrink-0">
+        {artwork.year}
+      </span>
+    </div>
+
+    <p class="text-xs text-[#57544E] italic font-serif">
+      {artwork.medium}
+    </p>
+
+    <div class="flex items-center justify-between text-xs pt-2 border-t border-[#F0ECE3]">
+      <span class="text-[#8A857D] font-mono text-[11px]">
+        {artwork.width} &times; {artwork.height}
+      </span>
+
+      <div>
+        {artwork.availability === 'AVAILABLE' && artwork.sale_type === 'FIXED_PRICE' && (
+          <span class="font-medium text-[#141311]">
+            {formatPrice(artwork.price)}
+          </span>
+        )}
+        {artwork.availability === 'AVAILABLE' && artwork.sale_type === 'OFFER' && (
+          <span class="text-[#9B4722] font-medium text-[11px] uppercase tracking-wider">
+            Make an Offer &rarr;
+          </span>
+        )}
+        {artwork.availability === 'SOLD' && (
+          <span class="text-[#8A857D] text-[11px] uppercase tracking-wider">
+            Sold
+          </span>
+        )}
+      </div>
+    </div>
+  </div>
+</article>

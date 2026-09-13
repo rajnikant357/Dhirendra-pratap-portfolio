@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --color-canvas: #FBFBF9;
+  --color-canvas-subtle: #F4F1EA;
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #F8F7F4;
+  --color-ink: #141311;
+  --color-ink-muted: #57544E;
+  --color-ink-subtle: #8A857D;
+  --color-border: #E8E5DC;
+  --color-border-subtle: #F0ECE3;
+  --color-border-dark: #2C2A26;
+  --color-accent: #9B4722;
+  --color-accent-hover: #7D3516;
+  --color-accent-light: #F7EFEA;
+  --color-gold: #B68B35;
+  --color-gold-light: #FAF5E9;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--color-ink);
+  color: var(--color-canvas);
+}
+
+/* Custom editorial typography utility classes */
+.font-serif-display {
+  font-family: var(--font-serif);
+  font-feature-settings: "liga" 1, "dlig" 1;
+}
+
+.gallery-grid-masonry {
+  columns: 1;
+  column-gap: 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .gallery-grid-masonry {
+    columns: 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery-grid-masonry {
+    columns: 3;
+  }
+}
+
+.gallery-item {
+  break-inside: avoid;
+  margin-bottom: 2.5rem;
+}
+
+/* Subtle frame shadow for museum artwork */
+.art-frame {
+  box-shadow: 0 20px 40px -15px rgba(20, 19, 17, 0.08), 0 0 0 1px rgba(20, 19, 17, 0.04);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.art-frame:hover {
+  box-shadow: 0 30px 60px -12px rgba(20, 19, 17, 0.14), 0 0 0 1px rgba(20, 19, 17, 0.08);
+}
+
+/* Smooth custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-canvas-subtle);
+}
+::-webkit-scrollbar-thumb {
+  background: #D3CEBF;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #A8A291;
+}

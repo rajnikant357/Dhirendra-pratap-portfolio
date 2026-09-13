@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { OrderTracker } from '../components/tracking/OrderTracker';
+---
+
+<BaseLayout
+  title="Consignment & Order Tracking — Dhirendra Art Gallery"
+  description="Track the status of your original artwork acquisition, framing, archival packaging, and insured fine art courier transit."
+>
+  <div class="py-16 sm:py-24 bg-[#FBFBF9]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Page Header -->
+      <div class="max-w-3xl mb-12 space-y-3 text-center sm:text-left mx-auto">
+        <span class="text-xs uppercase tracking-[0.24em] text-[#9B4722] font-semibold block">
+          Provenance Logistics
+        </span>
+        <h1 class="font-serif-display text-4xl sm:text-5xl text-[#141311] font-medium">
+          Consignment Tracking
+        </h1>
+        <p class="text-sm sm:text-base text-[#57544E] leading-relaxed">
+          Monitor your artwork consignment through every stage of preparation: from certificate authentication and custom museum crating to insured delivery.
+        </p>
+      </div>
+
+      <!-- Interactive Order Tracker React Island -->
+      <OrderTracker client:load />
+
+    </div>
+  </div>
+</BaseLayout>

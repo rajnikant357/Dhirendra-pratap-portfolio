@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { GalleryFilter } from '../../components/gallery/GalleryFilter';
+import { getAllArtworks } from '../../lib/artworks';
+
+const artworks = await getAllArtworks();
+---
+
+<BaseLayout
+  title="The Gallery — Original Works by Dhirendra | Artist & Graphics Designer"
+  description="Exhibition catalogue of original oil paintings, charcoal drawings, contemporary canvases, and archival graphic prints by Dhirendra. Inquire and submit acquisition offers."
+>
+  <div class="pt-6 pb-16 sm:pt-8 sm:pb-24 bg-[#FBFBF9]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Interactive React Island for Filtering, Layout Toggle, Lightbox & Clickable Artworks -->
+      <GalleryFilter client:load initialArtworks={artworks} />
+    </div>
+  </div>
+</BaseLayout>
