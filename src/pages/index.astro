@@ -1,9 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ArtworkCard from '../components/artwork/ArtworkCard.astro';
-import { getFeaturedArtworks, getSignatureArtworks } from '../lib/artworks';
+import CoverflowGallery from '../components/gallery/CoverflowGallery';
+import { getAllArtworks, getFeaturedArtworks, getSignatureArtworks } from '../lib/artworks';
 import { ACHIEVEMENTS_DATA } from '../lib/data/achievements';
 import { PROJECTS_DATA } from '../lib/data/projects';
+import type { Artwork } from '../types/database';
+
+const allArtworks = await getAllArtworks();
+// Six rectangular image cards showcasing high-quality photography of top picks & signature artworks
+const coverflowArtworks: Artwork[] = [
+  allArtworks.find((a) => a.id === 'art-01'),
+  allArtworks.find((a) => a.id === 'art-02'),
+  allArtworks.find((a) => a.id === 'art-03'),
+  allArtworks.find((a) => a.id === 'art-04'),
+  allArtworks.find((a) => a.id === 'art-05'),
+  allArtworks.find((a) => a.id === 'art-06'),
+].filter((a): a is Artwork => Boolean(a));
 
 const featuredArtworks = await getFeaturedArtworks();
 const signatureArtworks = await getSignatureArtworks();
@@ -185,52 +198,37 @@ const selectedProjects = PROJECTS_DATA.filter((p) => p.featured).slice(0, 3);
     </div>
   </section>
 
-  <!-- 3. SELECTED WORKS: Editorial Asymmetric Grid -->
-  <section class="py-24 bg-[#FBFBF9] border-b border-[#E8E5DC]">
+  <!-- 3. TOP PICKS & SIGNATURE WORKS: 3D Curved Perspective Coverflow Gallery -->
+  <section class="py-24 bg-[#FBFBF9] border-b border-[#E8E5DC] overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Section Header -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between pb-12 border-b border-[#E8E5DC] gap-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between pb-8 border-b border-[#E8E5DC] gap-6">
         <div>
           <span class="text-xs uppercase tracking-[0.22em] text-[#9B4722] font-semibold block">
-            Curated Exhibition
+            Curated Exhibition Stage
           </span>
           <h2 class="font-serif-display text-4xl sm:text-5xl text-[#141311] font-medium mt-1">
-            Selected Works
+            Top Picks & Signature Masterworks
           </h2>
-          <p class="text-sm text-[#6B6864] mt-2 max-w-xl">
-            A curated selection of signature paintings, academic drawings, and contemporary studies available for acquisition or private collection viewing.
+          <p class="text-sm text-[#6B6864] mt-2 max-w-2xl">
+            A horizontal curation of six signature masterworks and top picks arranged in a 3D curved perspective coverflow. Outer works tilt inward toward you—scroll, drag, or click to explore the collection.
           </p>
         </div>
 
         <a
           href="/gallery"
-          class="inline-flex items-center px-6 py-3 border border-[#141311] text-[#141311] hover:bg-[#141311] hover:text-[#FBFBF9] text-xs uppercase tracking-[0.2em] font-medium transition-all"
+          class="inline-flex items-center px-6 py-3 border border-[#141311] text-[#141311] hover:bg-[#141311] hover:text-[#FBFBF9] text-xs uppercase tracking-[0.2em] font-medium transition-all shrink-0"
         >
-          View All Catalogue Works &rarr;
+          View Full Catalogue &rarr;
         </a>
       </div>
 
-      <!-- Bento Grid Layout: Alternating Landscape & Portrait -->
-      <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-y-16 gap-x-8 items-start">
-        {featuredArtworks.slice(0, 5).map((artwork, idx) => {
-          const isLandscape = (idx % 4 === 0) || (idx % 4 === 3);
-          let colSpan = isLandscape ? 'lg:col-span-7 md:col-span-1' : 'lg:col-span-5 md:col-span-1';
-          let aspect = isLandscape ? 'aspect-[16/10]' : 'aspect-[3/4]';
+    </div>
 
-          if (idx === 4) {
-            colSpan = 'lg:col-span-12 max-w-3xl mx-auto w-full';
-            aspect = 'aspect-[16/9]';
-          }
-
-          return (
-            <div class={colSpan}>
-              <ArtworkCard artwork={artwork} priority={idx === 0} aspectRatio={aspect} />
-            </div>
-          );
-        })}
-      </div>
-
+    <!-- 3D Coverflow Curved Perspective Gallery Stage -->
+    <div class="w-full">
+      <CoverflowGallery client:load artworks={coverflowArtworks} />
     </div>
   </section>
 
