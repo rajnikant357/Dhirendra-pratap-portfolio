@@ -42,7 +42,7 @@ export const ACHIEVEMENTS_DATA: Achievement[] = [
     category: 'Government Recognition',
     location: 'India',
     description: 'Awarded research and studio grant for documenting traditional Indian pigments and translating regional narratives into contemporary canvases.',
-    image_path: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1000&q=80',
+    image_path: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1000&q=80',
     featured: true
   },
   {
@@ -53,7 +53,8 @@ export const ACHIEVEMENTS_DATA: Achievement[] = [
     category: 'Other Honours',
     location: 'India',
     description: 'Completed postgraduate Master of Visual Arts with specialization in Painting and Advanced Composition.',
-    featured: false
+    image_path: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80',
+    featured: true
   },
   {
     id: 'ach-06',
@@ -74,6 +75,7 @@ export const ACHIEVEMENTS_DATA: Achievement[] = [
     category: 'Art Competitions',
     location: 'India',
     description: 'First prize across national university art faculties during undergraduate (BVA) artistic studies.',
-    featured: false
+    image_path: 'https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=1000&q=80',
+    featured: true
   }
 ];

@@ -367,7 +367,7 @@ const selectedProjects = PROJECTS_DATA.filter((p) => p.featured).slice(0, 3);
 
       <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {topAchievements.map((ach) => (
-          <div class="bg-white p-6 rounded-sm border border-[#E8E5DC] flex flex-col justify-between hover:shadow-md transition-shadow">
+          <div class="bg-white p-6 rounded-sm border border-[#E8E5DC] flex flex-col justify-between hover:shadow-md transition-shadow space-y-4">
             <div class="space-y-3">
               <div class="flex items-center justify-between text-xs">
                 <span class="px-2 py-0.5 bg-[#FAF5E9] border border-[#E8E5DC] text-[#9B4722] font-medium uppercase tracking-wider text-[10px]">
@@ -385,6 +385,25 @@ const selectedProjects = PROJECTS_DATA.filter((p) => p.featured).slice(0, 3);
                 {ach.description}
               </p>
             </div>
+
+            {ach.image_path && (
+              <div class="pt-2">
+                <a
+                  href={ach.image_path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block aspect-[16/10] bg-[#F0ECE3] rounded-sm overflow-hidden border border-[#E8E5DC] group cursor-pointer"
+                  title={`View ${ach.title} certificate`}
+                >
+                  <img
+                    src={ach.image_path}
+                    alt={`${ach.title} certificate / honor`}
+                    loading="lazy"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </a>
+              </div>
+            )}
           </div>
         ))}
       </div>

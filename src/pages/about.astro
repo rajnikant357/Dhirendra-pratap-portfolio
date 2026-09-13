@@ -207,14 +207,20 @@ import { PROJECTS_DATA } from '../lib/data/projects';
 
               {ach.image_path && (
                 <div class="pt-2">
-                  <div class="aspect-[16/9] bg-[#F0ECE3] rounded-sm overflow-hidden border border-[#E8E5DC]">
+                  <a
+                    href={ach.image_path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="block aspect-[16/9] bg-[#F0ECE3] rounded-sm overflow-hidden border border-[#E8E5DC] group cursor-pointer"
+                    title={`View ${ach.title} certificate`}
+                  >
                     <img
                       src={ach.image_path}
                       alt={`${ach.title} certificate`}
                       loading="lazy"
-                      class="w-full h-full object-cover"
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                  </div>
+                  </a>
                 </div>
               )}
             </div>
