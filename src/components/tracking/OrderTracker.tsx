@@ -116,7 +116,7 @@ export const OrderTracker: React.FC = () => {
                 required
                 value={orderId}
                 onChange={(e) => setOrderId(e.target.value)}
-                placeholder="e.g. DAG-2026-0012"
+                placeholder="Enter Consignment / Order ID"
                 className="w-full px-4 py-2.5 text-sm font-mono uppercase bg-[#FBFBF9] border border-[#D3CEBF] rounded-sm focus:outline-none focus:ring-1 focus:ring-[#9B4722]"
               />
             </div>
@@ -129,41 +129,13 @@ export const OrderTracker: React.FC = () => {
                 required
                 value={contact}
                 onChange={(e) => setContact(e.target.value)}
-                placeholder="Used during acquisition"
+                placeholder="Email or phone used during acquisition"
                 className="w-full px-4 py-2.5 text-sm bg-[#FBFBF9] border border-[#D3CEBF] rounded-sm focus:outline-none focus:ring-1 focus:ring-[#9B4722]"
               />
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
-            {/* Clickable Quick Demo Sample */}
-            <div className="text-xs text-[#8A857D] flex items-center gap-2">
-              <span>Try demo order:</span>
-              <button
-                type="button"
-                onClick={() => {
-                  setOrderId('DAG-2026-0012');
-                  setContact('vikram.m@example.com');
-                  fetchOrder('DAG-2026-0012', 'vikram.m@example.com');
-                }}
-                className="text-[#9B4722] underline font-mono text-[11px] hover:text-[#7D3516]"
-              >
-                DAG-2026-0012 (In Preparation)
-              </button>
-              <span>or</span>
-              <button
-                type="button"
-                onClick={() => {
-                  setOrderId('DAG-2026-0018');
-                  setContact('sunita.rao@example.com');
-                  fetchOrder('DAG-2026-0018', 'sunita.rao@example.com');
-                }}
-                className="text-[#9B4722] underline font-mono text-[11px] hover:text-[#7D3516]"
-              >
-                DAG-2026-0018 (Delivered)
-              </button>
-            </div>
-
+          <div className="flex flex-col sm:flex-row items-center justify-end gap-4 pt-2">
             <button
               type="submit"
               disabled={isLoading}

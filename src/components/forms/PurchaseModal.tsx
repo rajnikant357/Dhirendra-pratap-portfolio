@@ -139,43 +139,46 @@ export const PurchaseModal: React.FC<Props> = ({ artwork, isOpen, onClose }) => 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#57544E] mb-1 font-medium">
+                  <label htmlFor="purchase-name" className="block text-xs uppercase tracking-wider text-[#57544E] mb-1 font-medium">
                     Collector Full Name *
                   </label>
                   <input
+                    id="purchase-name"
                     type="text"
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="e.g. Vikram Malhotra"
+                    placeholder="Your full name"
                     className="w-full px-3 py-2 text-sm bg-white border border-[#D3CEBF] rounded-sm focus:outline-none focus:ring-1 focus:ring-[#9B4722]"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#57544E] mb-1 font-medium">
+                  <label htmlFor="purchase-email" className="block text-xs uppercase tracking-wider text-[#57544E] mb-1 font-medium">
                     Email Address *
                   </label>
                   <input
+                    id="purchase-email"
                     type="email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="vikram@example.com"
+                    placeholder="name@domain.com"
                     className="w-full px-3 py-2 text-sm bg-white border border-[#D3CEBF] rounded-sm focus:outline-none focus:ring-1 focus:ring-[#9B4722]"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs uppercase tracking-wider text-[#57544E] mb-1 font-medium">
+                <label htmlFor="purchase-phone" className="block text-xs uppercase tracking-wider text-[#57544E] mb-1 font-medium">
                   Contact Phone / WhatsApp *
                 </label>
                 <input
+                  id="purchase-phone"
                   type="tel"
                   required
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  placeholder="+91 98765 43210"
+                  placeholder="+91..."
                   className="w-full px-3 py-2 text-sm bg-white border border-[#D3CEBF] rounded-sm focus:outline-none focus:ring-1 focus:ring-[#9B4722]"
                 />
               </div>

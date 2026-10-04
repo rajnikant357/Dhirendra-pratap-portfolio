@@ -6,8 +6,10 @@
     "node": ">=22.12.0"
   },
   "scripts": {
+    "optimize:media": "node scripts/optimize-media.mjs",
+    "manifest": "node scripts/generate-media-manifest.mjs",
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/optimize-media.mjs && node scripts/generate-media-manifest.mjs && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },

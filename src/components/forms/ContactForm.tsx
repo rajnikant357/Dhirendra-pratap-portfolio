@@ -97,29 +97,31 @@ export const ContactForm: React.FC = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
-          <label className="block text-xs uppercase tracking-wider text-[#57544E] mb-2 font-medium">
+          <label htmlFor="contact-name" className="block text-xs uppercase tracking-wider text-[#57544E] mb-2 font-medium">
             Full Name *
           </label>
           <input
+            id="contact-name"
             type="text"
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="e.g. Dr. Rajesh Mehra"
+            placeholder="Your full name"
             className="w-full px-4 py-3 text-sm bg-white border border-[#D3CEBF] rounded-sm focus:outline-none focus:ring-1 focus:ring-[#9B4722] transition-colors"
           />
         </div>
 
         <div>
-          <label className="block text-xs uppercase tracking-wider text-[#57544E] mb-2 font-medium">
+          <label htmlFor="contact-email" className="block text-xs uppercase tracking-wider text-[#57544E] mb-2 font-medium">
             Email Address *
           </label>
           <input
+            id="contact-email"
             type="email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="rajesh@example.com"
+            placeholder="name@domain.com"
             className="w-full px-4 py-3 text-sm bg-white border border-[#D3CEBF] rounded-sm focus:outline-none focus:ring-1 focus:ring-[#9B4722] transition-colors"
           />
         </div>
@@ -127,24 +129,26 @@ export const ContactForm: React.FC = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
-          <label className="block text-xs uppercase tracking-wider text-[#57544E] mb-2 font-medium">
+          <label htmlFor="contact-phone" className="block text-xs uppercase tracking-wider text-[#57544E] mb-2 font-medium">
             Phone / WhatsApp (with country code) *
           </label>
           <input
+            id="contact-phone"
             type="tel"
             required
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            placeholder="+91 98765 43210"
+            placeholder="+91..."
             className="w-full px-4 py-3 text-sm bg-white border border-[#D3CEBF] rounded-sm focus:outline-none focus:ring-1 focus:ring-[#9B4722] transition-colors"
           />
         </div>
 
         <div>
-          <label className="block text-xs uppercase tracking-wider text-[#57544E] mb-2 font-medium">
+          <label htmlFor="contact-type" className="block text-xs uppercase tracking-wider text-[#57544E] mb-2 font-medium">
             Enquiry Type *
           </label>
           <select
+            id="contact-type"
             value={type}
             onChange={(e) => setType(e.target.value as EnquiryType)}
             className="w-full px-4 py-3 text-sm bg-white border border-[#D3CEBF] rounded-sm focus:outline-none focus:ring-1 focus:ring-[#9B4722] transition-colors"
@@ -159,10 +163,11 @@ export const ContactForm: React.FC = () => {
       </div>
 
       <div>
-        <label className="block text-xs uppercase tracking-wider text-[#57544E] mb-2 font-medium">
+        <label htmlFor="contact-message" className="block text-xs uppercase tracking-wider text-[#57544E] mb-2 font-medium">
           Message & Project Details *
         </label>
         <textarea
+          id="contact-message"
           rows={5}
           required
           value={message}

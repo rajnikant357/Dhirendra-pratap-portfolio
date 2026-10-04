@@ -126,28 +126,30 @@ export const MakeOfferModal: React.FC<Props> = ({ artwork, isOpen, onClose }) =>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#57544E] mb-1 font-medium">
+                  <label htmlFor="offer-name" className="block text-xs uppercase tracking-wider text-[#57544E] mb-1 font-medium">
                     Your Full Name *
                   </label>
                   <input
+                    id="offer-name"
                     type="text"
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="e.g. Ananya Roy"
+                    placeholder="Your full name"
                     className="w-full px-3 py-2 text-sm bg-white border border-[#D3CEBF] rounded-sm focus:outline-none focus:ring-1 focus:ring-[#9B4722]"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#57544E] mb-1 font-medium">
+                  <label htmlFor="offer-email" className="block text-xs uppercase tracking-wider text-[#57544E] mb-1 font-medium">
                     Email Address *
                   </label>
                   <input
+                    id="offer-email"
                     type="email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="ananya@example.com"
+                    placeholder="name@domain.com"
                     className="w-full px-3 py-2 text-sm bg-white border border-[#D3CEBF] rounded-sm focus:outline-none focus:ring-1 focus:ring-[#9B4722]"
                   />
                 </div>
@@ -155,15 +157,16 @@ export const MakeOfferModal: React.FC<Props> = ({ artwork, isOpen, onClose }) =>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs uppercase tracking-wider text-[#57544E] mb-1 font-medium">
+                  <label htmlFor="offer-phone" className="block text-xs uppercase tracking-wider text-[#57544E] mb-1 font-medium">
                     Phone / WhatsApp *
                   </label>
                   <input
+                    id="offer-phone"
                     type="tel"
                     required
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    placeholder="+91 98765 43210"
+                    placeholder="+91..."
                     className="w-full px-3 py-2 text-sm bg-white border border-[#D3CEBF] rounded-sm focus:outline-none focus:ring-1 focus:ring-[#9B4722]"
                   />
                 </div>

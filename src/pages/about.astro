@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { AboutDynamicSections } from '../components/about/AboutDynamicSections';
 import { ACHIEVEMENTS_DATA } from '../lib/data/achievements';
 import { PROJECTS_DATA } from '../lib/data/projects';
 ---
@@ -19,7 +20,7 @@ import { PROJECTS_DATA } from '../lib/data/projects';
         <h1 class="font-serif-display text-5xl sm:text-7xl text-[#141311] font-medium tracking-tight leading-[0.98]">
           The Journey of Dhirendra
         </h1>
-        <p class="font-serif text-2xl sm:text-3xl text-[#57544E] italic leading-relaxed">
+        <p id="cms-about-quote" class="font-serif text-2xl sm:text-3xl text-[#57544E] italic leading-relaxed">
           "Art is not an ornament on the surface of reality; it is an investigation into the silence beneath everyday observation."
         </p>
       </section>
@@ -31,15 +32,22 @@ import { PROJECTS_DATA } from '../lib/data/projects';
         <div class="lg:col-span-5 space-y-6">
           <div class="bg-white p-4 rounded-sm border border-[#E8E5DC] shadow-sm">
             <div class="aspect-[4/5] bg-[#F0ECE3] overflow-hidden rounded-sm">
-              <img
-                src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=80"
-                alt="Dhirendra in his painting studio"
-                loading="lazy"
-                class="w-full h-full object-cover"
-              />
+              <picture>
+                <source srcset="/photos/Dhirendra.webp" type="image/webp" />
+                <img
+                  id="cms-about-portrait"
+                  src="/photos/Dhirendra.jpeg"
+                  alt="Dhirendra Pratap — Artist and Graphic Designer"
+                  width="400"
+                  height="500"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover"
+                />
+              </picture>
             </div>
             <div class="pt-4 text-center">
-              <span class="font-serif-display text-2xl text-[#141311] font-medium block">Dhirendra</span>
+              <span class="font-serif-display text-2xl text-[#141311] font-medium block">Dhirendra Pratap</span>
               <span class="text-xs uppercase tracking-[0.2em] text-[#9B4722] font-medium">Artist & Graphics Designer</span>
             </div>
           </div>
@@ -52,13 +60,18 @@ import { PROJECTS_DATA } from '../lib/data/projects';
             <div class="space-y-3 text-xs">
               <div class="pb-2 border-b border-[#E8E5DC]">
                 <strong class="text-sm font-serif block text-[#141311]">Master of Visual Arts (MVA)</strong>
-                <span class="text-[#57544E]">Specialization in Painting & Advanced Composition</span>
-                <span class="block text-[#8A857D] font-mono mt-0.5">First Class Distinction</span>
+                <span class="text-[#57544E]">Faculty of Fine Arts, University of Lucknow</span>
+                <span class="block text-[#8A857D] font-mono mt-0.5">Postgraduate Specialization in Painting</span>
+              </div>
+              <div class="pb-2 border-b border-[#E8E5DC]">
+                <strong class="text-sm font-serif block text-[#141311]">Bachelor of Visual Arts (BVA)</strong>
+                <span class="text-[#57544E]">Faculty of Fine Arts, University of Lucknow</span>
+                <span class="block text-[#8A857D] font-mono mt-0.5">Fine Arts, Drawing & Visual Composition</span>
               </div>
               <div>
-                <strong class="text-sm font-serif block text-[#141311]">Bachelor of Visual Arts (BVA)</strong>
-                <span class="text-[#57544E]">Classical Foundation, Anatomy & Printmaking</span>
-                <span class="block text-[#8A857D] font-mono mt-0.5">Gold Medalist / Inter-University Honor</span>
+                <strong class="text-sm font-serif block text-[#141311]">State Lalit Kala Akademi Workshop (2012)</strong>
+                <span class="text-[#57544E]">Summer Art Workshop, Ballia, Uttar Pradesh</span>
+                <span class="block text-[#8A857D] font-mono mt-0.5">Early Foundation Training</span>
               </div>
             </div>
           </div>
@@ -70,15 +83,17 @@ import { PROJECTS_DATA } from '../lib/data/projects';
             <h2 class="font-serif-display text-3xl text-[#141311] font-medium">
               Biography & Practice
             </h2>
-            <p>
-              Dhirendra is an accomplished Indian visual artist and graphic designer whose practice spans over seven years of rigorous studio investigation. Raised with a keen sensitivity to Northern India’s rich vernacular landscapes and architectural memories, his work fuses academic classical technique with contemporary abstraction.
-            </p>
-            <p>
-              After completing his formal undergraduate training in Fine Arts (BVA), Dhirendra advanced to his postgraduate degree (MVA), graduating with top academic distinction. His studio oeuvre investigates human psychological stillness, the interplay between light and deep pigments, and the relationship between structural geometry and organic textures.
-            </p>
-            <p>
-              His work has been exhibited across prominent institutional platforms, earning participation and merit recognition at the <strong>National Lalit Kala Akademi</strong> in New Delhi, the prestigious <strong>State Kala Ratna Award</strong>, and formal commendations from District Magistrates and the Ministry of Culture.
-            </p>
+            <div id="cms-about-bio" class="space-y-4">
+              <p>
+                Dhirendra Pratap is an accomplished Indian visual artist and graphic designer whose practice spans over seven years of dedicated studio work, monumental public murals, and civic installations. Born in Badagaon Khadsara, Ballia, Uttar Pradesh, his artistic development was shaped by early foundational training under the State Lalit Kala Akademi in 2012, followed by rigorous academic study at the Faculty of Fine Arts, University of Lucknow.
+              </p>
+              <p>
+                Holding both Bachelor of Visual Arts (BVA) and Master of Visual Arts (MVA) degrees with a specialization in Painting from the University of Lucknow, Dhirendra works fluidly across traditional canvas painting, observational portraiture, large-scale outdoor wall murals, intricate ceremonial rangoli, and upcycled scrap metal sculptures.
+              </p>
+              <p>
+                His accomplishments have received prominent state and regional recognitions, including the State Lalit Kala Akademi National Exhibition (2022), Uttar Pradesh Kala Ratna Samman (2020), Kala Shree Samman (2020), Shan-e-Siddharth Samman (2021), and multiple ceremonial presentations for Uttar Pradesh Chief Minister Yogi Adityanath.
+              </p>
+            </div>
           </div>
 
           <!-- Artistic Philosophy in the Artist's Own Words -->
@@ -87,10 +102,10 @@ import { PROJECTS_DATA } from '../lib/data/projects';
               Artistic Philosophy
             </span>
             <p class="font-serif text-lg sm:text-xl text-[#141311] italic leading-relaxed">
-              "A painting must do more than duplicate what the eye sees. It must preserve the weight of an unsaid thought, the silence between breaths, and the texture of a memory that refuses to fade. Every layer of mineral pigment on canvas is a gesture of listening."
+              "Art is not an ornament on the surface of reality; it is an investigation into the silence beneath everyday observation. Every stroke on canvas or texture in scrap metal is an act of patient listening."
             </p>
             <span class="text-xs uppercase tracking-wider text-[#8A857D] font-medium block">
-              &mdash; Dhirendra
+              &mdash; Dhirendra Pratap
             </span>
           </div>
 
@@ -100,7 +115,7 @@ import { PROJECTS_DATA } from '../lib/data/projects';
               Materiality & Method
             </h3>
             <p class="leading-relaxed">
-              Working primarily with cold-pressed oils, pure mineral earths, charcoal sticks, and natural sand impasto on custom-stretched Belgian linen, Dhirendra adheres to museum-grade archival practices. Every canvas undergoes rigorous priming and final UV matte varnishing, guaranteeing physical permanence for private and institutional collections.
+              Dhirendra's studio practice balances fine art discipline with material innovation. On canvas and paper, he utilizes oils, acrylics, graphite, and mineral pigments with archival preparation. In the public sphere, his practice extends to weather-resistant outdoor mural emulsions, floral and powdered pigments for ceremonial rangoli, and discarded industrial metal scrap welded into life-sized animal and civic sculptures.
             </p>
           </div>
         </div>
@@ -114,180 +129,90 @@ import { PROJECTS_DATA } from '../lib/data/projects';
             Milestones
           </span>
           <h2 class="font-serif-display text-4xl text-[#141311] font-medium mt-1">
-            Career Timeline
+            Artistic Journey &amp; Milestones
           </h2>
+          <p class="text-sm text-[#57544E] mt-2">
+            A comprehensive chronology of academic rigor, national academy workshops, state honors, and monumental public commissions.
+          </p>
         </div>
 
         <div class="relative border-l-2 border-[#E8E5DC] ml-4 sm:ml-24 space-y-10 pl-6 sm:pl-10">
-          <div class="relative">
-            <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#141311] border-4 border-white"></span>
-            <span class="font-mono text-xs text-[#9B4722]">2017 &bull; Foundation</span>
-            <h3 class="font-serif-display text-xl text-[#141311] font-medium mt-0.5">Commencement of Professional Studio Training</h3>
-            <p class="text-xs text-[#57544E] mt-1">Began rigorous anatomical drawing and classical oil painting apprenticeships.</p>
-          </div>
 
           <div class="relative">
             <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#141311] border-4 border-white"></span>
-            <span class="font-mono text-xs text-[#9B4722]">2019 &bull; Gold Medal</span>
-            <h3 class="font-serif-display text-xl text-[#141311] font-medium mt-0.5">All-India Inter-University Painting Distinction</h3>
-            <p class="text-xs text-[#57544E] mt-1">First-prize gold medal across national university art faculties.</p>
-          </div>
-
-          <div class="relative">
-            <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#141311] border-4 border-white"></span>
-            <span class="font-mono text-xs text-[#9B4722]">2021 &bull; Postgraduate Master</span>
-            <h3 class="font-serif-display text-xl text-[#141311] font-medium mt-0.5">Graduation with Master of Visual Arts (MVA)</h3>
-            <p class="text-xs text-[#57544E] mt-1">Specialization in Painting, finishing with first-class institutional rank.</p>
+            <span class="font-mono text-xs text-[#9B4722]">2015–2021 &bull; Academic Foundation (BVA &amp; MVA)</span>
+            <h3 class="font-serif-display text-xl text-[#141311] font-medium mt-0.5">Department of Fine Arts, University of Lucknow</h3>
+            <p class="text-xs text-[#57544E] mt-1">Formal BVA &amp; MVA specialization in Painting at Lucknow University Faculty of Fine Arts. Mastered anatomy, drawing, and classical composition; trained in digital visual media with Taxtron (2017) and led public environmental art for Climate Agenda's 'Clean Air Gomti' campaign (2018).</p>
           </div>
 
           <div class="relative">
             <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#B68B35] border-4 border-white"></span>
-            <span class="font-mono text-xs text-[#B68B35]">2022 &bull; Research Fellowship</span>
-            <h3 class="font-serif-display text-xl text-[#141311] font-medium mt-0.5">Ministry of Culture Visual Arts Fellowship</h3>
-            <p class="text-xs text-[#57544E] mt-1">Grant research documenting indigenous pigment extraction and traditional techniques.</p>
+            <span class="font-mono text-xs text-[#B68B35]">2020 &bull; Frontline Public Art &amp; State Accolades</span>
+            <h3 class="font-serif-display text-xl text-[#141311] font-medium mt-0.5">UP Kala Ratna &amp; Kala Shree Samman</h3>
+            <p class="text-xs text-[#57544E] mt-1">Conferred the prestigious Uttar Pradesh Kala Ratna Samman and Kala Shree Samman. Executed high-profile street rangolis and murals at Mankameshwar, Hazratganj, and Raj Bhavan honoring COVID frontline workers; felicitated by North Lucknow ACP Sonam Kumar and UP Police.</p>
           </div>
 
           <div class="relative">
             <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#B68B35] border-4 border-white"></span>
-            <span class="font-mono text-xs text-[#B68B35]">2023 &bull; State Honor & DM Citation</span>
-            <h3 class="font-serif-display text-xl text-[#141311] font-medium mt-0.5">State Kala Ratna & District Magistrate Commendation</h3>
-            <p class="text-xs text-[#57544E] mt-1">Felicitation by state cultural authorities and district administrative leadership.</p>
+            <span class="font-mono text-xs text-[#B68B35]">2021 &bull; Regional Recognition</span>
+            <h3 class="font-serif-display text-xl text-[#141311] font-medium mt-0.5">Shan-e-Siddharth Samman &amp; Kala Parv Honors</h3>
+            <p class="text-xs text-[#57544E] mt-1">Conferred Shan-e-Siddharth citation at Kapilvastu Mahotsav and Kala Parv distinction for exceptional contributions to regional and classical visual arts.</p>
+          </div>
+
+          <div class="relative">
+            <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#B68B35] border-4 border-white"></span>
+            <span class="font-mono text-xs text-[#B68B35]">2022 &bull; Apex National Workshop &amp; University Map</span>
+            <h3 class="font-serif-display text-xl text-[#141311] font-medium mt-0.5">Lalit Kala Akademi National Workshop &amp; South Asia Wall Map</h3>
+            <p class="text-xs text-[#57544E] mt-1">Selected for the Lalit Kala Akademi Regional Centre Lucknow 'Har Ghar Tiranga' National Painting Workshop (Ministry of Culture, Govt. of India). Awarded official appreciation by the Dean &amp; HoD of Western History, University of Lucknow, for hand-painting the monumental South Asia Historical Wall Map.</p>
           </div>
 
           <div class="relative">
             <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#9B4722] border-4 border-white"></span>
-            <span class="font-mono text-xs text-[#9B4722]">2024 &bull; National Apex Exhibition</span>
-            <h3 class="font-serif-display text-xl text-[#141311] font-medium mt-0.5">National Lalit Kala Akademi Participation & Solo Show</h3>
-            <p class="text-xs text-[#57544E] mt-1">Premier national exhibition and solo exhibition "Resonance of Soil" with 24 major works.</p>
+            <span class="font-mono text-xs text-[#9B4722]">2023–2024 &bull; Civic Murals, Scrap Sculptures &amp; CM Honors</span>
+            <h3 class="font-serif-display text-xl text-[#141311] font-medium mt-0.5">Ayodhya Ramayana Murals, Scrap Lion &amp; CM Presentations</h3>
+            <p class="text-xs text-[#57544E] mt-1">Executed monumental Ramayana heritage murals in Ayodhya and civic corridors. Fabricated landmark eco-sculptures from industrial automotive scrap (including the life-sized Scrap Lion and Transformer Robot). Presented commissioned portraits directly to Hon'ble UP Chief Minister Yogi Adityanath.</p>
           </div>
 
           <div class="relative">
             <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#141311] border-4 border-white"></span>
-            <span class="font-mono text-xs text-[#141311]">Present &bull; Studio Catalogue</span>
-            <h3 class="font-serif-display text-xl text-[#141311] font-medium mt-0.5">Active Gallery Acquisitions & Design Practice</h3>
-            <p class="text-xs text-[#57544E] mt-1">Representing original collections to discerning collectors and institutions worldwide.</p>
+            <span class="font-mono text-xs text-[#141311]">Present &bull; Nationwide Studio Practice</span>
+            <h3 class="font-serif-display text-xl text-[#141311] font-medium mt-0.5">Architectural Murals, Bespoke Sculptures &amp; Brand Direction</h3>
+            <p class="text-xs text-[#57544E] mt-1">Directing a full-time studio executing architectural exterior murals, eco-metal sculptures, 3D foam installations, ceremonial floor rangolis, and brand graphics for governmental agencies, corporate clients, and art collectors across India.</p>
           </div>
         </div>
       </section>
 
-      <!-- 4. Recognition & Achievements (Full Section with Lightbox readiness) -->
-      <section id="recognition" class="py-16 border-b border-[#E8E5DC]">
-        <div class="max-w-3xl mb-12">
-          <span class="text-xs uppercase tracking-[0.22em] text-[#B68B35] font-semibold block">
-            Credentials & Honors
-          </span>
-          <h2 class="font-serif-display text-4xl text-[#141311] font-medium mt-1">
-            Recognition & Achievements
-          </h2>
-          <p class="text-sm text-[#6B6864] mt-2">
-            Verified awards, state honors, institutional fellowships, and government citations.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {ACHIEVEMENTS_DATA.map((ach) => (
-            <div class="bg-white p-6 rounded-sm border border-[#E8E5DC] flex flex-col justify-between space-y-4">
-              <div class="space-y-2">
-                <div class="flex items-center justify-between text-xs">
-                  <span class="px-2 py-0.5 bg-[#FAF5E9] text-[#9B4722] font-medium uppercase tracking-wider text-[10px] rounded-sm">
-                    {ach.category}
-                  </span>
-                  <span class="font-mono text-[#8A857D]">{ach.year}</span>
-                </div>
-                <h3 class="font-serif-display text-xl text-[#141311] font-medium leading-snug">
-                  {ach.title}
-                </h3>
-                <p class="text-xs text-[#6B6864] font-medium">
-                  {ach.organization} {ach.location ? `• ${ach.location}` : ''}
-                </p>
-                <p class="text-xs text-[#57544E] leading-relaxed pt-1">
-                  {ach.description}
-                </p>
-              </div>
-
-              {ach.image_path && (
-                <div class="pt-2">
-                  <a
-                    href={ach.image_path}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="block aspect-[16/9] bg-[#F0ECE3] rounded-sm overflow-hidden border border-[#E8E5DC] group cursor-pointer"
-                    title={`View ${ach.title} certificate`}
-                  >
-                    <img
-                      src={ach.image_path}
-                      alt={`${ach.title} certificate`}
-                      loading="lazy"
-                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </a>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <!-- 5. Beyond Fine Art: Professional Work in Graphics & Creative Design (Secondary Positioning) -->
-      <section id="beyond-fine-art" class="py-16">
-        <div class="max-w-3xl mb-12">
-          <span class="text-xs uppercase tracking-[0.22em] text-[#9B4722] font-semibold block">
-            Secondary Professional Capability
-          </span>
-          <h2 class="font-serif-display text-4xl text-[#141311] font-medium mt-1">
-            Beyond Fine Art — Graphics Design & Visual Direction
-          </h2>
-          <p class="text-sm text-[#6B6864] mt-2">
-            Translating fine art spatial principles into commercial communication: typography, publication design, cultural campaigns, and film visual design.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {PROJECTS_DATA.map((proj) => (
-            <div class="bg-white border border-[#E8E5DC] rounded-sm overflow-hidden flex flex-col">
-              <div class="aspect-[16/10] bg-[#E8E5DC] overflow-hidden">
-                <img
-                  src={proj.images[0].storage_path}
-                  alt={proj.title}
-                  class="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-              <div class="p-6 flex-grow flex flex-col justify-between space-y-3">
-                <div>
-                  <div class="flex items-center justify-between text-xs text-[#8A857D] mb-1">
-                    <span class="uppercase tracking-wider text-[10px] text-[#9B4722] font-semibold">
-                      {proj.category}
-                    </span>
-                    <span class="font-mono">{proj.year}</span>
-                  </div>
-                  <h3 class="font-serif-display text-2xl text-[#141311] font-medium">
-                    {proj.title}
-                  </h3>
-                  <p class="text-xs text-[#57544E] mt-2 leading-relaxed">
-                    {proj.description}
-                  </p>
-                </div>
-                {proj.client_or_org && (
-                  <div class="pt-3 border-t border-[#E8E5DC] text-xs text-[#8A857D]">
-                    Commission: <span class="text-[#141311] font-medium">{proj.client_or_org}</span>
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div class="mt-12 text-center">
-          <a
-            href="/contact"
-            class="inline-flex items-center px-8 py-3 bg-[#141311] text-[#FBFBF9] text-xs uppercase tracking-[0.2em] font-medium hover:bg-[#2C2A26] transition-colors"
-          >
-            Discuss A Creative Commission &rarr;
-          </a>
-        </div>
-      </section>
+      <!-- Dynamic Recognitions & Projects Section (Live Synced with Studio CMS) -->
+      <div class="pt-16">
+        <AboutDynamicSections
+          client:visible
+          initialAchievements={ACHIEVEMENTS_DATA}
+          initialProjects={PROJECTS_DATA}
+        />
+      </div>
 
     </div>
   </div>
 </BaseLayout>
+
+<script>
+  import { getSiteContent } from '../lib/cmsStorage';
+  function applyAboutContent() {
+    try {
+      const content = getSiteContent();
+      const quoteEl = document.getElementById('cms-about-quote');
+      const bioEl = document.getElementById('cms-about-bio');
+      const portraitImg = document.getElementById('cms-about-portrait') as HTMLImageElement;
+
+      if (quoteEl && content.aboutQuote) quoteEl.textContent = content.aboutQuote;
+      if (bioEl && content.aboutBio) {
+        bioEl.innerHTML = `<p>${content.aboutBio.replace(/\\n/g, '</p><p>')}</p>`;
+      }
+      if (portraitImg && content.aboutPortraitImage) {
+        portraitImg.src = content.aboutPortraitImage;
+      }
+    } catch (e) {}
+  }
+  applyAboutContent();
+  window.addEventListener('dhirendra_cms_updated', applyAboutContent);
+</script>

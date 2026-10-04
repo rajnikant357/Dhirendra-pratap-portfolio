@@ -3,49 +3,41 @@ import type { Artwork } from '../../types/database';
 export const ARTWORKS_DATA: Artwork[] = [
   {
     id: 'art-01',
-    title: 'Silent Resonance in Crimson',
-    slug: 'silent-resonance-in-crimson',
-    description: 'An evocative exploration of interiority and emotional stillness. The interplay of deep alizarin crimson and muted earth tones creates a contemplative atmospheric presence, reflecting the artist’s inquiry into human expression and physical space.',
-    year: 2025,
-    medium: 'Oil and Mineral Pigment on Belgian Linen',
-    category: 'Paintings',
-    width: '48 in',
-    height: '60 in',
-    price: 85000,
-    sale_type: 'FIXED_PRICE',
-    availability: 'AVAILABLE',
+    title: 'Artistic Portfolio Presentation to DGP (UP Police)',
+    slug: 'artistic-presentation-dgp-up-police',
+    description: 'Special felicitation and artistic portfolio presentation by visual artist Dhirendra Pratap to the Director General of Police (DGP) at the Uttar Pradesh Police Headquarters, Lucknow.',
+    year: 2024,
+    medium: 'Artistic Portfolio & Dignitary Felicitation',
+    category: 'Portraits',
+    width: '12 in',
+    height: '16 in',
+    price: null,
+    sale_type: 'NOT_FOR_SALE',
+    availability: 'ARCHIVED',
     featured: true,
     signature: true,
     images: [
       {
         id: 'img-01a',
         artwork_id: 'art-01',
-        storage_path: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1600&q=85',
-        alt_text: 'Silent Resonance in Crimson - Oil painting on linen by Dhirendra, 2025',
+        storage_path: '/photos/awards/certificates%20and%20awards/438304121_950748996557945_5294600570921436411_n.jpg',
+        alt_text: 'Artistic portfolio presentation to the DGP (UP Police) by visual artist Dhirendra Pratap',
         sort_order: 1,
         is_primary: true
-      },
-      {
-        id: 'img-01b',
-        artwork_id: 'art-01',
-        storage_path: 'https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&fit=crop&w=1200&q=85',
-        alt_text: 'Detail texture of Silent Resonance in Crimson',
-        sort_order: 2,
-        is_primary: false
       }
     ],
-    created_at: '2025-02-10T10:00:00Z'
+    created_at: '2024-04-15T10:00:00Z'
   },
   {
     id: 'art-02',
-    title: 'The Solitary Observer',
-    slug: 'the-solitary-observer',
-    description: 'A delicate study of contemplative posture executed in raw vine charcoal and white gouache highlights on hand-toned rag paper. Drawn from life observations capturing the quiet dignity of rural elders.',
-    year: 2024,
-    medium: 'Charcoal and Gouache on Arches Archival Paper',
+    title: 'Contemplative Portrait Study in Graphite',
+    slug: 'contemplative-portrait-study',
+    description: 'A delicate observational pencil portrait study of a young woman resting her chin in thoughtful repose. Drawn from life observations capturing the quiet dignity of human expression, subtle graphite gradations, and intricate hair texture.',
+    year: 2022,
+    medium: 'Graphite on Heavyweight Archival Drawing Paper',
     category: 'Portraits',
-    width: '30 in',
-    height: '42 in',
+    width: '18 in',
+    height: '24 in',
     price: null,
     sale_type: 'OFFER',
     availability: 'AVAILABLE',
@@ -55,159 +47,132 @@ export const ARTWORKS_DATA: Artwork[] = [
       {
         id: 'img-02a',
         artwork_id: 'art-02',
-        storage_path: 'https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?auto=format&fit=crop&w=1400&q=85',
-        alt_text: 'The Solitary Observer - Charcoal and gouache portrait by Dhirendra, 2024',
+        storage_path: '/photos/Work/sketches%20&%20paintings/IMG_20221027_185129.jpg',
+        alt_text: 'Contemplative Portrait Study - Graphite drawing by Dhirendra Pratap, 2022',
         sort_order: 1,
         is_primary: true
       }
     ],
-    created_at: '2024-11-15T12:30:00Z'
+    created_at: '2022-10-27T18:51:00Z'
   },
   {
     id: 'art-03',
-    title: 'Ephemeral Horizons',
-    slug: 'ephemeral-horizons',
-    description: 'Layered textures created with palette knives, natural sand, and raw acrylic impasto. This piece marks a transitional phase in the artist’s work towards expansive abstract landscapes that evoke morning mist over ancient riverbanks.',
+    title: 'Yellow Floral Study on Midnight Ground',
+    slug: 'yellow-floral-study',
+    description: 'Luminous acrylic floral study with broad, gestural yellow petals and dark textured centers. The contrast against deep navy grounds reflects Dhirendra’s inquiry into spatial depth and botanical balance.',
     year: 2025,
-    medium: 'Mixed Media, Natural Sand & Acrylic on Stretched Canvas',
-    category: 'Abstract',
-    width: '54 in',
-    height: '36 in',
-    price: 95000,
+    medium: 'Acrylic on Stretched Canvas',
+    category: 'Paintings',
+    width: '36 in',
+    height: '48 in',
+    price: 65000,
     sale_type: 'FIXED_PRICE',
     availability: 'AVAILABLE',
     featured: true,
-    signature: false,
+    signature: true,
     images: [
       {
         id: 'img-03a',
         artwork_id: 'art-03',
-        storage_path: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=1600&q=85',
-        alt_text: 'Ephemeral Horizons - Mixed media abstract landscape by Dhirendra',
+        storage_path: '/photos/Work/sketches%20&%20paintings/IMG_20250115_145317.jpg',
+        alt_text: 'Yellow Floral Study on Midnight Ground - Acrylic painting by Dhirendra Pratap',
         sort_order: 1,
         is_primary: true
       }
     ],
-    created_at: '2025-01-20T08:00:00Z'
+    created_at: '2025-01-15T14:53:00Z'
   },
   {
     id: 'art-04',
-    title: 'Study of Form & Shadow IV',
-    slug: 'study-of-form-and-shadow-iv',
-    description: 'An academic and expressive charcoal investigation examining anatomical tension and balance. Created as part of a master suite exploring Indian classical performance postures.',
-    year: 2024,
-    medium: 'Willow Charcoal & Sanguine on Heavyweight Cotton',
+    title: 'Portrait of a Young Woman with Academic Grid',
+    slug: 'portrait-young-woman-grid',
+    description: 'An academic graphite portrait study displaying the artist’s preliminary proportional grid. Created as part of classical drawing studies at the Faculty of Fine Arts, University of Lucknow.',
+    year: 2022,
+    medium: 'Graphite and Academic Grid on Archival Paper',
     category: 'Drawings',
-    width: '24 in',
-    height: '34 in',
-    price: 45000,
+    width: '16 in',
+    height: '22 in',
+    price: 35000,
     sale_type: 'FIXED_PRICE',
-    availability: 'SOLD',
-    featured: false,
-    signature: false,
+    availability: 'AVAILABLE',
+    featured: true,
+    signature: true,
     images: [
       {
         id: 'img-04a',
         artwork_id: 'art-04',
-        storage_path: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85',
-        alt_text: 'Study of Form & Shadow IV - Charcoal drawing by Dhirendra',
+        storage_path: '/photos/Work/sketches%20&%20paintings/IMG_20221027_185117.jpg',
+        alt_text: 'Portrait of a Young Woman with Academic Grid - Drawing by Dhirendra Pratap',
         sort_order: 1,
         is_primary: true
       }
     ],
-    created_at: '2024-08-14T14:00:00Z'
+    created_at: '2022-10-27T18:51:00Z'
   },
   {
     id: 'art-05',
-    title: 'Dialogue of Monoliths',
-    slug: 'dialogue-of-monoliths',
-    description: 'A monumental contemporary canvas engaging architectural rhythm and minimalist geometric tension. Dark graphite surfaces juxtaposed against raw burnt sienna bands.',
-    year: 2025,
-    medium: 'Oil, Cold Wax & Graphite on Canvas',
-    category: 'Contemporary',
-    width: '60 in',
-    height: '72 in',
+    title: 'Traditional Folk Mud Wall Mural',
+    slug: 'traditional-folk-mud-wall-mural',
+    description: 'Monumental vernacular wall mural painted on clay-plastered walls using natural white lime and terracotta pigments. Depicts indigenous regional motifs, sacred symbolism, river fauna, and rural figures in an enduring folk tradition.',
+    year: 2022,
+    medium: 'Natural Lime & Terracotta Pigment on Mud Plaster',
+    category: 'Wall Art',
+    width: '180 in',
+    height: '96 in',
     price: null,
-    sale_type: 'OFFER',
-    availability: 'AVAILABLE',
+    sale_type: 'NOT_FOR_SALE',
+    availability: 'ARCHIVED',
     featured: true,
     signature: true,
     images: [
       {
         id: 'img-05a',
         artwork_id: 'art-05',
-        storage_path: 'https://images.unsplash.com/photo-1577720643272-265f09367456?auto=format&fit=crop&w=1600&q=85',
-        alt_text: 'Dialogue of Monoliths - Contemporary oil and graphite on canvas by Dhirendra',
+        storage_path: '/photos/Work/wall%20art/FB_IMG_1659977414990.jpg',
+        alt_text: 'Traditional Indian Folk Mud Wall Mural by Dhirendra Pratap',
         sort_order: 1,
         is_primary: true
       }
     ],
-    created_at: '2025-03-01T15:00:00Z'
+    created_at: '2022-08-08T12:00:00Z'
   },
   {
     id: 'art-06',
-    title: 'Varanasi Nocturne: Steps of Light',
-    slug: 'varanasi-nocturne-steps-of-light',
-    description: 'Deep nocturnal blues and radiant temple lamplight dancing across the river water. A poignant tribute to North Indian spiritual architecture rendered through expressive impasto brushwork.',
+    title: 'Urban Civic Retaining Wall Mural — Wildlife & Flora',
+    slug: 'urban-civic-retaining-wall-mural',
+    description: 'Large-scale civic infrastructure mural painted across urban concrete retaining walls. Features Indian wildlife, botanical foliage, and environmental themes executed with weather-resistant exterior coatings.',
     year: 2023,
-    medium: 'Oil on Stretched Linen',
-    category: 'Paintings',
-    width: '40 in',
-    height: '50 in',
-    price: 110000,
-    sale_type: 'FIXED_PRICE',
-    availability: 'SOLD',
+    medium: 'Exterior Weather-Resistant Pigments on Concrete Infrastructure',
+    category: 'Wall Art',
+    width: '240 in',
+    height: '120 in',
+    price: null,
+    sale_type: 'NOT_FOR_SALE',
+    availability: 'ARCHIVED',
     featured: true,
-    signature: true,
+    signature: false,
     images: [
       {
         id: 'img-06a',
         artwork_id: 'art-06',
-        storage_path: 'https://images.unsplash.com/photo-1579541814924-49fef17c5be5?auto=format&fit=crop&w=1600&q=85',
-        alt_text: 'Varanasi Nocturne - Oil on linen by Dhirendra',
+        storage_path: '/photos/Work/wall%20art/IMG_20230126_171344.jpg',
+        alt_text: 'Urban Civic Retaining Wall Mural - Public art by Dhirendra Pratap',
         sort_order: 1,
         is_primary: true
       }
     ],
-    created_at: '2023-10-18T11:00:00Z'
+    created_at: '2023-01-26T17:13:00Z'
   },
   {
     id: 'art-07',
-    title: 'Typographic Harmony & Vernacular Echo',
-    slug: 'typographic-harmony-vernacular-echo',
-    description: 'Bridging fine art composition with graphic typography. A limited-edition silkscreen print series exploring Devanagari script structures merged with modernist grid discipline.',
-    year: 2024,
-    medium: 'Archival Screenprint & Letterpress Ink on Somerset 300gsm',
-    category: 'Graphics',
-    width: '28 in',
-    height: '40 in',
-    price: 32000,
-    sale_type: 'FIXED_PRICE',
-    availability: 'AVAILABLE',
-    featured: false,
-    signature: false,
-    images: [
-      {
-        id: 'img-07a',
-        artwork_id: 'art-07',
-        storage_path: 'https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=1200&q=85',
-        alt_text: 'Typographic Harmony - Archival screenprint by Dhirendra',
-        sort_order: 1,
-        is_primary: true
-      }
-    ],
-    created_at: '2024-05-12T09:00:00Z'
-  },
-  {
-    id: 'art-08',
-    title: 'Gaze into the Monsoon',
-    slug: 'gaze-into-the-monsoon',
-    description: 'A striking figurative portrait capturing the anticipation of the seasonal rains. Bold, expressive strokes contrast with delicate glazed treatment of facial contours.',
-    year: 2025,
-    medium: 'Oil & Tempera on Wood Panel',
-    category: 'Portraits',
-    width: '32 in',
-    height: '40 in',
+    title: 'Monumental Transformer Reclaimed Metal Sculpture',
+    slug: 'monumental-transformer-sculpture',
+    description: 'Monumental multi-component mech warrior sculpture constructed entirely from discarded automotive gears, suspension springs, wheel rims, and industrial scrap plates, finished in striking cobalt blue.',
+    year: 2023,
+    medium: 'Welded Reclaimed Industrial Steel & Automotive Scrap',
+    category: 'Scrap Craft',
+    width: '48 in',
+    height: '84 in',
     price: null,
     sale_type: 'OFFER',
     availability: 'AVAILABLE',
@@ -215,14 +180,202 @@ export const ARTWORKS_DATA: Artwork[] = [
     signature: true,
     images: [
       {
-        id: 'img-08a',
-        artwork_id: 'art-08',
-        storage_path: 'https://images.unsplash.com/photo-1580136579312-94651dfd596d?auto=format&fit=crop&w=1400&q=85',
-        alt_text: 'Gaze into the Monsoon - Portrait by Dhirendra',
+        id: 'img-07a',
+        artwork_id: 'art-07',
+        storage_path: '/photos/Work/scrap%20craft/transformer%206.jpg',
+        alt_text: 'Monumental Transformer Reclaimed Metal Sculpture by Dhirendra Pratap',
         sort_order: 1,
         is_primary: true
       }
     ],
-    created_at: '2025-02-28T16:00:00Z'
+    created_at: '2023-08-18T18:00:00Z'
+  },
+  {
+    id: 'art-08',
+    title: 'Ceremonial Dignitary Welcome Rangoli',
+    slug: 'ceremonial-dignitary-welcome-rangoli',
+    description: 'Photographic documentation of a grand ceremonial floor rangoli and fresh flower carpet created by Dhirendra for the official visit of Uttar Pradesh Chief Minister Yogi Adityanath. An elaborate composition of sacred geometry and vibrant natural dyes.',
+    year: 2023,
+    medium: 'Natural Dry Pigments, Sacred Powders & Fresh Floral Petals',
+    category: 'Rangoli',
+    width: '144 in',
+    height: '144 in',
+    price: null,
+    sale_type: 'NOT_FOR_SALE',
+    availability: 'ARCHIVED',
+    featured: true,
+    signature: false,
+    images: [
+      {
+        id: 'img-08a',
+        artwork_id: 'art-08',
+        storage_path: '/photos/Work/CM%20Yogi/FB_IMG_1672659784107.jpg',
+        alt_text: 'Ceremonial floor rangoli and floral carpet for UP CM Yogi Adityanath event by Dhirendra Pratap',
+        sort_order: 1,
+        is_primary: true
+      }
+    ],
+    created_at: '2023-01-02T10:00:00Z'
+  },
+  {
+    id: 'art-09',
+    title: 'COVID-19 Awareness Street Rangoli — "Stay Home"',
+    slug: 'covid19-awareness-street-rangoli',
+    description: 'Monumental civic street art created on asphalt during the 2020 pandemic in Lucknow in collaboration with Civil Defence and the Journalist Association. Depicts frontline workers combating the coronavirus and urging citizens to stay safe.',
+    year: 2020,
+    medium: 'Civic Powder Pigments on City Asphalt',
+    category: 'Rangoli',
+    width: '216 in',
+    height: '216 in',
+    price: null,
+    sale_type: 'NOT_FOR_SALE',
+    availability: 'ARCHIVED',
+    featured: true,
+    signature: true,
+    images: [
+      {
+        id: 'img-09a',
+        artwork_id: 'art-09',
+        storage_path: '/photos/Work/Rangoli/FB_IMG_1659231490342.jpg',
+        alt_text: 'COVID-19 Stay Home Civil Defence Street Rangoli by Dhirendra Pratap',
+        sort_order: 1,
+        is_primary: true
+      }
+    ],
+    created_at: '2020-05-10T09:00:00Z'
+  },
+  {
+    id: 'art-10',
+    title: 'Monumental Elephant Foam Art Sculpture',
+    slug: 'monumental-elephant-sculpture',
+    description: 'Full-scale three-dimensional sculpture of an elephant with raised trunk, sculpted inside the artist’s workshop using high-density foam blocks and structural armatures.',
+    year: 2022,
+    medium: 'Hand-Carved High-Density Foam & Sculpted Armature',
+    category: 'Foam Art',
+    width: '96 in',
+    height: '84 in',
+    price: null,
+    sale_type: 'OFFER',
+    availability: 'AVAILABLE',
+    featured: true,
+    signature: false,
+    images: [
+      {
+        id: 'img-10a',
+        artwork_id: 'art-10',
+        storage_path: '/photos/Work/Foam%20art/elephant%20finished.jpg',
+        alt_text: 'Life-sized sculpted foam elephant by Dhirendra Pratap',
+        sort_order: 1,
+        is_primary: true
+      }
+    ],
+    created_at: '2022-11-30T10:00:00Z'
+  },
+  {
+    id: 'art-11',
+    title: 'Lion Head Relief Sculpture',
+    slug: 'lion-head-relief-sculpture',
+    description: 'Expressive sculptural relief of a lion’s head with a stylized flowing mane, forged from reclaimed industrial scrap metal.',
+    year: 2023,
+    medium: 'Forged & Welded Industrial Scrap Metal Relief',
+    category: 'Scrap Craft',
+    width: '36 in',
+    height: '48 in',
+    price: null,
+    sale_type: 'OFFER',
+    availability: 'AVAILABLE',
+    featured: true,
+    signature: false,
+    images: [
+      {
+        id: 'img-11a',
+        artwork_id: 'art-11',
+        storage_path: '/photos/Work/scrap%20craft/lion%201.jpg',
+        alt_text: 'The Majestic Recycled Scrap Metal Lion by Dhirendra Pratap',
+        sort_order: 1,
+        is_primary: true
+      }
+    ],
+    created_at: '2023-01-04T12:00:00Z'
+  },
+  {
+    id: 'art-12',
+    title: 'Commissioned Dignitary Portrait Presentation',
+    slug: 'commissioned-dignitary-portrait-presentation',
+    description: 'Photographic documentation of artist Dhirendra presenting a custom-framed graphite portrait sketch to an official dignitary. Part of the artist’s commissioned portraiture work.',
+    year: 2022,
+    medium: 'Framed Graphite on Paper Presentation',
+    category: 'Portraits',
+    width: '20 in',
+    height: '26 in',
+    price: null,
+    sale_type: 'NOT_FOR_SALE',
+    availability: 'SOLD',
+    featured: true,
+    signature: true,
+    images: [
+      {
+        id: 'img-12a',
+        artwork_id: 'art-12',
+        storage_path: '/photos/Work/sketches%20&%20paintings/FB_IMG_1659231349500.jpg',
+        alt_text: 'Framed portrait presentation by Dhirendra Pratap',
+        sort_order: 1,
+        is_primary: true
+      }
+    ],
+  },
+  {
+    id: 'art-13',
+    title: 'Portrait Presentation to Hon\'ble CM Yogi Adityanath',
+    slug: 'portrait-presentation-cm-yogi-adityanath',
+    description: 'Special felicitation and ceremonial presentation of a custom-framed fine art portrait directly to Uttar Pradesh Chief Minister Yogi Adityanath by artist Dhirendra Pratap.',
+    year: 2023,
+    medium: 'Commissioned Portrait & Ceremonial Felicitation',
+    category: 'Portraits',
+    width: '24 in',
+    height: '32 in',
+    price: null,
+    sale_type: 'NOT_FOR_SALE',
+    availability: 'ARCHIVED',
+    featured: true,
+    signature: true,
+    images: [
+      {
+        id: 'img-13a',
+        artwork_id: 'art-13',
+        storage_path: '/photos/Work/CM%20Yogi/FB_IMG_1672659760788%20-%20Copy.jpg',
+        alt_text: 'Portrait presentation to Hon\'ble CM Yogi Adityanath by Dhirendra Pratap',
+        sort_order: 1,
+        is_primary: true
+      }
+    ],
+    created_at: '2023-01-02T11:00:00Z'
+  },
+  {
+    id: 'art-14',
+    title: 'Architectural Wall Art Installation 48',
+    slug: 'architectural-wall-art-installation-48',
+    description: 'Site-specific architectural wall mural executed as part of public cultural beautification and heritage enhancement projects in Uttar Pradesh.',
+    year: 2024,
+    medium: 'Exterior Weather-Resistant Pigments & Acrylic on Prepared Concrete',
+    category: 'Wall Art',
+    width: '192 in',
+    height: '96 in',
+    price: null,
+    sale_type: 'NOT_FOR_SALE',
+    availability: 'ARCHIVED',
+    featured: true,
+    signature: true,
+    images: [
+      {
+        id: 'img-14a',
+        artwork_id: 'art-14',
+        storage_path: '/photos/Work/wall%20art/IMG_20240114_124057.jpg',
+        alt_text: 'Architectural Wall Art Installation 48 by Dhirendra Pratap',
+        sort_order: 1,
+        is_primary: true
+      }
+    ],
+    created_at: '2024-01-14T12:40:57Z'
   }
 ];

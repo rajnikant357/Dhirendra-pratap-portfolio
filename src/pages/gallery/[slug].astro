@@ -57,6 +57,7 @@ const artworkSchema = {
   ogImage={primaryImage.storage_path}
   type="article"
   schema={artworkSchema}
+  preloadImage={primaryImage.storage_path.replace(/\.(jpg|jpeg|png)$/i, '.webp')}
 >
   <div class="py-12 sm:py-20 bg-[#FBFBF9]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -84,13 +85,19 @@ const artworkSchema = {
               class="block relative w-full aspect-[4/5] bg-[#F0ECE3] rounded-sm overflow-hidden group/detail cursor-zoom-in"
               title="Click to inspect full master resolution in new tab"
             >
-              <img
-                src={primaryImage.storage_path}
-                alt={primaryImage.alt_text || `${artwork.title} by Dhirendra`}
-                loading="eager"
-                fetchpriority="high"
-                class="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover/detail:scale-105"
-              />
+              <picture>
+                <source srcset={primaryImage.storage_path.replace(/\.(jpg|jpeg|png)$/i, '.webp')} type="image/webp" />
+                <img
+                  src={primaryImage.storage_path}
+                  alt={primaryImage.alt_text || `${artwork.title} by Dhirendra`}
+                  width="800"
+                  height="1000"
+                  loading="eager"
+                  fetchpriority="high"
+                  decoding="sync"
+                  class="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover/detail:scale-105"
+                />
+              </picture>
               <div class="absolute bottom-3 right-3 px-3 py-1.5 bg-[#141311]/80 text-[#FBFBF9] text-[10px] uppercase tracking-wider rounded-sm backdrop-blur-sm opacity-0 group-hover/detail:opacity-100 transition-opacity flex items-center gap-1.5 pointer-events-none">
                 <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
@@ -111,12 +118,18 @@ const artworkSchema = {
                   class="block aspect-square bg-[#F0ECE3] rounded-sm overflow-hidden border border-[#E8E5DC] group/thumb cursor-pointer"
                   title="Examine detail angle in full resolution"
                 >
-                  <img
-                    src={img.storage_path}
-                    alt={img.alt_text}
-                    class="w-full h-full object-cover transform transition-transform duration-300 group-hover/thumb:scale-110"
-                    loading="lazy"
-                  />
+                  <picture>
+                    <source srcset={img.storage_path.replace(/\.(jpg|jpeg|png)$/i, '.thumb.webp')} type="image/webp" />
+                    <img
+                      src={img.storage_path}
+                      alt={img.alt_text}
+                      width="200"
+                      height="200"
+                      loading="lazy"
+                      decoding="async"
+                      class="w-full h-full object-cover transform transition-transform duration-300 group-hover/thumb:scale-110"
+                    />
+                  </picture>
                 </a>
               ))}
             </div>
@@ -188,7 +201,7 @@ const artworkSchema = {
           </div>
 
           <!-- Interactive Acquisition / Offer Panel -->
-          <ArtworkActionButtons client:load artwork={artwork} />
+          <ArtworkActionButtons client:visible artwork={artwork} />
 
         </div>
 

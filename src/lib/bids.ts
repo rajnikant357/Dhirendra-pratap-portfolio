@@ -1,21 +1,8 @@
 import type { Bid } from '../types/database';
 import { supabase, isSupabaseConfigured, getServiceSupabase } from './supabase';
 
-// In-memory cache for development/demo when Supabase is not actively hooked up
-const memoryBids: Bid[] = [
-  {
-    id: 'bid-demo-01',
-    artwork_id: 'art-02',
-    artwork_title: 'The Solitary Observer',
-    name: 'Ananya Sharma',
-    email: 'ananya.s@galleryart.in',
-    phone: '+91 98112 34567',
-    offer_amount: 60000,
-    message: 'We would love to acquire this work for our contemporary collection in Bengaluru.',
-    status: 'PENDING',
-    created_at: new Date().toISOString()
-  }
-];
+// In-memory cache when Supabase is not actively hooked up
+const memoryBids: Bid[] = [];
 
 export async function submitBid(bidData: Omit<Bid, 'id' | 'status' | 'created_at'>): Promise<{ success: boolean; id?: string; error?: string }> {
   if (isSupabaseConfigured && supabase) {

@@ -1,0 +1,21 @@
+# Production Security Headers (OWASP Top 10 / ASVS V14)
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self' https://*.supabase.co; frame-ancestors 'self'; base-uri 'self'; form-action 'self';
+
+# Dynamic API Endpoints: No-store Private Caching
+/api/*
+  Cache-Control: no-store, no-cache, must-revalidate, private
+  X-Content-Type-Options: nosniff
+
+# Astro Content-Hashed Bundles: Immutable 1-Year Cache
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Local Media Assets: 30-Day Cache with Stale-While-Revalidate
+/photos/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400

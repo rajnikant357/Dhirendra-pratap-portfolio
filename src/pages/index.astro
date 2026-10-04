@@ -1,94 +1,112 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ArtworkCard from '../components/artwork/ArtworkCard.astro';
-import CoverflowGallery from '../components/gallery/CoverflowGallery';
+import HeroBackgroundSlideshow from '../components/hero/HeroBackgroundSlideshow.astro';
 import { getAllArtworks, getFeaturedArtworks, getSignatureArtworks } from '../lib/artworks';
 import { ACHIEVEMENTS_DATA } from '../lib/data/achievements';
 import { PROJECTS_DATA } from '../lib/data/projects';
+import { SERVICES_DATA, type ServiceItem } from '../lib/data/services';
 import type { Artwork } from '../types/database';
 
 const allArtworks = await getAllArtworks();
-// Six rectangular image cards showcasing high-quality photography of top picks & signature artworks
+// Curated masterworks showcasing high-quality photography across paintings, drawings, scrap sculptures, and foam art
 const coverflowArtworks: Artwork[] = [
   allArtworks.find((a) => a.id === 'art-01'),
+  allArtworks.find((a) => a.id === 'art-07'),
   allArtworks.find((a) => a.id === 'art-02'),
-  allArtworks.find((a) => a.id === 'art-03'),
-  allArtworks.find((a) => a.id === 'art-04'),
-  allArtworks.find((a) => a.id === 'art-05'),
-  allArtworks.find((a) => a.id === 'art-06'),
+  allArtworks.find((a) => a.id === 'art-10'),
+  allArtworks.find((a) => a.id === 'art-08'),
+  allArtworks.find((a) => a.id === 'art-11'),
+  allArtworks.find((a) => a.id === 'art-14'),
+  allArtworks.find((a) => a.id === 'art-12'),
 ].filter((a): a is Artwork => Boolean(a));
 
 const featuredArtworks = await getFeaturedArtworks();
 const signatureArtworks = await getSignatureArtworks();
 const topAchievements = ACHIEVEMENTS_DATA.filter((a) => a.featured).slice(0, 4);
 const selectedProjects = PROJECTS_DATA.filter((p) => p.featured).slice(0, 3);
+const featuredServices: ServiceItem[] = [
+  SERVICES_DATA.find((s) => s.id === 'wall-art-murals'),
+  SERVICES_DATA.find((s) => s.id === 'traditional-rangoli'),
+  SERVICES_DATA.find((s) => s.id === 'graphic-design-branding'),
+].filter((s): s is ServiceItem => Boolean(s));
 ---
 
 <BaseLayout
   title="Dhirendra — Artist & Graphics Designer | Official Portfolio & Digital Gallery"
   description="Official digital gallery of Dhirendra, Artist & Graphics Designer. BVA & MVA in Visual Arts, 7+ years practice. National and state award-winning paintings, drawings, and visual compositions."
+  preloadImage="/photos/Work/CM%20Yogi/FB_IMG_1672659760788%20-%20Copy.webp"
+  preloadImageSrcset="/photos/Work/CM%20Yogi/FB_IMG_1672659760788%20-%20Copy.thumb.webp 480w, /photos/Work/CM%20Yogi/FB_IMG_1672659760788%20-%20Copy.webp 720w"
+  preloadImageSizes="100vw"
 >
-  <!-- 1. HERO: The Contemporary Exhibition Hall -->
-  <section class="relative min-h-[90vh] flex items-center justify-center bg-[#FBFBF9] overflow-hidden border-b border-[#E8E5DC] py-16 lg:py-24">
-    <!-- Subtle architectural grid / exhibition wall backdrop -->
-    <div class="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(#141311_1px,transparent_1px)] [background-size:24px_24px]"></div>
+  <!-- 1. HERO: The Contemporary Exhibition Hall with CM Yogi & Awards Background Slideshow -->
+  <section class="relative min-h-[92vh] flex items-center justify-center bg-[#FBFBF9] overflow-hidden border-b border-[#E8E5DC] py-16 lg:py-24">
+    
+    <!-- Background Slideshow running CM Yogi event pictures and award ceremonies -->
+    <HeroBackgroundSlideshow />
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
         <!-- Left Column: Primary Identity & Positioning -->
-        <div class="lg:col-span-6 space-y-6">
-          <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#F4F1EA] border border-[#E8E5DC] rounded-full text-xs text-[#57544E]">
-            <span class="w-2 h-2 rounded-full bg-[#B68B35]"></span>
-            <span class="uppercase tracking-[0.16em] font-medium text-[11px]">Digital Exhibition Catalogue</span>
+        <div class="lg:col-span-6 space-y-6 bg-transparent p-6 sm:p-8 rounded-sm">
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-transparent border border-white/60 rounded-full text-xs text-white">
+            <span class="w-2 h-2 rounded-full bg-[#E5B84B] ring-1 ring-white/60"></span>
+            <span class="uppercase tracking-[0.16em] font-bold text-[11px] text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">Official Digital Catalogue &amp; Portfolio</span>
           </div>
 
           <div class="space-y-2">
-            <h1 class="font-serif-display text-5xl sm:text-7xl lg:text-8xl text-[#141311] font-medium tracking-tight leading-[0.95]">
+            <h1 id="cms-hero-headline" class="font-serif-display text-5xl sm:text-7xl lg:text-8xl text-white font-bold tracking-tight leading-[0.95] drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
               Dhirendra
             </h1>
-            <p class="text-xs sm:text-sm uppercase tracking-[0.26em] text-[#9B4722] font-semibold">
+            <p id="cms-hero-subtitle" class="text-xs sm:text-sm uppercase tracking-[0.26em] text-white font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
               Artist & Graphics Designer
             </p>
           </div>
 
-          <p class="font-serif text-xl sm:text-2xl text-[#57544E] leading-relaxed italic max-w-xl">
+          <p id="cms-hero-quote" class="font-serif text-xl sm:text-2xl text-white leading-relaxed italic max-w-xl font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
             Creating art that connects observation, imagination, and expression.
           </p>
 
-          <p class="text-sm sm:text-base text-[#6B6864] leading-relaxed max-w-xl">
-            An accomplished artist with an academic background in BVA and MVA, more than seven years of rigorous studio practice, and honors across national, state, and government platforms.
+          <p id="cms-hero-desc" class="text-sm sm:text-base text-white leading-relaxed max-w-xl font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">
+            An accomplished artist with an academic background in BVA and MVA (Department of Fine Arts, University of Lucknow), more than seven years of dedicated studio practice, and honors across national, state, and civic platforms.
           </p>
 
           <!-- CTAs -->
-          <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+          <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
             <a
               href="/gallery"
-              class="px-8 py-4 bg-[#141311] text-[#FBFBF9] hover:bg-[#2C2A26] text-xs uppercase tracking-[0.2em] font-medium transition-all duration-300 text-center shadow-sm hover:shadow-md"
+              class="px-7 py-3.5 bg-[#141311] text-[#FBFBF9] hover:bg-[#2C2A26] border border-white/30 text-xs uppercase tracking-[0.2em] font-bold transition-all duration-300 text-center shadow-md hover:shadow-lg"
             >
-              Explore Gallery &rarr;
+              Explore Works &rarr;
+            </a>
+            <a
+              href="/awards"
+              class="px-7 py-3.5 bg-[#B68B35] text-[#141311] hover:bg-[#A37B2B] text-xs uppercase tracking-[0.2em] font-bold transition-all duration-300 text-center shadow-sm"
+            >
+              Awards &amp; Press &rarr;
             </a>
             <a
               href="/about"
-              class="px-8 py-4 border border-[#141311] text-[#141311] hover:bg-[#141311] hover:text-[#FBFBF9] text-xs uppercase tracking-[0.2em] font-medium transition-all duration-300 text-center"
+              class="px-6 py-3.5 bg-white/90 border border-white text-[#141311] hover:bg-[#141311] hover:text-[#FBFBF9] text-xs uppercase tracking-[0.2em] font-bold transition-all duration-300 text-center backdrop-blur-xs"
             >
-              Discover the Artist
+              The Artist
             </a>
           </div>
 
           <!-- Credential Micro-Badges -->
-          <div class="pt-6 border-t border-[#E8E5DC] grid grid-cols-3 gap-4 text-left">
+          <div class="pt-6 border-t border-white/40 grid grid-cols-3 gap-4 text-left">
             <div>
-              <span class="block font-serif text-2xl font-bold text-[#141311]">7+</span>
-              <span class="text-[11px] uppercase tracking-wider text-[#8A857D]">Years Practice</span>
+              <span class="block font-serif text-2xl font-bold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">7+</span>
+              <span class="text-[11px] uppercase tracking-wider text-white font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">Years Practice</span>
             </div>
             <div>
-              <span class="block font-serif text-2xl font-bold text-[#141311]">BVA & MVA</span>
-              <span class="text-[11px] uppercase tracking-wider text-[#8A857D]">Visual Arts</span>
+              <span class="block font-serif text-2xl font-bold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">BVA & MVA</span>
+              <span class="text-[11px] uppercase tracking-wider text-white font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">Visual Arts</span>
             </div>
             <div>
-              <span class="block font-serif text-2xl font-bold text-[#141311]">National</span>
-              <span class="text-[11px] uppercase tracking-wider text-[#8A857D]">& State Honors</span>
+              <span class="block font-serif text-2xl font-bold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">National</span>
+              <span class="text-[11px] uppercase tracking-wider text-white font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.85)]">& State Honors</span>
             </div>
           </div>
         </div>
@@ -101,17 +119,30 @@ const selectedProjects = PROJECTS_DATA.filter((p) => p.featured).slice(0, 3);
             
             <div class="relative bg-white p-4 sm:p-6 rounded-sm shadow-xl border border-[#E8E5DC]">
               <a
-                href="/gallery/silent-resonance-in-crimson"
+                href="/gallery/artistic-presentation-dgp-up-police"
                 class="block relative aspect-[4/5] overflow-hidden bg-[#E8E5DC] group/heroimg cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#9B4722]"
-                aria-label="View details of Silent Resonance in Crimson"
+                aria-label="View details of Artistic Portfolio Presentation to DGP (UP Police)"
               >
-                <img
-                  src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1600&q=85"
-                  alt="Silent Resonance in Crimson - Signature artwork by Dhirendra"
-                  loading="eager"
-                  fetchpriority="high"
-                  class="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover/heroimg:scale-105"
-                />
+                <picture>
+                  <source
+                    srcset="/photos/awards/certificates%20and%20awards/438304121_950748996557945_5294600570921436411_n.thumb.webp 640w, /photos/awards/certificates%20and%20awards/438304121_950748996557945_5294600570921436411_n.webp 1080w"
+                    sizes="(max-width: 640px) 90vw, 600px"
+                    type="image/webp"
+                  />
+                  <img
+                    id="cms-hero-image"
+                    src="/photos/awards/certificates%20and%20awards/438304121_950748996557945_5294600570921436411_n.thumb.webp"
+                    srcset="/photos/awards/certificates%20and%20awards/438304121_950748996557945_5294600570921436411_n.thumb.webp 640w, /photos/awards/certificates%20and%20awards/438304121_950748996557945_5294600570921436411_n.jpg 1080w"
+                    sizes="(max-width: 640px) 90vw, 600px"
+                    alt="Artistic portfolio presentation to the DGP (UP Police) by visual artist Dhirendra Pratap"
+                    width="600"
+                    height="750"
+                    loading="lazy"
+                    fetchpriority="auto"
+                    decoding="async"
+                    class="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover/heroimg:scale-105"
+                  />
+                </picture>
                 <div class="absolute inset-0 bg-[#141311]/0 group-hover/heroimg:bg-[#141311]/10 transition-colors duration-300"></div>
               </a>
 
@@ -119,17 +150,17 @@ const selectedProjects = PROJECTS_DATA.filter((p) => p.featured).slice(0, 3);
               <div class="pt-4 flex items-center justify-between border-t border-[#F0ECE3] mt-4">
                 <div>
                   <h2 class="font-serif-display text-lg text-[#141311] font-medium">
-                    Silent Resonance in Crimson
+                    Artistic Presentation to DGP (UP Police)
                   </h2>
                   <p class="text-xs text-[#6B6864] italic font-serif">
-                    Oil on Belgian Linen &bull; 48 &times; 60 in &bull; 2025
+                    UP Police Headquarters &bull; Lucknow &bull; 2024
                   </p>
                 </div>
                 <a
-                  href="/gallery/silent-resonance-in-crimson"
+                  href="/gallery/artistic-presentation-dgp-up-police"
                   class="text-xs uppercase tracking-[0.16em] text-[#9B4722] hover:text-[#7D3516] font-semibold underline underline-offset-4"
                 >
-                  Acquire &rarr;
+                  View Details &rarr;
                 </a>
               </div>
             </div>
@@ -153,16 +184,29 @@ const selectedProjects = PROJECTS_DATA.filter((p) => p.featured).slice(0, 3);
               class="block relative aspect-[3/4] overflow-hidden bg-[#E8E5DC] group/studio cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#9B4722]"
               aria-label="Discover the Artist's Story"
             >
-              <img
-                src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=80"
-                alt="Artist studio work and palette composition by Dhirendra"
-                loading="lazy"
-                class="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover/studio:scale-105"
-              />
+              <picture>
+                <source
+                  srcset="/photos/Dhirendra.thumb.webp 427w, /photos/Dhirendra.webp 1024w"
+                  sizes="(max-width: 640px) 427px, 480px"
+                  type="image/webp"
+                />
+                <img
+                  id="cms-home-about-portrait"
+                  src="/photos/Dhirendra.thumb.webp"
+                  srcset="/photos/Dhirendra.thumb.webp 427w, /photos/Dhirendra.jpeg 1024w"
+                  sizes="(max-width: 640px) 427px, 480px"
+                  alt="Studio portrait of artist Dhirendra Pratap"
+                  width="480"
+                  height="640"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover object-top transform transition-transform duration-700 group-hover/studio:scale-105"
+                />
+              </picture>
               <div class="absolute inset-0 bg-[#141311]/0 group-hover/studio:bg-[#141311]/10 transition-colors duration-300"></div>
             </a>
             <div class="pt-3 text-[11px] text-[#8A857D] text-center font-mono uppercase tracking-wider">
-              Studio Practice &bull; Academic Inquiries &bull; Pigment Research
+              Studio Practice &bull; University of Lucknow &bull; Fine Arts Archive
             </div>
           </div>
         </div>
@@ -177,11 +221,11 @@ const selectedProjects = PROJECTS_DATA.filter((p) => p.featured).slice(0, 3);
           </h2>
 
           <p class="text-base text-[#57544E] leading-relaxed">
-            Dhirendra’s creative journey is rooted in deep academic discipline, holding both a <strong>Bachelor of Visual Arts (BVA)</strong> and a <strong>Master of Visual Arts (MVA)</strong> with first-class honors. With over seven years of dedicated studio practice, his work bridges classical Indian sensibility with bold contemporary execution.
+            Dhirendra Pratap’s creative journey is rooted in deep academic discipline, completed through the Department of Fine Arts, Faculty of Arts, <strong>University of Lucknow (MVA)</strong>. With over seven years of dedicated studio and on-site practice across Uttar Pradesh, his work bridges classical Indian draftsmanship with bold contemporary execution.
           </p>
 
           <p class="text-base text-[#57544E] leading-relaxed">
-            His practice encompasses expansive oil paintings, intimate charcoal portraiture, expressive mixed-media compositions, and modernist graphic design. Recognized through prestigious national and state awards as well as government citations, Dhirendra’s work investigates the human spirit, architectural memory, and the emotional resonance of space.
+            His multidisciplinary practice encompasses large-scale acrylic paintings, observational graphite portraiture, monumental recycled scrap metal sculptures, traditional and civic wall murals, and ceremonial rangolis. Affirmed through national workshop participation with the <strong>Lalit Kala Akademi</strong> (Ministry of Culture), state cultural honors including the <strong>Uttar Pradesh Kala Ratna</strong> and <strong>Kala Shree Samman</strong>, Dhirendra’s work investigates form, material permanence, and civic consciousness.
           </p>
 
           <div class="pt-4">
@@ -198,8 +242,8 @@ const selectedProjects = PROJECTS_DATA.filter((p) => p.featured).slice(0, 3);
     </div>
   </section>
 
-  <!-- 3. TOP PICKS & SIGNATURE WORKS: 3D Curved Perspective Coverflow Gallery -->
-  <section class="py-24 bg-[#FBFBF9] border-b border-[#E8E5DC] overflow-hidden">
+  <!-- 3. TOP MASTERWORKS: 4 Grid 2 Row Images Section -->
+  <section class="py-24 bg-[#FBFBF9] border-b border-[#E8E5DC]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Section Header -->
@@ -209,10 +253,10 @@ const selectedProjects = PROJECTS_DATA.filter((p) => p.featured).slice(0, 3);
             Curated Exhibition Stage
           </span>
           <h2 class="font-serif-display text-4xl sm:text-5xl text-[#141311] font-medium mt-1">
-            Top Picks & Signature Masterworks
+            Top Masterworks
           </h2>
           <p class="text-sm text-[#6B6864] mt-2 max-w-2xl">
-            A horizontal curation of six signature masterworks and top picks arranged in a 3D curved perspective coverflow. Outer works tilt inward toward you—scroll, drag, or click to explore the collection.
+            A curated showcase of masterworks across fine art paintings, monumental scrap sculptures, foam art, and civic murals. Scroll, swipe, or use controls to explore the collection.
           </p>
         </div>
 
@@ -224,11 +268,13 @@ const selectedProjects = PROJECTS_DATA.filter((p) => p.featured).slice(0, 3);
         </a>
       </div>
 
-    </div>
+      <!-- 4 Grid 2 Row Images Section -->
+      <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        {coverflowArtworks.map((artwork) => (
+          <ArtworkCard artwork={artwork} priority={false} />
+        ))}
+      </div>
 
-    <!-- 3D Coverflow Curved Perspective Gallery Stage -->
-    <div class="w-full">
-      <CoverflowGallery client:load artworks={coverflowArtworks} />
     </div>
   </section>
 
@@ -250,87 +296,63 @@ const selectedProjects = PROJECTS_DATA.filter((p) => p.featured).slice(0, 3);
       <!-- Timeline Structure -->
       <div class="relative border-l-2 border-[#E8E5DC] ml-4 sm:ml-32 space-y-12 pl-6 sm:pl-10">
         
-        <!-- Step 1: Beginning -->
+        <!-- Step 1: Academic Immersion & University Training -->
         <div class="relative">
           <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#141311] border-4 border-white"></span>
-          <span class="text-xs uppercase tracking-[0.16em] text-[#8A857D] font-mono block">Formative Years</span>
+          <span class="text-xs uppercase tracking-[0.16em] text-[#9B4722] font-mono block">2015–2021 &bull; Academic Rigor (BVA &amp; MVA)</span>
           <h3 class="font-serif-display text-2xl text-[#141311] font-medium mt-0.5">
-            Beginning of Artistic Journey
+            Department of Fine Arts, University of Lucknow
           </h3>
           <p class="text-sm text-[#57544E] mt-1">
-            Early immersion in observational sketching, anatomy, rural North Indian landscapes, and classical visual composition.
+            Rigorous studio immersion in observational drawing, classical Indian iconography, human anatomy, and painting composition. Integrated digital visual computing with Taxtron (2017) and led public environmental art for Climate Agenda's 'Clean Air Gomti' campaign (2018).
           </p>
         </div>
 
-        <!-- Step 2: BVA -->
-        <div class="relative">
-          <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#141311] border-4 border-white"></span>
-          <span class="text-xs uppercase tracking-[0.16em] text-[#9B4722] font-mono block">Undergraduate Degree</span>
-          <h3 class="font-serif-display text-2xl text-[#141311] font-medium mt-0.5">
-            Bachelor of Visual Arts (BVA)
-          </h3>
-          <p class="text-sm text-[#57544E] mt-1">
-            Intensive four-year foundation in drawing, printmaking, art history, and oil painting techniques, securing all-India inter-university gold honors.
-          </p>
-        </div>
-
-        <!-- Step 3: MVA -->
-        <div class="relative">
-          <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#141311] border-4 border-white"></span>
-          <span class="text-xs uppercase tracking-[0.16em] text-[#9B4722] font-mono block">Postgraduate Specialization</span>
-          <h3 class="font-serif-display text-2xl text-[#141311] font-medium mt-0.5">
-            Master of Visual Arts (MVA)
-          </h3>
-          <p class="text-sm text-[#57544E] mt-1">
-            Advanced master studies focusing on large-scale canvases, psychological portraiture, and material experimentation with mineral pigments and linen.
-          </p>
-        </div>
-
-        <!-- Step 4: State Recognition -->
+        <!-- Step 3: Pandemic Frontline Art & State Accolades -->
         <div class="relative">
           <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#B68B35] border-4 border-white"></span>
-          <span class="text-xs uppercase tracking-[0.16em] text-[#B68B35] font-mono block">Academy Honor</span>
+          <span class="text-xs uppercase tracking-[0.16em] text-[#B68B35] font-mono block">2020 &bull; Frontline Public Art &amp; State Honors</span>
           <h3 class="font-serif-display text-2xl text-[#141311] font-medium mt-0.5">
-            State Kala Ratna Recognition
+            Uttar Pradesh Kala Ratna &amp; Kala Shree Samman
           </h3>
           <p class="text-sm text-[#57544E] mt-1">
-            Awarded for outstanding contributions to contemporary fine arts and cultural documentation by the State Academy of Fine Arts.
+            Pioneered monumental street rangolis and murals across Lucknow (Mankameshwar Temple, Hazratganj, and Raj Bhavan) honoring healthcare and frontline personnel. Felicitated by North Lucknow ACP Sonam Kumar and UP Police, and awarded the Uttar Pradesh Kala Ratna and Kala Shree Samman.
           </p>
         </div>
 
-        <!-- Step 5: National Recognition -->
+        <!-- Step 4: National Apex Workshop & Historical Wall Map -->
         <div class="relative">
           <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#B68B35] border-4 border-white"></span>
-          <span class="text-xs uppercase tracking-[0.16em] text-[#B68B35] font-mono block">National Honor</span>
+          <span class="text-xs uppercase tracking-[0.16em] text-[#B68B35] font-mono block">2021–2022 &bull; National Workshop &amp; University Citation</span>
           <h3 class="font-serif-display text-2xl text-[#141311] font-medium mt-0.5">
-            National Lalit Kala Akademi Participation & Merit
+            Lalit Kala Akademi National Workshop &amp; South Asia Wall Map
           </h3>
           <p class="text-sm text-[#57544E] mt-1">
-            Recognized at the nation’s apex visual arts institution in New Delhi for exceptional contemporary figurative work.
+            Conferred Shan-e-Siddharth Samman at Kapilvastu Mahotsav. Selected for Lalit Kala Akademi's 'Har Ghar Tiranga' National Painting Workshop (Ministry of Culture, Govt. of India). Awarded official citation by University of Lucknow for hand-painting the monumental South Asia Historical Wall Map.
           </p>
         </div>
 
-        <!-- Step 6: Government & DM Recognition -->
-        <div class="relative">
-          <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#141311] border-4 border-white"></span>
-          <span class="text-xs uppercase tracking-[0.16em] text-[#8A857D] font-mono block">Civic & Administrative Felicitation</span>
-          <h3 class="font-serif-display text-2xl text-[#141311] font-medium mt-0.5">
-            Government Citation & District Magistrate (DM) Recognition
-          </h3>
-          <p class="text-sm text-[#57544E] mt-1">
-            Felicitation by the District Administration and cultural authorities for outstanding public artistic representation.
-          </p>
-        </div>
-
-        <!-- Step 7: Continuous Practice -->
+        <!-- Step 5: Ayodhya Murals, Scrap Metal Sculptures & CM Presentations -->
         <div class="relative">
           <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#9B4722] border-4 border-white"></span>
-          <span class="text-xs uppercase tracking-[0.16em] text-[#9B4722] font-mono block">Active Practice</span>
+          <span class="text-xs uppercase tracking-[0.16em] text-[#9B4722] font-mono block">2023–2024 &bull; Civic Murals, Scrap Sculptures &amp; CM Honors</span>
           <h3 class="font-serif-display text-2xl text-[#141311] font-medium mt-0.5">
-            Professional Studio Practice & Design Direction
+            Ayodhya Ramayana Murals, Scrap Lion &amp; CM Presentations
           </h3>
           <p class="text-sm text-[#57544E] mt-1">
-            Sustained production of original fine art series, solo exhibitions, selective private collector acquisitions, and sophisticated graphic visual design.
+            Executed large-scale Ramayana heritage murals in Ayodhya and urban civic corridors. Fabricated landmark eco-sculptures from industrial scrap, including the life-sized Scrap Lion and Transformer Robot. Presented commissioned portraits directly to Hon'ble UP Chief Minister Yogi Adityanath.
+          </p>
+        </div>
+
+        <!-- Step 6: Ongoing Studio & Nationwide Commissions -->
+        <div class="relative">
+          <span class="absolute -left-[31px] sm:-left-[47px] top-1.5 w-4 h-4 rounded-full bg-[#141311] border-4 border-white"></span>
+          <span class="text-xs uppercase tracking-[0.16em] text-[#141311] font-mono block">Present &bull; Studio &amp; Commission Practice</span>
+          <h3 class="font-serif-display text-2xl text-[#141311] font-medium mt-0.5">
+            Nationwide Architectural Murals, Fine Art &amp; Brand Direction
+          </h3>
+          <p class="text-sm text-[#57544E] mt-1">
+            Active multidisciplinary studio executing high-durability wall art, recycled metal sculptures, ceremonial stage scenography, VIP floor rangolis, and brand graphics for governmental institutions, corporate patrons, and private collectors.
           </p>
         </div>
 
@@ -356,10 +378,10 @@ const selectedProjects = PROJECTS_DATA.filter((p) => p.featured).slice(0, 3);
         </div>
 
         <a
-          href="/about#recognition"
+          href="/awards#recognition"
           class="text-xs uppercase tracking-[0.18em] text-[#141311] hover:text-[#9B4722] font-semibold underline underline-offset-4"
         >
-          View Full Achievements & Certificates &rarr;
+          View Full Achievements, Awards &amp; Press &rarr;
         </a>
       </div>
 
@@ -387,18 +409,22 @@ const selectedProjects = PROJECTS_DATA.filter((p) => p.featured).slice(0, 3);
             {ach.image_path && (
               <div class="pt-2">
                 <a
-                  href={ach.image_path}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/awards#recognition"
                   class="block aspect-[16/10] bg-[#F0ECE3] rounded-sm overflow-hidden border border-[#E8E5DC] group cursor-pointer"
                   title={`View ${ach.title} certificate`}
                 >
-                  <img
-                    src={ach.image_path}
-                    alt={`${ach.title} certificate / honor`}
-                    loading="lazy"
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
+                  <picture>
+                    <source srcset={ach.image_path.replace(/\.(jpg|jpeg|png)$/i, '.thumb.webp')} type="image/webp" />
+                    <img
+                      src={ach.image_path}
+                      alt={`${ach.title} certificate / honor`}
+                      width="400"
+                      height="250"
+                      loading="lazy"
+                      decoding="async"
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </picture>
                 </a>
               </div>
             )}
@@ -409,52 +435,226 @@ const selectedProjects = PROJECTS_DATA.filter((p) => p.featured).slice(0, 3);
     </div>
   </section>
 
-  <!-- 6. ARTWORK ACQUISITION & BIDDING: Conversion Room -->
+  <!-- 5B. FEATURED STUDIO SERVICES: Wall Art, Rangoli & Graphic Design -->
+  <section class="py-24 bg-white border-b border-[#E8E5DC]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between pb-10 border-b border-[#E8E5DC] gap-6">
+        <div>
+          <h2 class="font-serif-display text-4xl sm:text-5xl text-[#141311] font-medium">
+            Studio Services &amp; Commissions
+          </h2>
+        </div>
+
+        <a
+          href="/services"
+          class="inline-flex items-center px-6 py-3 border border-[#141311] text-[#141311] hover:bg-[#141311] hover:text-[#FBFBF9] text-xs uppercase tracking-[0.18em] font-semibold transition-all shrink-0 rounded-xs"
+        >
+          View All Services &rarr;
+        </a>
+      </div>
+
+      <!-- Featured Studio Services Cards (matching services page layout) -->
+      <div class="mt-12 space-y-16">
+        {featuredServices.map((srv, idx) => (
+          <div
+            id={srv.id}
+            class={`bg-white border border-[#E8E5DC] rounded-sm p-6 sm:p-10 transition-shadow hover:shadow-md grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center`}
+          >
+            <!-- Content Column -->
+            <div class={`lg:col-span-6 space-y-6 ${idx % 2 === 1 ? 'lg:order-2' : ''}`}>
+              <div class="space-y-2">
+                <span class="inline-block px-3 py-1 bg-[#FAF5E9] border border-[#E8E5DC] text-[#9B4722] text-[10px] uppercase tracking-[0.2em] font-semibold rounded-xs">
+                  {srv.badge}
+                </span>
+                <h3 class="font-serif-display text-2xl sm:text-3xl text-[#141311] font-medium">
+                  {srv.title}
+                </h3>
+              </div>
+
+              <!-- Mobile-Only Imagery Showcase: directly under service title -->
+              <div class="grid grid-cols-2 gap-3 pt-1 lg:hidden">
+                {srv.images.map((img) => (
+                  <div class="group relative overflow-hidden rounded-xs bg-[#FAF5E9] border border-[#E8E5DC] shadow-xs">
+                    <div class="aspect-[4/5] overflow-hidden">
+                      <picture>
+                        <source srcset={img.src.replace(/\.(jpg|jpeg|png)$/i, '.thumb.webp')} type="image/webp" />
+                        <img
+                          src={img.src}
+                          alt={img.alt}
+                          width="300"
+                          height="375"
+                          loading="lazy"
+                          decoding="async"
+                          class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                        />
+                      </picture>
+                    </div>
+                    <div class="p-2 bg-white border-t border-[#F0ECE3]">
+                      <span class="text-[10px] sm:text-[11px] text-[#6B6864] font-medium line-clamp-1">
+                        {img.caption}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <p class="text-sm text-[#57544E] leading-relaxed">
+                {srv.description}
+              </p>
+
+              <!-- Feature Bullet Points -->
+              <div class="space-y-2.5 pt-2">
+                <span class="text-xs uppercase tracking-wider text-[#141311] font-semibold block">
+                  Service Highlights &amp; Inclusions:
+                </span>
+                <ul class="space-y-2">
+                  {srv.features.map((feat) => (
+                    <li class="flex items-start gap-2.5 text-xs text-[#57544E]">
+                      <svg class="w-4 h-4 text-[#9B4722] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <!-- Direct Call & Inquiry Buttons -->
+              <div class="pt-4 border-t border-[#F0ECE3] flex flex-wrap items-center gap-3">
+                <a
+                  href="tel:+918115604223"
+                  class="px-5 py-2.5 bg-[#141311] hover:bg-[#2C2A26] text-white text-xs uppercase tracking-[0.16em] font-semibold transition-colors flex items-center gap-2 rounded-xs shadow-xs"
+                  title="Call for this service"
+                >
+                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  <span>Call to Inquire</span>
+                </a>
+
+                <a
+                  href={`https://wa.me/918115604223?text=Hello%20Dhirendra,%20I%20am%20interested%20in%20inquiring%20about%20your%20${srv.inquiryParam}%20service.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="px-5 py-2.5 bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs uppercase tracking-[0.16em] font-semibold transition-colors flex items-center gap-2 rounded-xs shadow-xs"
+                  title="WhatsApp Inquiry"
+                >
+                  <span>WhatsApp Inquiry &rarr;</span>
+                </a>
+
+                <a
+                  href={srv.galleryLink}
+                  class="px-4 py-2.5 bg-[#FAF7F0] border border-[#D3CEBF] hover:border-[#9B4722] hover:text-[#9B4722] text-[#2C2A26] text-xs uppercase tracking-[0.16em] font-semibold transition-colors rounded-xs flex items-center gap-1.5"
+                  title={`View ${srv.galleryCategory} in Gallery Archive`}
+                >
+                  <span>Explore in Gallery &rarr;</span>
+                </a>
+
+                <a
+                  href="/contact"
+                  class="px-4 py-2.5 border border-[#D3CEBF] hover:border-[#141311] text-[#2C2A26] text-xs uppercase tracking-[0.16em] font-semibold transition-colors rounded-xs"
+                >
+                  Online Form
+                </a>
+              </div>
+            </div>
+
+            <!-- Imagery Showcase Column (Desktop) -->
+            <div class={`hidden lg:grid lg:col-span-6 grid-cols-2 gap-3.5 ${idx % 2 === 1 ? 'lg:order-1' : ''}`}>
+              {srv.images.map((img) => (
+                <div class="group relative overflow-hidden rounded-xs bg-[#FAF5E9] border border-[#E8E5DC] shadow-xs">
+                  <div class="aspect-[4/5] overflow-hidden">
+                    <picture>
+                      <source srcset={img.src.replace(/\.(jpg|jpeg|png)$/i, '.thumb.webp')} type="image/webp" />
+                      <img
+                        src={img.src}
+                        alt={img.alt}
+                        width="300"
+                        height="375"
+                        loading="lazy"
+                        decoding="async"
+                        class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                      />
+                    </picture>
+                  </div>
+                  <div class="p-2.5 bg-white border-t border-[#F0ECE3]">
+                    <span class="text-[11px] text-[#6B6864] font-medium line-clamp-1">
+                      {img.caption}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+
+      </div>
+
+      <!-- Quick Link to All Services -->
+      <div class="mt-12 pt-8 border-t border-[#E8E5DC] flex flex-wrap items-center justify-between text-xs text-[#6B6864] gap-4">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-[#9B4722]"></span>
+          <span>Also offering <strong>Recycled Scrap Metal Sculptures</strong>, <strong>3D Foam Art</strong> &amp; <strong>Stage Scenography</strong>.</span>
+        </div>
+        <a
+          href="/services"
+          class="text-xs uppercase tracking-wider text-[#9B4722] hover:text-[#7D381A] font-semibold underline underline-offset-4"
+        >
+          Explore All 7 Studio Services in Detail &rarr;
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 6. ARTWORK INQUIRIES & COMMISSIONS: Studio Dialogue -->
   <section class="py-24 bg-[#141311] text-[#FBFBF9] border-b border-[#2C2A26]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
         <div class="lg:col-span-7 space-y-6">
           <span class="text-xs uppercase tracking-[0.24em] text-[#B68B35] font-semibold block">
-            Collector Services
+            Studio Services &amp; Commissions
           </span>
           <h2 class="font-serif-display text-4xl sm:text-5xl lg:text-6xl text-[#FBFBF9] font-medium leading-tight">
             Find a Work That Speaks to You
           </h2>
           <p class="text-base text-[#A8A291] leading-relaxed max-w-2xl">
-            Selected original artworks are available for direct acquisition. For specially designated masterworks, collectors are invited to submit their best offer directly to the artist.
+            Selected original studio paintings, graphite portrait drawings, and sculptures are available for acquisition. Bespoke public art murals and ceremonial rangolis can be commissioned directly with the artist.
           </p>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
-            <!-- Fixed Price Option -->
+            <!-- Fine Art Acquisition -->
             <div class="p-6 bg-[#1C1B18] border border-[#2C2A26] rounded-sm space-y-3">
               <span class="text-[11px] uppercase tracking-[0.16em] text-[#FAF5E9] font-semibold block">
-                1. Fixed Studio Valuation
+                1. Original Artworks
               </span>
               <p class="text-xs text-[#A8A291] leading-relaxed">
-                Directly acquire ready-to-hang works with transparent pricing, insured white-glove packaging, and physical certificate.
+                Directly acquire ready-to-hang original studio works with insured white-glove art packaging and signed physical authenticity certificate.
               </p>
               <a
                 href="/gallery"
                 class="inline-block text-xs uppercase tracking-[0.16em] text-[#B68B35] hover:text-white transition-colors underline underline-offset-4 font-medium"
               >
-                Browse Fixed Works &rarr;
+                Browse Works Gallery &rarr;
               </a>
             </div>
 
-            <!-- Offer / Bid Option -->
+            <!-- Commissioned Projects -->
             <div class="p-6 bg-[#1C1B18] border border-[#2C2A26] rounded-sm space-y-3">
               <span class="text-[11px] uppercase tracking-[0.16em] text-[#B68B35] font-semibold block">
-                2. Direct Collector Offer
+                2. Custom Commissions
               </span>
               <p class="text-xs text-[#A8A291] leading-relaxed">
-                Propose your valuation for signature or exhibition-listed works. The artist reviews offers within 24 to 48 hours.
+                Propose custom commissions for large-format civic murals, dignitary ceremonial rangoli carpets, upcycled scrap metal sculptures, or commissioned portraiture.
               </p>
               <a
-                href="/gallery"
+                href="/services"
                 class="inline-block text-xs uppercase tracking-[0.16em] text-[#B68B35] hover:text-white transition-colors underline underline-offset-4 font-medium"
               >
-                Explore Works Accepting Offers &rarr;
+                Explore Studio Services &rarr;
               </a>
             </div>
           </div>
@@ -462,41 +662,113 @@ const selectedProjects = PROJECTS_DATA.filter((p) => p.featured).slice(0, 3);
           <div class="pt-4 flex items-center gap-6 text-xs text-[#8A857D]">
             <span>&bull; Archival Museum Packaging</span>
             <span>&bull; Physical Signed Authenticity Certificate</span>
-            <span>&bull; Direct Artist Escrow Logistics</span>
+            <span>&bull; Direct Artist Studio Dialogue</span>
           </div>
         </div>
 
-        <!-- Featured Offer Showcase -->
+        <!-- Direct Artist Contact & Freelance Lead Generation Card -->
         <div class="lg:col-span-5">
-          <div class="bg-[#1C1B18] border border-[#33312E] p-6 rounded-sm space-y-4">
-            <span class="text-[10px] uppercase tracking-[0.2em] text-[#B68B35] font-bold block">
-              Currently Accepting Collector Offers
-            </span>
-            <a
-              href="/gallery/the-solitary-observer"
-              class="block aspect-[4/3] overflow-hidden bg-[#2C2A26] rounded-sm group/offerimg cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#B68B35]"
-              aria-label="View The Solitary Observer"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?auto=format&fit=crop&w=1200&q=85"
-                alt="The Solitary Observer - Charcoal and gouache portrait by Dhirendra"
-                class="w-full h-full object-cover transform transition-transform duration-700 group-hover/offerimg:scale-105"
-              />
-            </a>
-            <div>
-              <h3 class="font-serif-display text-2xl text-[#FBFBF9]">
-                The Solitary Observer
+          <div class="bg-[#1C1B18] border border-[#33312E] p-6 sm:p-8 rounded-sm space-y-6 shadow-2xl relative overflow-hidden">
+            <!-- Subtle Gold Ambience Glow -->
+            <div class="absolute -top-12 -right-12 w-40 h-40 bg-[#B68B35]/10 rounded-full blur-2xl pointer-events-none"></div>
+
+            <!-- Card Header & Live Availability Badge -->
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] uppercase tracking-[0.2em] text-[#B68B35] font-bold block">
+                  Direct Artist Inquiries
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-400 text-[10px] font-medium uppercase tracking-wider">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  Available for Work
+                </span>
+              </div>
+              <h3 class="font-serif-display text-2xl sm:text-3xl text-[#FBFBF9] font-medium leading-tight">
+                Commission &amp; Freelance Inquiries
               </h3>
-              <p class="text-xs text-[#A8A291] italic font-serif">
-                Charcoal and Gouache on Arches Archival Paper &bull; 2024
+              <p class="text-xs sm:text-sm text-[#A8A291] leading-relaxed">
+                Connect directly for bespoke wall murals, ceremonial rangolis, 3D foam &amp; scrap sculptures, portrait commissions, and professional graphic design services.
               </p>
             </div>
-            <a
-              href="/gallery/the-solitary-observer"
-              class="block text-center w-full py-3 bg-[#B68B35] hover:bg-[#A37B2B] text-[#141311] text-xs uppercase tracking-[0.2em] font-semibold transition-colors"
-            >
-              Submit Your Offer on This Work
-            </a>
+
+            <!-- Direct Conversion Buttons (Call & WhatsApp) -->
+            <div class="space-y-3 pt-1">
+              <!-- Direct Phone Call Button -->
+              <a
+                href="tel:+918115604223"
+                class="flex items-center justify-between px-5 py-3.5 bg-[#FAF5E9] hover:bg-white text-[#141311] rounded-sm transition-all duration-300 font-semibold group shadow-md"
+              >
+                <div class="flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-full bg-[#141311] text-[#FAF5E9] flex items-center justify-center shrink-0">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                  </div>
+                  <div class="text-left">
+                    <span class="block text-[10px] uppercase tracking-wider text-[#6B6864] font-medium">Direct Phone Call</span>
+                    <span class="font-mono text-sm tracking-wide text-[#141311] font-bold">+91 8115604223</span>
+                  </div>
+                </div>
+                <span class="text-xs uppercase tracking-wider text-[#9B4722] font-bold group-hover:translate-x-1 transition-transform">
+                  Call Now &rarr;
+                </span>
+              </a>
+
+              <!-- WhatsApp Chat Button -->
+              <a
+                href="https://wa.me/918115604223?text=Hello%20Dhirendra,%20I%20am%20interested%20in%20discussing%20an%20art%20commission%20/%20freelance%20project."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-between px-5 py-3.5 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-sm transition-all duration-300 font-semibold group shadow-md"
+              >
+                <div class="flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-full bg-white/20 text-white flex items-center justify-center shrink-0">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                    </svg>
+                  </div>
+                  <div class="text-left">
+                    <span class="block text-[10px] uppercase tracking-wider text-white/80 font-medium">WhatsApp Direct Chat</span>
+                    <span class="font-mono text-sm tracking-wide text-white font-bold">+91 8115604223</span>
+                  </div>
+                </div>
+                <span class="text-xs uppercase tracking-wider text-white font-bold group-hover:translate-x-1 transition-transform">
+                  Chat &rarr;
+                </span>
+              </a>
+
+              <!-- Instagram Social Media Link -->
+              <a
+                href="https://instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-between px-5 py-3 bg-[#24221E] hover:bg-[#2C2A26] border border-[#3D3A35] text-[#FBFBF9] rounded-sm transition-all duration-300 font-medium group"
+              >
+                <div class="flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-amber-500 via-pink-500 to-purple-600 text-white flex items-center justify-center shrink-0">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                  </div>
+                  <div class="text-left">
+                    <span class="block text-[10px] uppercase tracking-wider text-[#A8A291]">Official Instagram</span>
+                    <span class="text-xs text-[#FBFBF9] font-medium">Follow &bull; View Reels &amp; Studio Work</span>
+                  </div>
+                </div>
+                <span class="text-xs uppercase tracking-wider text-[#B68B35] font-semibold group-hover:translate-x-1 transition-transform">
+                  Follow &rarr;
+                </span>
+              </a>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="pt-2 border-t border-[#2C2A26] flex items-center justify-between text-[11px] text-[#8A857D] font-mono">
+              <span>Direct Artist Consultation</span>
+              <span>&bull;</span>
+              <span>Fast Quotes</span>
+              <span>&bull;</span>
+              <span>Pan-India Transit</span>
+            </div>
           </div>
         </div>
 
@@ -528,12 +800,18 @@ const selectedProjects = PROJECTS_DATA.filter((p) => p.featured).slice(0, 3);
               class="block aspect-[16/10] overflow-hidden bg-[#E8E5DC] cursor-pointer"
               aria-label={`Learn more about ${proj.title}`}
             >
-              <img
-                src={proj.images[0].storage_path}
-                alt={proj.title}
-                loading="lazy"
-                class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
-              />
+              <picture>
+                <source srcset={proj.images[0].storage_path.replace(/\.(jpg|jpeg|png)$/i, '.thumb.webp')} type="image/webp" />
+                <img
+                  src={proj.images[0].storage_path}
+                  alt={proj.title}
+                  width="400"
+                  height="250"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
+                />
+              </picture>
             </a>
             <div class="p-6 flex-grow flex flex-col justify-between space-y-3">
               <div>
@@ -592,13 +870,53 @@ const selectedProjects = PROJECTS_DATA.filter((p) => p.featured).slice(0, 3);
         >
           Initiate Inquiries &rarr;
         </a>
+        {/* Temporarily hidden: Track Order button
         <a
           href="/order-tracking"
           class="w-full sm:w-auto px-8 py-4 border border-[#141311] text-[#141311] hover:bg-white text-xs uppercase tracking-[0.2em] font-medium transition-colors"
         >
           Track An Existing Order
         </a>
+        */}
       </div>
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  import { getSiteContent, hasCustomSiteContent } from '../lib/cmsStorage';
+  function applyHomeContent() {
+    try {
+      if (!hasCustomSiteContent()) return;
+      const content = getSiteContent();
+      const heroHeadline = document.getElementById('cms-hero-headline');
+      const heroSubtitle = document.getElementById('cms-hero-subtitle');
+      const heroQuote = document.getElementById('cms-hero-quote');
+      const heroDesc = document.getElementById('cms-hero-desc');
+      const heroImg = document.getElementById('cms-hero-image') as HTMLImageElement;
+      const homePortraitImg = document.getElementById('cms-home-about-portrait') as HTMLImageElement;
+
+      if (heroHeadline && content.heroHeadline) heroHeadline.textContent = content.heroHeadline;
+      if (heroSubtitle && content.heroSubtitle) heroSubtitle.textContent = content.heroSubtitle;
+      if (heroQuote && content.heroQuote) heroQuote.textContent = content.heroQuote;
+      if (heroDesc && content.heroDescription) heroDesc.textContent = content.heroDescription;
+      if (heroImg && content.heroImage) heroImg.src = content.heroImage;
+      if (homePortraitImg && content.aboutPortraitImage) homePortraitImg.src = content.aboutPortraitImage;
+
+      // Featured Offer Showcase
+      const featImg = document.getElementById('cms-featured-image') as HTMLImageElement;
+      const featTitle = document.getElementById('cms-featured-title');
+      const featSubtitle = document.getElementById('cms-featured-subtitle');
+      const featLink = document.getElementById('cms-featured-link') as HTMLAnchorElement;
+      const featBtn = document.getElementById('cms-featured-btn') as HTMLAnchorElement;
+
+      if (featImg && content.featuredOfferImage) featImg.src = content.featuredOfferImage;
+      if (featTitle && content.featuredOfferTitle) featTitle.textContent = content.featuredOfferTitle;
+      if (featSubtitle && content.featuredOfferSubtitle) featSubtitle.textContent = content.featuredOfferSubtitle;
+      if (featLink && content.featuredOfferLink) featLink.href = content.featuredOfferLink;
+      if (featBtn && content.featuredOfferLink) featBtn.href = content.featuredOfferLink;
+    } catch (e) {}
+  }
+  applyHomeContent();
+  window.addEventListener('dhirendra_cms_updated', applyHomeContent);
+</script>

@@ -23,7 +23,36 @@ const currentYear = new Date().getFullYear();
 
         <div class="pt-2 text-xs text-[#8A857D] flex items-center gap-2">
           <span class="inline-block w-2 h-2 rounded-full bg-[#B68B35]"></span>
-          <span>Studio based in India • Open for selective acquisitions & commissions</span>
+          <span>Studio based in India &bull; Open for commissions &amp; freelance projects</span>
+        </div>
+
+        <!-- Quick Direct Contact Actions for Leads -->
+        <div class="pt-3 flex flex-wrap items-center gap-2 text-xs">
+          <a
+            href="tel:+918115604223"
+            class="px-3 py-1.5 bg-[#1C1B18] border border-[#33312E] hover:border-[#FAF5E9] rounded-xs text-[#FAF5E9] hover:bg-white hover:text-[#141311] font-mono text-[11px] transition-colors inline-flex items-center gap-1.5 font-medium"
+            title="Call Dhirendra directly"
+          >
+            <span>📞 Call: +91 8115604223</span>
+          </a>
+          <a
+            href="https://wa.me/918115604223?text=Hello%20Dhirendra,%20I%20am%20interested%20in%20discussing%20an%20art%20commission%20/%20freelance%20project."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-3 py-1.5 bg-[#25D366]/15 border border-[#25D366]/40 text-[#25D366] hover:bg-[#25D366] hover:text-white rounded-xs font-mono text-[11px] transition-colors inline-flex items-center gap-1.5 font-medium"
+            title="Chat on WhatsApp"
+          >
+            <span>💬 WhatsApp</span>
+          </a>
+          <a
+            href="https://instagram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-3 py-1.5 bg-[#1C1B18] border border-[#33312E] hover:border-[#B68B35] rounded-xs text-[#A8A291] hover:text-white text-[11px] transition-colors inline-flex items-center gap-1.5"
+            title="Follow on Instagram"
+          >
+            <span>📷 Instagram</span>
+          </a>
         </div>
       </div>
 
@@ -37,19 +66,32 @@ const currentYear = new Date().getFullYear();
             <a href="/gallery" class="hover:text-[#FBFBF9] transition-colors">Digital Gallery Catalogue</a>
           </li>
           <li>
+            <a href="/services" class="hover:text-[#FBFBF9] transition-colors">Services &amp; Commissions</a>
+          </li>
+          <li>
             <a href="/about" class="hover:text-[#FBFBF9] transition-colors">Artistic Journey & Biography</a>
           </li>
           <li>
-            <a href="/about#recognition" class="hover:text-[#FBFBF9] transition-colors">Awards & Recognitions</a>
+            <a href="/awards" class="hover:text-[#FBFBF9] transition-colors">Awards, Honors &amp; Press</a>
           </li>
           <li>
             <a href="/about#beyond-fine-art" class="hover:text-[#FBFBF9] transition-colors">Beyond Fine Art (Graphic Work)</a>
           </li>
+          {/* Temporarily hidden: Track Order & Studio CMS links
           <li>
-            <a href="/order-tracking" class="hover:text-[#FBFBF9] transition-colors">Track Order / Consignment</a>
+            <a href="/order-tracking" class="hover:text-[#FBFBF9] transition-colors flex items-center gap-1.5 text-[#B68B35]">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#B68B35]"></span>
+              Track Order Status
+            </a>
           </li>
           <li>
-            <a href="/contact" class="hover:text-[#FBFBF9] transition-colors">Studio Inquiries & Commissions</a>
+            <a href="/admin/dashboard" class="hover:text-[#FBFBF9] transition-colors flex items-center gap-1.5 text-[#B68B35]">
+              <span>Studio CMS Portal</span>
+            </a>
+          </li>
+          */}
+          <li>
+            <a href="/contact" class="hover:text-[#FBFBF9] transition-colors">Contact</a>
           </li>
         </ul>
       </div>
@@ -65,16 +107,16 @@ const currentYear = new Date().getFullYear();
         
         <div class="p-4 rounded-sm bg-[#1C1B18] border border-[#2C2A26] space-y-2">
           <span class="text-[11px] uppercase tracking-[0.16em] text-[#B68B35] font-medium block">
-            Direct Collector Access
+            Direct Artist Dialogue
           </span>
           <p class="text-xs text-[#D3CEBF]">
-            For curated signature works, collectors are invited to submit acquisition offers directly to the artist.
+            For original canvases, graphite drawings, and bespoke civic mural commissions, inquiries are handled directly with the artist.
           </p>
           <a
             href="/gallery"
             class="inline-flex items-center text-xs text-[#FBFBF9] hover:text-[#B68B35] transition-colors pt-1 underline underline-offset-4"
           >
-            View Available Works & Make an Offer &rarr;
+            Explore Creative Works &amp; Gallery &rarr;
           </a>
         </div>
       </div>
@@ -88,13 +130,13 @@ const currentYear = new Date().getFullYear();
           &copy; {currentYear} Dhirendra — Artist & Graphics Designer. All rights reserved. Original artwork copyright remains with the artist.
         </div>
         <div class="text-[#A8A291] text-[11px] font-medium">
-          Built with 💻 & ☕. By Rajnikant Gaurav
+          Built with 💻 &amp; ☕. By <a href="https://www.rajnikantg.in" target="_blank" rel="noopener noreferrer" class="text-[#FBFBF9] hover:text-[#B68B35] underline underline-offset-2 transition-colors">Rajnikant Gaurav</a>
         </div>
       </div>
       <div class="flex items-center space-x-6 text-[11px] tracking-wider uppercase">
-        <a href="/order-tracking" class="hover:text-[#FBFBF9] transition-colors">Tracking</a>
-        <a href="/contact" class="hover:text-[#FBFBF9] transition-colors">Inquiries</a>
-        <a href="/admin/login" class="hover:text-[#FBFBF9] transition-colors text-[#57544E]">Studio CMS</a>
+        {/* Temporarily hidden: <a href="/order-tracking" class="hover:text-[#FBFBF9] transition-colors">Track Order</a> */}
+        <a href="/contact" class="hover:text-[#FBFBF9] transition-colors">Contact</a>
+        {/* Temporarily hidden: <a href="/admin/dashboard" class="hover:text-[#FBFBF9] transition-colors text-[#B68B35]">Studio CMS</a> */}
       </div>
     </div>
   </div>

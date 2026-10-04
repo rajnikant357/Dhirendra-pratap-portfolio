@@ -10,16 +10,27 @@ export interface Props {
   canonicalUrl?: string;
   type?: 'website' | 'article';
   schema?: Record<string, any>;
+  hideNavAndFooter?: boolean;
+  preloadImage?: string;
+  preloadImageSrcset?: string;
+  preloadImageSizes?: string;
 }
 
 const {
   title = 'Dhirendra — Artist & Graphics Designer | Digital Art Gallery',
   description = 'Original fine art, contemporary paintings, charcoal portraiture, and selected creative visual design by Dhirendra (BVA, MVA). Winner of national and state recognitions.',
-  ogImage = 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1200&q=85',
+  ogImage = '/photos/awards/certificates%20and%20awards/438304121_950748996557945_5294600570921436411_n.jpg',
   canonicalUrl = Astro.url.href,
   type = 'website',
   schema,
+  hideNavAndFooter = false,
+  preloadImage,
+  preloadImageSrcset,
+  preloadImageSizes,
 } = Astro.props;
+
+const siteUrl = Astro.site ? Astro.site.href.replace(/\/$/, '') : 'https://dhirendra-art.vercel.app';
+const absoluteOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage.startsWith('/') ? '' : '/'}${ogImage}`;
 
 const defaultPersonSchema = {
   '@context': 'https://schema.org',
@@ -27,12 +38,12 @@ const defaultPersonSchema = {
   name: 'Dhirendra',
   jobTitle: 'Artist & Graphics Designer',
   description: 'Accomplished artist with BVA & MVA degrees, over seven years of artistic practice, and national and state level recognitions.',
-  url: Astro.site ? Astro.site.href : 'https://dhirendra-art.vercel.app',
-  knowsAbout: ['Fine Art', 'Oil Painting', 'Charcoal Portraiture', 'Graphic Design', 'Visual Composition'],
+  url: siteUrl,
+  knowsAbout: ['Fine Art', 'Oil Painting', 'Charcoal Portraiture', 'Graphic Design', 'Visual Composition', 'Scrap Metal Sculpture', 'Ceremonial Rangoli', 'Wall Murals'],
   alumniOf: [
     {
       '@type': 'EducationalOrganization',
-      name: 'Faculty of Visual Arts (BVA & MVA)',
+      name: 'Faculty of Visual Arts, University of Lucknow (BVA & MVA)',
     },
   ],
 };
@@ -47,6 +58,7 @@ const finalSchema = schema || defaultPersonSchema;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#FBFBF9" />
 
     <!-- Primary Meta Tags -->
     <title>{title}</title>
@@ -59,31 +71,62 @@ const finalSchema = schema || defaultPersonSchema;
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={absoluteOgImage} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={canonicalUrl} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={ogImage} />
+    <meta property="twitter:image" content={absoluteOgImage} />
 
-    <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+    <!-- LCP Preload if specified -->
+    {preloadImage && (
+      <link
+        rel="preload"
+        as="image"
+        href={preloadImage}
+        imagesrcset={preloadImageSrcset}
+        imagesizes={preloadImageSizes}
+        fetchpriority="high"
+      />
+    )}
+
+    <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans (Non-render-blocking with font-display: swap) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      />
+    </noscript>
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json" set:html={JSON.stringify(finalSchema)} />
   </head>
   <body class="min-h-screen flex flex-col bg-[#FBFBF9] text-[#141311] selection:bg-[#141311] selection:text-[#FBFBF9]">
-    <Header />
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#141311] focus:text-[#FBFBF9] focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#9B4722] text-xs uppercase tracking-wider font-semibold"
+    >
+      Skip to main content
+    </a>
+    {!hideNavAndFooter && <Header />}
     <main id="main-content" class="flex-grow">
       <slot />
     </main>
-    <Footer />
+    {!hideNavAndFooter && <Footer />}
   </body>
 </html>

@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { AwardsArchiveView } from '../components/awards/AwardsArchiveView';
+import { ACHIEVEMENTS_DATA } from '../lib/data/achievements';
+---
+
+<BaseLayout
+  title="Awards, Recognition & News Articles — Dhirendra | Artist & Graphics Designer"
+  description="Verified awards, state cultural citations, Lalit Kala Akademi honors, COVID-19 warrior recognition, and over 280 published newspaper articles celebrating visual artist Dhirendra Pratap."
+>
+  <div class="pt-8 pb-20 sm:pt-12 sm:pb-28 bg-[#FBFBF9]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Page Header -->
+      <div class="pb-6 border-b border-[#E8E5DC] mb-8">
+        <h1 class="font-serif-display text-4xl sm:text-6xl text-[#141311] font-medium tracking-tight leading-[1.05]">
+          Awards, Honors &amp; Press
+        </h1>
+      </div>
+
+      <!-- Interactive Awards & News Island -->
+      <AwardsArchiveView client:load initialAchievements={ACHIEVEMENTS_DATA} />
+
+    </div>
+  </div>
+</BaseLayout>

@@ -33,7 +33,22 @@ export async function getSignatureArtworks(): Promise<Artwork[]> {
   return all.filter((art) => art.signature);
 }
 
+const LEGACY_SLUG_MAP: Record<string, string> = {
+  'artistic-presentation-dgp-prashant-kumar': 'artistic-presentation-dgp-up-police',
+  'magnolia-blossoms-in-white': 'artistic-presentation-dgp-up-police',
+  'silent-resonance-in-crimson': 'artistic-presentation-dgp-up-police',
+  'the-solitary-observer': 'contemplative-portrait-study',
+  'ephemeral-horizons': 'yellow-floral-study',
+  'study-of-form-and-shadow-iv': 'portrait-young-woman-grid',
+  'passage-of-ochre': 'traditional-folk-mud-wall-mural',
+  'monologue-in-indigo': 'urban-civic-retaining-wall-mural',
+  'whispering-canvas': 'floral-branch-with-songbird',
+  'terra-sancta-ii': 'ceremonial-dignitary-welcome-rangoli',
+};
+
 export async function getArtworkBySlug(slug: string): Promise<Artwork | null> {
+  const normalizedSlug = LEGACY_SLUG_MAP[slug] || slug;
+
   if (isSupabaseConfigured && supabase) {
     try {
       const { data, error } = await supabase
@@ -42,7 +57,7 @@ export async function getArtworkBySlug(slug: string): Promise<Artwork | null> {
           *,
           images:artwork_images(*)
         `)
-        .eq('slug', slug)
+        .eq('slug', normalizedSlug)
         .single();
 
       if (!error && data) {
@@ -52,7 +67,7 @@ export async function getArtworkBySlug(slug: string): Promise<Artwork | null> {
       console.warn('Supabase slug fetch error, falling back to local dataset', err);
     }
   }
-  const found = ARTWORKS_DATA.find((art) => art.slug === slug);
+  const found = ARTWORKS_DATA.find((art) => art.slug === normalizedSlug || art.slug === slug || art.id === slug);
   return found || null;
 }
 

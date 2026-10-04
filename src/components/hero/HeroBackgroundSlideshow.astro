@@ -1,0 +1,175 @@
+---
+interface Slide {
+  src: string;
+  title: string;
+}
+
+const HERO_SLIDES: Slide[] = [
+  {
+    src: '/photos/Work/CM%20Yogi/FB_IMG_1672659760788%20-%20Copy.jpg',
+    title: 'Ceremonial Art Welcome for UP Chief Minister Yogi Adityanath',
+  },
+  {
+    src: '/photos/awards/certificates%20and%20awards/FB_IMG_1659231446075.jpg',
+    title: 'Kala Shree Samman & COVID-19 Warrior Award Presentation',
+  },
+  {
+    src: '/photos/Work/CM%20Yogi/FB_IMG_1672659784107.jpg',
+    title: 'Ceremonial Multi-Coloured Rangoli Carpet for UP CM Yogi Adityanath',
+  },
+  {
+    src: '/photos/awards/certificates%20and%20awards/FB_IMG_1659231484703.jpg',
+    title: 'Uttar Pradesh Kala Ratna Felicitation Ceremony',
+  },
+  {
+    src: '/photos/Work/CM%20Yogi/FB_IMG_1672659812126.jpg',
+    title: 'Grand Rangoli Welcome Installation for UP Chief Minister',
+  },
+  {
+    src: '/photos/awards/certificates%20and%20awards/Screenshot_2023-03-16-19-35-35-245_com.instagram.android-edit%20-%20Copy.jpg',
+    title: 'State Honor Trophy & Certificate Conferred on Stage',
+  },
+  {
+    src: '/photos/Work/CM%20Yogi/FB_IMG_1672659820546.jpg',
+    title: 'Fresh Flower Rangoli Carpet Welcoming UP CM Yogi Adityanath',
+  },
+  {
+    src: '/photos/Work/sketches%20&%20paintings/FB_IMG_1659231349500.jpg',
+    title: 'Commissioned Fine Art Portrait Presentation to Dignitary',
+  },
+  {
+    src: '/photos/awards/certificates%20and%20awards/FB_IMG_1672659976673.jpg',
+    title: 'Honorary Memento & Certificate Presentation Ceremony',
+  },
+];
+---
+
+<div class="absolute inset-0 pointer-events-none overflow-hidden select-none z-0" id="hero-slideshow" aria-hidden="true">
+  {HERO_SLIDES.map((slide, idx) => {
+    const isFirst = idx === 0;
+    const webpSrc = slide.src.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+    const thumbSrc = slide.src.replace(/\.(jpg|jpeg|png)$/i, '.thumb.webp');
+    return (
+      <div
+        class={`hero-slide absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
+          isFirst ? 'active opacity-90 z-0' : 'opacity-0 -z-10'
+        }`}
+        data-slide-index={idx}
+        data-webp={!isFirst ? webpSrc : undefined}
+        data-thumb={!isFirst ? thumbSrc : undefined}
+        data-src={!isFirst ? slide.src : undefined}
+        data-title={!isFirst ? slide.title : undefined}
+      >
+        {isFirst && (
+          <picture>
+            <source
+              type="image/webp"
+              srcset={`${thumbSrc} 480w, ${webpSrc} 720w`}
+              sizes="100vw"
+            />
+            <img
+              src={slide.src}
+              srcset={`${thumbSrc} 480w, ${slide.src} 720w`}
+              sizes="100vw"
+              alt={slide.title}
+              width="720"
+              height="960"
+              class="w-full h-full object-cover object-center transform transition-transform duration-[6000ms] ease-out slide-image"
+              loading="eager"
+              fetchpriority="high"
+              decoding="sync"
+            />
+          </picture>
+        )}
+      </div>
+    );
+  })}
+</div>
+
+<style>
+  .hero-slide {
+    transition: opacity 1000ms ease-in-out;
+  }
+  .hero-slide.active {
+    opacity: 0.9;
+    z-index: 0;
+  }
+  .hero-slide:not(.active) {
+    opacity: 0;
+    z-index: -10;
+  }
+  .hero-slide .slide-image {
+    transform: scale(1);
+    transition: transform 6000ms ease-out;
+  }
+  .hero-slide.active .slide-image {
+    transform: scale(1.05);
+  }
+</style>
+
+<script>
+  function initHeroSlideshow() {
+    const container = document.getElementById('hero-slideshow');
+    if (!container) return;
+    const slides = container.querySelectorAll<HTMLElement>('.hero-slide');
+    if (slides.length <= 1) return;
+
+    function loadSlideImage(slide: HTMLElement) {
+      if (slide.querySelector('img')) return;
+      const webp = slide.dataset.webp;
+      const thumb = slide.dataset.thumb;
+      const src = slide.dataset.src;
+      const title = slide.dataset.title || '';
+      if (!src) return;
+
+      const picture = document.createElement('picture');
+      if (webp && thumb) {
+        const source = document.createElement('source');
+        source.type = 'image/webp';
+        source.srcset = `${thumb} 640w, ${webp} 1920w`;
+        source.sizes = '100vw';
+        picture.appendChild(source);
+      }
+      const img = document.createElement('img');
+      img.src = src;
+      if (thumb) {
+        img.srcset = `${thumb} 640w, ${src} 1920w`;
+        img.sizes = '100vw';
+      }
+      img.alt = title;
+      img.width = 1920;
+      img.height = 1080;
+      img.className = 'w-full h-full object-cover object-center transform transition-transform duration-[6000ms] ease-out slide-image';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      picture.appendChild(img);
+      slide.appendChild(picture);
+    }
+
+    // Preload next slide before initial transition (at 3500ms, transition at 4500ms)
+    setTimeout(() => {
+      if (slides[1]) loadSlideImage(slides[1]);
+    }, 3500);
+
+    let currentIndex = 0;
+    window.setInterval(() => {
+      const nextIndex = (currentIndex + 1) % slides.length;
+      const nextSlide = slides[nextIndex];
+      loadSlideImage(nextSlide);
+
+      slides[currentIndex].classList.remove('active');
+      nextSlide.classList.add('active');
+      currentIndex = nextIndex;
+
+      // Preload subsequent slide
+      const peekIndex = (currentIndex + 1) % slides.length;
+      loadSlideImage(slides[peekIndex]);
+    }, 4500);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeroSlideshow, { passive: true });
+  } else {
+    initHeroSlideshow();
+  }
+</script>

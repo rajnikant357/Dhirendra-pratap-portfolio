@@ -7,6 +7,10 @@ export type ArtworkCategory =
   | 'Contemporary' 
   | 'Abstract' 
   | 'Graphics' 
+  | 'Wall Art'
+  | 'Rangoli'
+  | 'Scrap Craft'
+  | 'Foam Art'
   | 'Other';
 
 export type BidStatus = 'PENDING' | 'ACCEPTED' | 'REJECTED' | 'COUNTER_OFFER' | 'CONVERTED';
@@ -37,7 +41,10 @@ export type ProjectCategory =
   | 'Visual Composition'
   | 'Commercial Creative'
   | 'Posters & Campaigns'
-  | 'Film & Creative Direction';
+  | 'Film & Creative Direction'
+  | 'Public & Civic Art'
+  | 'Scrap Sculptures'
+  | 'Wall Murals';
 
 export type EnquiryType = 
   | 'Artwork Purchase'

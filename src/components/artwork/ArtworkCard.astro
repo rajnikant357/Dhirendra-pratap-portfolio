@@ -9,15 +9,8 @@ export interface Props {
 
 const { artwork, priority = false, aspectRatio = 'aspect-[4/5]' } = Astro.props;
 const primaryImage = artwork.images.find((img) => img.is_primary) || artwork.images[0];
-
-const formatPrice = (amt?: number | null) => {
-  if (!amt) return '';
-  return new Intl.NumberFormat('en-IN', {
-    style: 'currency',
-    currency: 'INR',
-    maximumFractionDigits: 0,
-  }).format(amt);
-};
+const thumbPath = primaryImage.storage_path.replace(/\.(jpg|jpeg|png)$/i, '.thumb.webp');
+const webpPath = primaryImage.storage_path.replace(/\.(jpg|jpeg|png)$/i, '.webp');
 ---
 
 <article class="group relative flex flex-col transition-all duration-300">
@@ -30,37 +23,31 @@ const formatPrice = (amt?: number | null) => {
   >
     <!-- Aspect Ratio Preservation -->
     <div class={`relative w-full ${aspectRatio} overflow-hidden`}>
-      <img
-        src={primaryImage.storage_path}
-        alt={primaryImage.alt_text || `${artwork.title} by Dhirendra`}
-        loading={priority ? 'eager' : 'lazy'}
-        decoding="async"
-        fetchpriority={priority ? 'high' : 'auto'}
-        class="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-105"
-      />
+      <picture>
+        <source srcset={thumbPath} type="image/webp" />
+        <img
+          src={primaryImage.storage_path}
+          alt={primaryImage.alt_text || `${artwork.title} by Dhirendra`}
+          width="400"
+          height="500"
+          loading={priority ? 'eager' : 'lazy'}
+          decoding="async"
+          fetchpriority={priority ? 'high' : 'auto'}
+          class="w-full h-full object-cover object-center transform transition-transform duration-700 ease-out group-hover:scale-105"
+        />
+      </picture>
       <div class="absolute inset-0 bg-[#141311]/0 group-hover:bg-[#141311]/15 transition-colors duration-500" />
     </div>
 
     <!-- Status & Badges -->
     <div class="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10 pointer-events-none">
-      {artwork.signature && (
+      {artwork.signature ? (
         <span class="px-2 py-0.5 text-[10px] tracking-[0.16em] uppercase font-semibold bg-[#141311] text-[#FBFBF9] rounded-[2px] shadow-sm">
           Signature
         </span>
-      )}
-      {artwork.availability === 'AVAILABLE' && artwork.sale_type === 'OFFER' && (
-        <span class="px-2 py-0.5 text-[10px] tracking-[0.14em] uppercase font-medium bg-[#B68B35] text-white rounded-[2px] shadow-sm">
-          Accepting Offers
-        </span>
-      )}
-      {artwork.availability === 'AVAILABLE' && artwork.sale_type === 'FIXED_PRICE' && (
-        <span class="px-2 py-0.5 text-[10px] tracking-[0.14em] uppercase font-medium bg-[#2C2A26] text-[#FBFBF9] rounded-[2px] shadow-sm">
-          Available
-        </span>
-      )}
-      {artwork.availability === 'SOLD' && (
-        <span class="px-2 py-0.5 text-[10px] tracking-[0.14em] uppercase font-medium bg-[#8A857D] text-white rounded-[2px]">
-          Acquired / Private Collection
+      ) : (
+        <span class="px-2 py-0.5 text-[10px] tracking-[0.14em] uppercase font-medium bg-[#141311]/80 text-[#FBFBF9] rounded-[2px] backdrop-blur-xs">
+          {artwork.category}
         </span>
       )}
     </div>
@@ -89,21 +76,12 @@ const formatPrice = (amt?: number | null) => {
       </span>
 
       <div>
-        {artwork.availability === 'AVAILABLE' && artwork.sale_type === 'FIXED_PRICE' && (
-          <span class="font-medium text-[#141311]">
-            {formatPrice(artwork.price)}
-          </span>
-        )}
-        {artwork.availability === 'AVAILABLE' && artwork.sale_type === 'OFFER' && (
-          <span class="text-[#9B4722] font-medium text-[11px] uppercase tracking-wider">
-            Make an Offer &rarr;
-          </span>
-        )}
-        {artwork.availability === 'SOLD' && (
-          <span class="text-[#8A857D] text-[11px] uppercase tracking-wider">
-            Sold
-          </span>
-        )}
+        <a
+          href={`/gallery/${artwork.slug}`}
+          class="text-[#9B4722] hover:text-[#7D3516] font-semibold text-[11px] uppercase tracking-wider underline underline-offset-4"
+        >
+          View Work &rarr;
+        </a>
       </div>
     </div>
   </div>

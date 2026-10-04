@@ -1,12 +1,30 @@
 ---
 const pathname = new URL(Astro.request.url).pathname;
 
-const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/gallery', label: 'Gallery' },
-  { href: '/about', label: 'The Artist' },
-  { href: '/contact', label: 'Contact & Inquiries' },
+const gallerySublinks = [
+  { href: '/gallery', label: 'All Creative Works', badge: 'All Works' },
+  { href: '/gallery?category=Rangoli', label: 'Rangoli', badge: 'Ceremonial' },
+  { href: '/gallery?category=Scrap%20Art', label: 'Scrap Art', badge: 'Welded Steel' },
+  { href: '/gallery?category=Foam%20Art', label: 'Foam Art', badge: '3D Sculpted' },
+  { href: '/gallery?category=Wall%20Art', label: 'Wall Art', badge: 'Civic Murals' },
+  { href: '/gallery?category=Set%20Design', label: 'Set Design', badge: 'Stage & Sets' },
+  { href: '/gallery?category=Paintings%20%26%20Sketches', label: 'Paintings & Sketches', badge: 'Studio Works' },
+  { href: '/gallery?category=PROCESS', label: 'Work Process', badge: 'Start to Finish' },
 ];
+
+const servicesSublinks = [
+  { href: '/services', label: 'All Studio Services', badge: 'Overview' },
+  { href: '/services#wall-art-murals', label: 'Wall Art & Murals', badge: 'Civic Murals' },
+  { href: '/services#scrap-metal-sculptures', label: 'Scrap Metal Sculptures', badge: 'Welded Steel' },
+  { href: '/services#foam-thermocol-art', label: 'Foam & 3D Art', badge: '3D Sculpted' },
+  { href: '/services#stage-scenography', label: 'Stage & Set Design', badge: 'Spatial & Sets' },
+  { href: '/services#traditional-rangoli', label: 'Ceremonial Rangoli', badge: 'Floor Art' },
+  { href: '/services#fine-art-portraits', label: 'Fine Art & Portraits', badge: 'Archival' },
+  { href: '/services#graphic-design-branding', label: 'Graphic Design', badge: 'Branding' },
+];
+
+const isGalleryActive = pathname.startsWith('/gallery');
+const isServicesActive = pathname.startsWith('/services');
 ---
 
 <header class="sticky top-0 z-40 w-full bg-[#FBFBF9]/90 backdrop-blur-md border-b border-[#E8E5DC] transition-all duration-300">
@@ -24,43 +42,167 @@ const navLinks = [
       </a>
 
       <!-- Desktop Navigation -->
-      <nav class="hidden md:flex items-center space-x-8 text-[13px] tracking-[0.12em] uppercase font-medium">
-        {navLinks.map((link) => {
-          const isActive = link.href === '/' ? pathname === '/' : pathname.startsWith(link.href);
-          return (
-            <a
-              href={link.href}
-              class={`relative py-1 transition-colors duration-200 ${
-                isActive
-                  ? 'text-[#141311] font-semibold'
-                  : 'text-[#6B6864] hover:text-[#141311]'
-              }`}
-            >
-              {link.label}
-              {isActive && (
-                <span class="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#9B4722]" />
-              )}
-            </a>
-          );
-        })}
-      </nav>
-
-      <!-- Utility Actions: Order Tracking + Inquire Button -->
-      <div class="hidden lg:flex items-center space-x-6">
+      <nav class="hidden md:flex items-center space-x-7 text-[13px] tracking-[0.12em] uppercase font-medium">
+        <!-- Home -->
         <a
-          href="/order-tracking"
-          class="text-[11px] uppercase tracking-[0.15em] text-[#6B6864] hover:text-[#141311] transition-colors flex items-center gap-1.5"
-          title="Track an existing artwork acquisition or order"
+          href="/"
+          class={`relative py-1 transition-colors duration-200 ${
+            pathname === '/' ? 'text-[#141311] font-semibold' : 'text-[#6B6864] hover:text-[#141311]'
+          }`}
         >
-          <span class="w-1.5 h-1.5 rounded-full bg-[#B68B35]"></span>
-          Track Order
+          Home
+          {pathname === '/' && <span class="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#9B4722]" />}
         </a>
 
+        <!-- Gallery Dropdown Menu -->
+        <div class="relative group" id="gallery-dropdown-container">
+          <a
+            href="/gallery"
+            class={`relative py-1 flex items-center gap-1.5 transition-colors duration-200 ${
+              isGalleryActive ? 'text-[#141311] font-semibold' : 'text-[#6B6864] hover:text-[#141311]'
+            }`}
+            id="gallery-dropdown-trigger"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <span>Gallery</span>
+            <svg
+              class="w-3.5 h-3.5 text-[#8A857D] group-hover:text-[#141311] transition-transform duration-200 group-hover:rotate-180"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+            {isGalleryActive && <span class="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#9B4722]" />}
+          </a>
+
+          <!-- Dropdown Flyout Card -->
+          <div
+            id="gallery-dropdown-menu"
+            class="absolute left-0 top-full pt-2.5 w-72 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto transition-all duration-200 ease-out z-50 transform translate-y-1 group-hover:translate-y-0"
+            role="menu"
+            aria-orientation="vertical"
+          >
+            <div class="bg-[#FBFBF9] border border-[#E8E5DC] rounded-sm shadow-xl p-1.5 space-y-0.5">
+              <div class="px-3 py-1.5 border-b border-[#F0ECE3] flex items-center justify-between text-[10px] tracking-wider uppercase text-[#8A857D]">
+                <span>Art Categories</span>
+                <span class="font-mono text-[9px] bg-[#F0ECE3] px-1.5 py-0.5 rounded text-[#57544E]">Portfolio</span>
+              </div>
+              
+              {gallerySublinks.map((sub) => (
+                <a
+                  href={sub.href}
+                  class="flex items-center justify-between px-3 py-2 text-xs rounded-sm hover:bg-[#F3EFE6] text-[#2C2A26] hover:text-[#9B4722] transition-colors group/sub"
+                  role="menuitem"
+                >
+                  <span class="font-medium text-[12px] uppercase tracking-wider">{sub.label}</span>
+                  <span class="text-[10px] text-[#8A857D] group-hover/sub:text-[#9B4722] font-mono transition-colors">
+                    {sub.badge}
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Services Dropdown Menu -->
+        <div class="relative group" id="services-dropdown-container">
+          <a
+            href="/services"
+            class={`relative py-1 flex items-center gap-1.5 transition-colors duration-200 ${
+              isServicesActive ? 'text-[#141311] font-semibold' : 'text-[#6B6864] hover:text-[#141311]'
+            }`}
+            id="services-dropdown-trigger"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <span>Services</span>
+            <svg
+              class="w-3.5 h-3.5 text-[#8A857D] group-hover:text-[#141311] transition-transform duration-200 group-hover:rotate-180"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+            {isServicesActive && <span class="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#9B4722]" />}
+          </a>
+
+          <!-- Dropdown Flyout Card -->
+          <div
+            id="services-dropdown-menu"
+            class="absolute left-0 top-full pt-2.5 w-76 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto transition-all duration-200 ease-out z-50 transform translate-y-1 group-hover:translate-y-0"
+            role="menu"
+            aria-orientation="vertical"
+          >
+            <div class="bg-[#FBFBF9] border border-[#E8E5DC] rounded-sm shadow-xl p-1.5 space-y-0.5">
+              <div class="px-3 py-1.5 border-b border-[#F0ECE3] flex items-center justify-between text-[10px] tracking-wider uppercase text-[#8A857D]">
+                <span>Studio Services</span>
+                <span class="font-mono text-[9px] bg-[#F0ECE3] px-1.5 py-0.5 rounded text-[#57544E]">Directory</span>
+              </div>
+              
+              {servicesSublinks.map((sub) => (
+                <a
+                  href={sub.href}
+                  class="flex items-center justify-between px-3 py-2 text-xs rounded-sm hover:bg-[#F3EFE6] text-[#2C2A26] hover:text-[#9B4722] transition-colors group/sub"
+                  role="menuitem"
+                >
+                  <span class="font-medium text-[12px] uppercase tracking-wider">{sub.label}</span>
+                  <span class="text-[10px] text-[#8A857D] group-hover/sub:text-[#9B4722] font-mono transition-colors">
+                    {sub.badge}
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Awards -->
         <a
-          href="/gallery"
-          class="inline-flex items-center px-4 py-2 border border-[#141311] text-[#141311] hover:bg-[#141311] hover:text-[#FBFBF9] text-[11px] uppercase tracking-[0.18em] transition-all duration-300 font-medium"
+          href="/awards"
+          class={`relative py-1 transition-colors duration-200 ${
+            pathname.startsWith('/awards') ? 'text-[#141311] font-semibold' : 'text-[#6B6864] hover:text-[#141311]'
+          }`}
         >
-          Acquisitions
+          Awards
+          {pathname.startsWith('/awards') && <span class="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#9B4722]" />}
+        </a>
+
+        <!-- The Artist -->
+        <a
+          href="/about"
+          class={`relative py-1 transition-colors duration-200 ${
+            pathname.startsWith('/about') ? 'text-[#141311] font-semibold' : 'text-[#6B6864] hover:text-[#141311]'
+          }`}
+        >
+          The Artist
+          {pathname.startsWith('/about') && <span class="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#9B4722]" />}
+        </a>
+
+        <!-- Contact -->
+        <a
+          href="/contact"
+          class={`relative py-1 transition-colors duration-200 ${
+            pathname.startsWith('/contact') ? 'text-[#141311] font-semibold' : 'text-[#6B6864] hover:text-[#141311]'
+          }`}
+        >
+          Contact
+          {pathname.startsWith('/contact') && <span class="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#9B4722]" />}
+        </a>
+      </nav>
+
+      <!-- Utility Action: Call Me Button -->
+      <div class="hidden lg:flex items-center">
+        <a
+          href="tel:+918115604223"
+          class="inline-flex items-center gap-2 px-4 py-2 bg-[#9B4722] hover:bg-[#7D381A] text-white text-[11px] uppercase tracking-[0.18em] transition-all duration-300 font-semibold shadow-sm hover:shadow"
+          title="Call Artist Dhirendra (+91 8115604223)"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          Call Me
         </a>
       </div>
 
@@ -87,38 +229,142 @@ const navLinks = [
 
   <!-- Mobile Drawer Menu -->
   <div id="mobile-menu" class="hidden md:hidden border-t border-[#E8E5DC] bg-[#FBFBF9] px-6 pt-4 pb-8 space-y-4">
-    <nav class="flex flex-col space-y-3">
-      {navLinks.map((link) => {
-        const isActive = link.href === '/' ? pathname === '/' : pathname.startsWith(link.href);
-        return (
+    <nav class="flex flex-col space-y-2">
+      <a
+        href="/"
+        class={`text-sm uppercase tracking-[0.15em] py-2 border-b border-[#F0ECE3] transition-colors ${
+          pathname === '/' ? 'text-[#9B4722] font-semibold' : 'text-[#141311]'
+        }`}
+      >
+        Home
+      </a>
+
+      <!-- Mobile Gallery with Expandable Subbuttons -->
+      <div class="border-b border-[#F0ECE3] py-2">
+        <div class="flex items-center justify-between">
           <a
-            href={link.href}
-            class={`text-sm uppercase tracking-[0.15em] py-2 border-b border-[#F0ECE3] transition-colors ${
-              isActive ? 'text-[#9B4722] font-semibold' : 'text-[#141311]'
+            href="/gallery"
+            class={`text-sm uppercase tracking-[0.15em] transition-colors ${
+              isGalleryActive ? 'text-[#9B4722] font-semibold' : 'text-[#141311]'
             }`}
           >
-            {link.label}
+            Gallery
           </a>
-        );
-      })}
+          <button
+            type="button"
+            id="mobile-gallery-toggle"
+            class="p-1.5 text-[#6B6864] hover:text-[#9B4722] focus:outline-none"
+            aria-label="Toggle Gallery Subcategories"
+          >
+            <svg id="mobile-gallery-arrow" class="w-4 h-4 transition-transform duration-200 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Subbuttons: All, Rangoli, Scrap Art, Foam Art, Wall Art -->
+        <div id="mobile-gallery-sublinks" class="mt-2 pl-3 pr-1 py-1.5 space-y-1 border-l-2 border-[#9B4722]/30 bg-[#FAF7F0]/80 rounded-r-sm">
+          {gallerySublinks.map((sub) => (
+            <a
+              href={sub.href}
+              class="flex items-center justify-between py-1.5 px-2 text-xs uppercase tracking-[0.12em] text-[#57544E] hover:text-[#9B4722] hover:bg-white rounded transition-colors"
+            >
+              <span class="font-medium">{sub.label}</span>
+              <span class="text-[10px] text-[#8A857D] font-mono normal-case tracking-normal">{sub.badge}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Mobile Services with Expandable Subbuttons -->
+      <div class="border-b border-[#F0ECE3] py-2">
+        <div class="flex items-center justify-between">
+          <a
+            href="/services"
+            class={`text-sm uppercase tracking-[0.15em] transition-colors ${
+              isServicesActive ? 'text-[#9B4722] font-semibold' : 'text-[#141311]'
+            }`}
+          >
+            Services
+          </a>
+          <button
+            type="button"
+            id="mobile-services-toggle"
+            class="p-1.5 text-[#6B6864] hover:text-[#9B4722] focus:outline-none"
+            aria-label="Toggle Services Subcategories"
+          >
+            <svg id="mobile-services-arrow" class="w-4 h-4 transition-transform duration-200 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Subbuttons: Services Directory Anchors -->
+        <div id="mobile-services-sublinks" class="mt-2 pl-3 pr-1 py-1.5 space-y-1 border-l-2 border-[#9B4722]/30 bg-[#FAF7F0]/80 rounded-r-sm">
+          {servicesSublinks.map((sub) => (
+            <a
+              href={sub.href}
+              class="flex items-center justify-between py-1.5 px-2 text-xs uppercase tracking-[0.12em] text-[#57544E] hover:text-[#9B4722] hover:bg-white rounded transition-colors"
+            >
+              <span class="font-medium">{sub.label}</span>
+              <span class="text-[10px] text-[#8A857D] font-mono normal-case tracking-normal">{sub.badge}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
       <a
-        href="/order-tracking"
-        class="text-sm uppercase tracking-[0.15em] py-2 text-[#6B6864] flex items-center gap-2"
+        href="/awards"
+        class={`text-sm uppercase tracking-[0.15em] py-2 border-b border-[#F0ECE3] transition-colors ${
+          pathname.startsWith('/awards') ? 'text-[#9B4722] font-semibold' : 'text-[#141311]'
+        }`}
       >
-        <span class="w-2 h-2 rounded-full bg-[#B68B35]"></span>
-        Track Order Status
+        Awards
       </a>
+
       <a
-        href="/gallery"
-        class="mt-4 text-center block w-full py-3 bg-[#141311] text-[#FBFBF9] text-xs uppercase tracking-[0.2em] font-medium"
+        href="/about"
+        class={`text-sm uppercase tracking-[0.15em] py-2 border-b border-[#F0ECE3] transition-colors ${
+          pathname.startsWith('/about') ? 'text-[#9B4722] font-semibold' : 'text-[#141311]'
+        }`}
       >
-        Explore Available Artworks
+        The Artist
       </a>
+
+      <a
+        href="/contact"
+        class={`text-sm uppercase tracking-[0.15em] py-2 border-b border-[#F0ECE3] transition-colors ${
+          pathname.startsWith('/contact') ? 'text-[#9B4722] font-semibold' : 'text-[#141311]'
+        }`}
+      >
+        Contact
+      </a>
+      
+      <div class="pt-2 grid grid-cols-2 gap-2">
+        <a
+          href="tel:+918115604223"
+          class="text-center py-2.5 bg-[#9B4722] text-white text-xs uppercase tracking-[0.16em] font-semibold flex items-center justify-center gap-1.5 rounded-xs"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          Call Me
+        </a>
+        <a
+          href="https://wa.me/918115604223?text=Hello%20Dhirendra,%20I%20would%20like%20to%20discuss%20an%20art%20project%20/%20service."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-center py-2.5 bg-[#25D366] text-white text-xs uppercase tracking-[0.16em] font-semibold flex items-center justify-center gap-1.5 rounded-xs"
+        >
+          <span>WhatsApp</span>
+        </a>
+      </div>
     </nav>
   </div>
 </header>
 
 <script>
+  // Mobile drawer toggle
   const btn = document.getElementById('mobile-menu-button');
   const menu = document.getElementById('mobile-menu');
   const iconOpen = document.getElementById('menu-icon-open');
@@ -131,6 +377,30 @@ const navLinks = [
       menu.classList.toggle('hidden');
       iconOpen.classList.toggle('hidden');
       iconClose.classList.toggle('hidden');
+    });
+  }
+
+  // Mobile gallery accordion toggle
+  const galToggle = document.getElementById('mobile-gallery-toggle');
+  const galSublinks = document.getElementById('mobile-gallery-sublinks');
+  const galArrow = document.getElementById('mobile-gallery-arrow');
+
+  if (galToggle && galSublinks && galArrow) {
+    galToggle.addEventListener('click', () => {
+      galSublinks.classList.toggle('hidden');
+      galArrow.classList.toggle('rotate-180');
+    });
+  }
+
+  // Mobile services accordion toggle
+  const srvToggle = document.getElementById('mobile-services-toggle');
+  const srvSublinks = document.getElementById('mobile-services-sublinks');
+  const srvArrow = document.getElementById('mobile-services-arrow');
+
+  if (srvToggle && srvSublinks && srvArrow) {
+    srvToggle.addEventListener('click', () => {
+      srvSublinks.classList.toggle('hidden');
+      srvArrow.classList.toggle('rotate-180');
     });
   }
 </script>

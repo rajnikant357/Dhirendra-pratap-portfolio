@@ -1,0 +1,348 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SERVICES_DATA, type ServiceItem } from '../lib/data/services';
+
+const services = SERVICES_DATA;
+
+const workSteps = [
+  {
+    step: '01',
+    title: 'Consultation & Site Review',
+    desc: 'We discuss your project vision, dimensions, surface conditions, architectural ambiance, and schedule requirements.'
+  },
+  {
+    step: '02',
+    title: 'Concept Sketches & Drafting',
+    desc: 'Dhirendra prepares tailored concept sketches, digital mockups, color palettes, and material selections for your sign-off.'
+  },
+  {
+    step: '03',
+    title: 'Fabrication & Execution',
+    desc: 'Studio crafting, metal welding, foam sculpting, or on-site painting begins with rigorous adherence to durability and craftsmanship.'
+  },
+  {
+    step: '04',
+    title: 'Finishing & Installation',
+    desc: 'Final protective coatings, structural anchoring, on-site handover, and issuance of certificate for fine art commissions.'
+  }
+];
+---
+
+<BaseLayout
+  title="Studio Services & Commissions — Dhirendra | Artist & Graphics Designer"
+  description="Explore shortlisted creative services by artist Dhirendra: Wall Art & Murals, Recycled Scrap Metal Sculptures, Foam Art, Stage Design, Rangoli, Fine Art Portraits, and Graphic Design. Contact directly for custom inquiries."
+>
+  <!-- 1. Hero Section -->
+  <section class="py-16 sm:py-24 bg-[#FAF7F0] border-b border-[#E8E5DC]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="text-xs uppercase tracking-[0.24em] text-[#9B4722] font-semibold block mb-2">
+          Studio Services &amp; Commissions
+        </span>
+        <h1 class="font-serif-display text-4xl sm:text-5xl lg:text-6xl text-[#141311] font-medium leading-[1.15]">
+          Transforming Spaces &amp; Ideas into Monumental Art
+        </h1>
+        <p class="text-base sm:text-lg text-[#57544E] mt-4 leading-relaxed">
+          Led by academic visual artist <strong>Dhirendra</strong> (BVA &amp; MVA — University of Lucknow), our studio delivers custom public murals, recycled industrial scrap sculptures, intricate 3D foam carvings, ceremonial stage designs, and commercial brand identities across India.
+        </p>
+
+        <!-- Direct Action Bar -->
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <a
+            href="tel:+918115604223"
+            class="px-6 py-3.5 bg-[#9B4722] hover:bg-[#7D381A] text-white text-xs uppercase tracking-[0.18em] font-semibold transition-all shadow-sm hover:shadow flex items-center gap-2.5 rounded-xs"
+            title="Call Dhirendra (+91 8115604223)"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            <span>Call Me: +91 8115604223</span>
+          </a>
+
+          <a
+            href="https://wa.me/918115604223?text=Hello%20Dhirendra,%20I%20would%20like%20to%20discuss%20an%20art%20commission%20/%20service."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3.5 bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs uppercase tracking-[0.18em] font-semibold transition-all shadow-sm hover:shadow flex items-center gap-2.5 rounded-xs"
+            title="Chat on WhatsApp"
+          >
+            <span>💬 Discuss on WhatsApp</span>
+          </a>
+
+          <a
+            href="/gallery"
+            class="px-6 py-3.5 bg-white border border-[#D3CEBF] text-[#2C2A26] hover:border-[#141311] text-xs uppercase tracking-[0.18em] font-semibold transition-all rounded-xs"
+          >
+            View Gallery Works &rarr;
+          </a>
+        </div>
+
+        <!-- Credential Badges -->
+        <div class="mt-10 pt-8 border-t border-[#E8E5DC] grid grid-cols-2 sm:grid-cols-4 gap-4 text-left">
+          <div>
+            <span class="block font-serif-display text-2xl font-bold text-[#141311]">7+ Years</span>
+            <span class="text-[11px] uppercase tracking-wider text-[#6B6864]">Studio Practice</span>
+          </div>
+          <div>
+            <span class="block font-serif-display text-2xl font-bold text-[#141311]">BVA &amp; MVA</span>
+            <span class="text-[11px] uppercase tracking-wider text-[#6B6864]">Visual Arts Lucknow</span>
+          </div>
+          <div>
+            <span class="block font-serif-display text-2xl font-bold text-[#141311]">State &amp; National</span>
+            <span class="text-[11px] uppercase tracking-wider text-[#6B6864]">Honors &amp; Awards</span>
+          </div>
+          <div>
+            <span class="block font-serif-display text-2xl font-bold text-[#141311]">100% Custom</span>
+            <span class="text-[11px] uppercase tracking-wider text-[#6B6864]">On-Site Execution</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Services Showcase Section -->
+  <section class="py-20 sm:py-24 bg-[#FBFBF9]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Quick Directory Navigation Anchor Tabs -->
+      <div class="mb-14 pb-5 border-b border-[#E8E5DC] overflow-x-auto scrollbar-none">
+        <div class="flex items-center gap-2 min-w-max">
+          <span class="text-[11px] uppercase tracking-wider text-[#6B6864] font-semibold mr-2 flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-[#9B4722]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+            Jump to Service:
+          </span>
+          {services.map((srv) => (
+            <a
+              href={`#${srv.id}`}
+              class="px-3.5 py-2 bg-white border border-[#E8E5DC] hover:border-[#9B4722] hover:text-[#9B4722] text-[#57544E] text-xs uppercase tracking-wider font-medium rounded-xs transition-colors shadow-2xs"
+            >
+              <span>{srv.title.split('&')[0].trim()}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Services List Cards -->
+      <div class="space-y-16">
+        {services.map((srv, idx) => (
+          <div
+            id={srv.id}
+            class={`bg-white border border-[#E8E5DC] rounded-sm p-6 sm:p-10 transition-shadow hover:shadow-md grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center scroll-mt-28`}
+          >
+            <!-- Content Column -->
+            <div class={`lg:col-span-6 space-y-6 ${idx % 2 === 1 ? 'lg:order-2' : ''}`}>
+              <div class="space-y-2">
+                <span class="inline-block px-3 py-1 bg-[#FAF5E9] border border-[#E8E5DC] text-[#9B4722] text-[10px] uppercase tracking-[0.2em] font-semibold rounded-xs">
+                  {srv.badge}
+                </span>
+                <h3 class="font-serif-display text-2xl sm:text-3xl text-[#141311] font-medium">
+                  {srv.title}
+                </h3>
+              </div>
+
+              <!-- Mobile-Only Imagery Showcase: directly under service title -->
+              <div class="grid grid-cols-2 gap-3 pt-1 lg:hidden">
+                {srv.images.map((img) => (
+                  <div class="group relative overflow-hidden rounded-xs bg-[#FAF5E9] border border-[#E8E5DC] shadow-xs">
+                    <div class="aspect-[4/5] overflow-hidden">
+                      <picture>
+                        <source srcset={img.src.replace(/\.(jpg|jpeg|png)$/i, '.thumb.webp')} type="image/webp" />
+                        <img
+                          src={img.src}
+                          alt={img.alt}
+                          width="300"
+                          height="375"
+                          loading="lazy"
+                          decoding="async"
+                          class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                        />
+                      </picture>
+                    </div>
+                    <div class="p-2 bg-white border-t border-[#F0ECE3]">
+                      <span class="text-[10px] sm:text-[11px] text-[#6B6864] font-medium line-clamp-1">
+                        {img.caption}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <p class="text-sm text-[#57544E] leading-relaxed">
+                {srv.description}
+              </p>
+
+              <!-- Feature Bullet Points -->
+              <div class="space-y-2.5 pt-2">
+                <span class="text-xs uppercase tracking-wider text-[#141311] font-semibold block">
+                  Service Highlights &amp; Inclusions:
+                </span>
+                <ul class="space-y-2">
+                  {srv.features.map((feat) => (
+                    <li class="flex items-start gap-2.5 text-xs text-[#57544E]">
+                      <svg class="w-4 h-4 text-[#9B4722] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <!-- Direct Call & Inquiry Buttons -->
+              <div class="pt-4 border-t border-[#F0ECE3] flex flex-wrap items-center gap-3">
+                <a
+                  href="tel:+918115604223"
+                  class="px-5 py-2.5 bg-[#141311] hover:bg-[#2C2A26] text-white text-xs uppercase tracking-[0.16em] font-semibold transition-colors flex items-center gap-2 rounded-xs shadow-xs"
+                  title="Call for this service"
+                >
+                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  <span>Call to Inquire</span>
+                </a>
+
+                <a
+                  href={`https://wa.me/918115604223?text=Hello%20Dhirendra,%20I%20am%20interested%20in%20inquiring%20about%20your%20${srv.inquiryParam}%20service.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="px-5 py-2.5 bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs uppercase tracking-[0.16em] font-semibold transition-colors flex items-center gap-2 rounded-xs shadow-xs"
+                  title="WhatsApp Inquiry"
+                >
+                  <span>WhatsApp Inquiry &rarr;</span>
+                </a>
+
+                <a
+                  href={srv.galleryLink}
+                  class="px-4 py-2.5 bg-[#FAF7F0] border border-[#D3CEBF] hover:border-[#9B4722] hover:text-[#9B4722] text-[#2C2A26] text-xs uppercase tracking-[0.16em] font-semibold transition-colors rounded-xs flex items-center gap-1.5"
+                  title={`View ${srv.galleryCategory} in Gallery Archive`}
+                >
+                  <span>Explore in Gallery &rarr;</span>
+                </a>
+
+                <a
+                  href="/contact"
+                  class="px-4 py-2.5 border border-[#D3CEBF] hover:border-[#141311] text-[#2C2A26] text-xs uppercase tracking-[0.16em] font-semibold transition-colors rounded-xs"
+                >
+                  Online Form
+                </a>
+              </div>
+            </div>
+
+            <!-- Imagery Showcase Column (Desktop) -->
+            <div class={`hidden lg:grid lg:col-span-6 grid-cols-2 gap-3.5 ${idx % 2 === 1 ? 'lg:order-1' : ''}`}>
+              {srv.images.map((img) => (
+                <div class="group relative overflow-hidden rounded-xs bg-[#FAF5E9] border border-[#E8E5DC] shadow-xs">
+                  <div class="aspect-[4/5] overflow-hidden">
+                    <picture>
+                      <source srcset={img.src.replace(/\.(jpg|jpeg|png)$/i, '.thumb.webp')} type="image/webp" />
+                      <img
+                        src={img.src}
+                        alt={img.alt}
+                        width="300"
+                        height="375"
+                        loading="lazy"
+                        decoding="async"
+                        class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+                      />
+                    </picture>
+                  </div>
+                  <div class="p-2.5 bg-white border-t border-[#F0ECE3]">
+                    <span class="text-[11px] text-[#6B6864] font-medium line-clamp-1">
+                      {img.caption}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3. Commission Workflow Section -->
+  <section class="py-20 bg-white border-b border-[#E8E5DC]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-xs uppercase tracking-[0.22em] text-[#9B4722] font-semibold block">
+          Transparent Process
+        </span>
+        <h2 class="font-serif-display text-3xl sm:text-4xl text-[#141311] font-medium mt-1">
+          How Every Project Unfolds
+        </h2>
+        <p class="text-sm text-[#57544E] mt-2">
+          From first phone conversation to the final stroke on site, our methodology ensures complete structural integrity, artistic excellence, and on-time completion.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {workSteps.map((step) => (
+          <div class="bg-[#FAF7F0] p-6 rounded-sm border border-[#E8E5DC] relative space-y-3">
+            <span class="font-mono text-3xl font-bold text-[#9B4722]/30 block">
+              {step.step}
+            </span>
+            <h3 class="font-serif-display text-xl text-[#141311] font-medium">
+              {step.title}
+            </h3>
+            <p class="text-xs text-[#57544E] leading-relaxed">
+              {step.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Direct CTA & Lead Generation Banner -->
+  <section class="py-20 bg-[#141311] text-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+      <span class="text-xs uppercase tracking-[0.24em] text-[#B68B35] font-semibold block">
+        Start Your Project
+      </span>
+      <h2 class="font-serif-display text-3xl sm:text-4xl lg:text-5xl font-medium text-[#FBFBF9]">
+        Ready to Commission a Project or Hire for Freelance Work?
+      </h2>
+      <p class="text-sm sm:text-base text-[#A8A291] max-w-2xl mx-auto leading-relaxed">
+        Speak directly with Dhirendra to discuss dimensions, timelines, and material requirements. We respond immediately to inquiries for murals, sculptures, rangoli events, and graphic branding.
+      </p>
+
+      <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
+        <a
+          href="tel:+918115604223"
+          class="px-8 py-4 bg-[#9B4722] hover:bg-[#7D381A] text-white text-xs uppercase tracking-[0.2em] font-semibold transition-all shadow-md flex items-center gap-2.5 rounded-xs"
+        >
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          <span>Direct Call: +91 8115604223</span>
+        </a>
+
+        <a
+          href="https://wa.me/918115604223?text=Hello%20Dhirendra,%20I%20am%20reaching%20out%20to%20discuss%20an%20art%20commission%20/%20freelance%20project."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-8 py-4 bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs uppercase tracking-[0.2em] font-semibold transition-all shadow-md flex items-center gap-2.5 rounded-xs"
+        >
+          <span>Chat on WhatsApp</span>
+        </a>
+
+        <a
+          href="/contact"
+          class="px-8 py-4 bg-[#1C1B18] border border-[#33312E] hover:border-[#FAF5E9] text-[#FBFBF9] text-xs uppercase tracking-[0.2em] font-semibold transition-all rounded-xs"
+        >
+          Studio Contact Form &rarr;
+        </a>
+      </div>
+
+      <div class="pt-6 text-xs text-[#8A857D] flex items-center justify-center gap-3">
+        <span>📍 Based in Uttar Pradesh, India</span>
+        <span>&bull;</span>
+        <span>Available for Nationwide On-Site Commissions</span>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
